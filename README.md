@@ -5,4 +5,4 @@
 * Clone the project in desired directory by running ```git clone https://github.com/SANSKRUTCORP/SnakesAndLadders.git```
 * Change directory to Project Directory using ```cd SnakesAndLadders```
 * Now run ```npm i```
-* And then run ```ionic serve```
+* And then run ```ionic serve``` . If error appears, type : ```Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted``` over your Terminal/Powershell and then retry.
