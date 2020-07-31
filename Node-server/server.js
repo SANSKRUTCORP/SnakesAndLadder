@@ -12,6 +12,7 @@ var firebaseAdmin = admin.initializeApp({
 });
 
 var firedb = firebaseAdmin.database();
+var count = 1;
 
 
 const app = express();
@@ -33,14 +34,24 @@ function randomgen(){
 app.get('/createroom', function(req, res){
     
     var roomtoken = randomgen();  
-    var roomref = firedb.ref('/rooms/room_'+roomtoken);
-    roomref.push(roomtoken)
+    var roomref = firedb.ref('/rooms');
+    roomref.child('room_'+roomtoken).set({'roomid':roomtoken})
             .then(function(){
                 res.redirect('/createroom');
             })
             .catch(function(err){
                 console.log(err);
             });
+    
+    var roomref1 = firedb.ref('/rooms/room_'+roomtoken+'/players');        
+    roomref1.child('player_'+count).set({name : 'Harsh'})
+    .then(function(){
+            count++;
+            res.redirect('/joinroom');
+    })
+    .catch(function(err){
+        console.log(err);
+    });
 
     res.json({roomid : roomtoken});
 
@@ -60,33 +71,25 @@ app.post('/joinroom', function(req, res){
     var roomtoken = req.body.enterid;
     var roomref = firedb.ref('/rooms/room_'+roomtoken+'/players');
 
+
     roomref.once('value', function(data){
-        
-        if(data.val()==null){
-            roomref.push('Harsh')
+                  
+        var lenref = Object.keys(data.val()).length;
+        console.log(lenref);
+
+        if(lenref<4){
+            console.log(lenref);
+            roomref.child('player_'+count).set({name : 'Harsh'})
                 .then(function(){
+                        count++;
                         res.redirect('/joinroom');
                 })
                 .catch(function(err){
                     console.log(err);
                 });
-        } else {            
-            var lenref = Object.keys(data.val()).length;
-            console.log(lenref);
-
-            if(lenref<3){
-                console.log(lenref);
-                roomref.push('Harsh')
-                    .then(function(){
-                            res.redirect('/joinroom');
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                    });
-            } else{
-                res.send('Max players');
-            };
-        }
+        } else{
+            res.send('Max players');
+        };
     });
    
 });
