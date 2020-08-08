@@ -6,3 +6,9 @@
   width: 100%;
 }
 
+.grad{
+  background-image: linear-gradient(to right, rgba(143, 92, 68, 0.89), rgb(218, 172, 134)); 
+  color: darken($color: #0c0c0c, $amount: 0); 
+  border-radius: 40px;
+  
+}

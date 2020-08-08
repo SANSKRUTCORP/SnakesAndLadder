@@ -19,8 +19,10 @@ const routes: Routes = [
     path: 'createroom',
     loadChildren: () => import('./createroom/createroom.module').then( m => m.CreateroomPageModule)
   },
-
- 
+  {
+    path: 'board',
+    loadChildren: () => import('./board/board.module').then( m => m.BoardPageModule)
+  },
 
 
 

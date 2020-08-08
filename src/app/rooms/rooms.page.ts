@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-rooms',
@@ -7,9 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomsPage implements OnInit {
 
-  constructor() { }
+  constructor(private alertCtrl: AlertController ) {
+ }
+
+
+ async showMessage() {
+  const alert = await this.alertCtrl.create({
+    cssClass: 'my-custom-class',
+    message: 'Password',
+    inputs: [
+      {
+        type: 'password',
+        placeholder: 'code',
+      },
+    ],
+    buttons: [
+      {
+        text: 'Okay',
+        handler: () => {
+          console.log('Confirm Okay');
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+message() {
+  console.log('ffdv');
+}
+
 
   ngOnInit() {
   }
-
 }

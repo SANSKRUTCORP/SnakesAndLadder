@@ -1,17 +1,46 @@
-.background-image{
+
+
+
+.background{
     height: 100%;
     width: 100%;
+  
+  }
+
+  // .box{
+  //   background-color: rgba(92, 54, 19, 0.699);
+  // }
+
+  div{
+    background-color: rgba(201, 126, 82, 0.603);
   }
 
   h1{
-    font: italic small-caps bolder 40px arial sans-serif;
-    color: rgb(136, 92, 9);
+    // background-color: rgba(128, 73, 36, 0.712);
+    font: italic small-caps bolder 30px arial sans-serif;
+    color: rgba(8, 8, 8, 0.959);
+    text-align: center;
+     
      }
 
   h2{
-    font: italic small-caps italic 40px arial sans-serif;
-    color: rgb(223, 178, 54);
+    font: bolder small-caps italic 30px arial sans-serif;
+    color: rgb(2, 2, 2);
+    text-align: center;
+     }
+    
+
+  h3{
+    font: bolder small-caps italic 30px arial sans-serif;
+    color: rgb(8, 8, 8);
+    text-align: center;
      }   
   
-   
+ .grad{
+      background-image: linear-gradient(to right, rgb(9, 65, 13), rgba(55, 138, 66, 0.932)); 
+      color: darken($color: #0c0c0c, $amount: 0); 
+      border-radius: 40px;
+      
+    }
+  
   
