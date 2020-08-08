@@ -4,7 +4,14 @@
 
  .background{
      
-     height: 5vh;
-     width: 5vh;
-    
+    height: 10vh;
+   
+}
+
+@media screen and (max-width:900px) {
+    .background{
+     
+        height: 7vh;
+       
+    }
  }
