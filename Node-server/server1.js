@@ -12,7 +12,6 @@ var firebaseAdmin = admin.initializeApp({
 });
 
 var firedb = firebaseAdmin.database();
-var count = 1;
 
 
 const app = express();
@@ -21,7 +20,19 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
+    if ('OPTIONS' === req.method) {
+        res.sendStatus(200);
+    } else {
+        console.log(`${req.ip} ${req.method} ${req.url}`);
+        next();
+    }
+});
 
+app.use(express.json());
 
 function randomgen(){
     var minimum = 1000000;
@@ -30,13 +41,19 @@ function randomgen(){
     return x;
 };
 
+var count = 1;
+// var currentuser = firebaseAdmin.auth.Userinfo.displayName;
+var currentuser = 'Creator';
+
 
 app.get('/createroom', function(req, res){
     
     var roomtoken = randomgen();  
     var roomref = firedb.ref('/rooms');
+    
     roomref.child('room_'+roomtoken).set({'roomid':roomtoken})
             .then(function(){
+                console.log(roomtoken)
                 res.redirect('/createroom');
             })
             .catch(function(err){
@@ -44,7 +61,7 @@ app.get('/createroom', function(req, res){
             });
     
     var roomref1 = firedb.ref('/rooms/room_'+roomtoken+'/players');        
-    roomref1.child('player_'+count).set({name : 'Harsh'})
+    roomref1.child('player_'+count).set({name : currentuser})
     .then(function(){
             count++;
             res.redirect('/joinroom');
@@ -53,7 +70,7 @@ app.get('/createroom', function(req, res){
         console.log(err);
     });
 
-    res.json({roomid : roomtoken});
+    res.json({roomid : roomtoken, room_creator : currentuser});
 
 });
 
@@ -75,10 +92,8 @@ app.post('/joinroom', function(req, res){
     roomref.once('value', function(data){
                   
         var lenref = Object.keys(data.val()).length;
-        console.log(lenref);
 
         if(lenref<4){
-            console.log(lenref);
             roomref.child('player_'+count).set({name : 'Harsh'})
                 .then(function(){
                         count++;
@@ -93,6 +108,11 @@ app.post('/joinroom', function(req, res){
     });
    
 });
+
+app.post('/board', function(req, res){
+    // console.log(req);
+    res.send(req.body);
+})
 
 
 app.listen(3000, function(){
