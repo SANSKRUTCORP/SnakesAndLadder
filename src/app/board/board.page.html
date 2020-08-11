@@ -2,6 +2,7 @@
   <ion-grid>
 
     <ion-row *ngFor='let Loop of counter(10); let i=index'>
+<<<<<<< HEAD
       <ion-col *ngFor='let Loop of counter(10); let j=index' size="0.5" size-sm="0.7" size-md="0.7"  size-xs="1.2">
        
         <div *ngIf='i%2==0' id="{{101-(10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">
@@ -10,6 +11,16 @@
         <div *ngIf='i%2!=0' id="{{101-(10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">
          </div>
        </ion-col>
+=======
+      <ion-col *ngFor='let Loop of counter(10); let j=index' size="0.5" size-md="0.7"  size-xs="1.2">
+        <div *ngIf='i%2==0'>
+          <div id="{{101 - (10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}"></div>
+        </div>
+        <div *ngIf="i%2!=0">
+          <div id="{{(10*(10-i)+1)+10*(10-i-1) - (101 - (10*i+j+1))}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}"></div>
+        </div>
+      </ion-col>
+>>>>>>> d185ca2bb85196f2a08ea4d9f7b7f7d2d0939f00
     </ion-row>
 
   <br><br>
@@ -29,6 +40,9 @@
         <ion-col size-xs="3" size-sm="4" size-md="4" size-lg="8" offset-xs="1" offset-sm="2" offset-md="2" offset-lg="3" >  <h1><img src="../assets/yel.png" height="20px" width="20px" > </h1></ion-col>
       </ion-row>
     </div>
+    <ion-button (click)="boardvals()">
+      click
+    </ion-button>
   </ion-grid>
 </div>
 
