@@ -11,7 +11,7 @@ var firebaseAdmin = admin.initializeApp({
   databaseURL: "https://sanskrut-interns.firebaseio.com"
 });
 
-var fireDB = firebaseAdmin.database();
+var firedb = firebaseAdmin.database();
 
 
 const app = express();
