@@ -3,10 +3,10 @@
     <ion-row *ngFor='let Loop of counter(10); let i=index'>
       <ion-col *ngFor='let Loop of counter(10); let j=index' size="0.5" size-md="0.7"  size-xs="1.2">
         <div *ngIf='i%2==0'>
-          <div id="{{101 - (10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}"></div>
+          <div id="{{101 - (10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">{{101 - (10*i+j+1)}}</div>
         </div>
         <div *ngIf="i%2!=0">
-          <div id="{{(10*(10-i)+1)+10*(10-i-1) - (101 - (10*i+j+1))}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}"></div>
+          <div id="{{(10*(10-i)+1) + 10*(10-i-1) - (101 - (10*i+j+1))}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">{{(10*(10-i)+1) + 10*(10-i-1) - (101 - (10*i+j+1))}}</div>
         </div>
       </ion-col>
     </ion-row>
