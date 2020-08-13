@@ -1,6 +1,17 @@
-<div style="width: 100%;height: 100%;background-image: url(https://i.pinimg.com/originals/3a/7e/61/3a7e613f2e80f41729e210828405b820.jpg);overflow-y: auto;">
+<div style="width: 100%;height: 100%; padding-left: 30px; padding-top: 30px; padding-right: 30px; background-image: url(https://i.pinimg.com/originals/3a/7e/61/3a7e613f2e80f41729e210828405b820.jpg);overflow-y: auto;">
   <ion-grid>
+
     <ion-row *ngFor='let Loop of counter(10); let i=index'>
+<<<<<<< HEAD
+      <ion-col *ngFor='let Loop of counter(10); let j=index' size="0.5" size-sm="0.7" size-md="0.7"  size-xs="1.2">
+       
+        <div *ngIf='i%2==0' id="{{101-(10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">
+         </div>
+
+        <div *ngIf='i%2!=0' id="{{101-(10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">
+         </div>
+       </ion-col>
+=======
       <ion-col *ngFor='let Loop of counter(10); let j=index' size="0.5" size-md="0.7"  size-xs="1.2">
         <div *ngIf='i%2==0'>
           <div id="{{101 - (10*i+j+1)}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">{{101 - (10*i+j+1)}}</div>
@@ -9,12 +20,14 @@
           <div id="{{(10*(10-i)+1) + 10*(10-i-1) - (101 - (10*i+j+1))}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">{{(10*(10-i)+1) + 10*(10-i-1) - (101 - (10*i+j+1))}}</div>
         </div>
       </ion-col>
+>>>>>>> d185ca2bb85196f2a08ea4d9f7b7f7d2d0939f00
     </ion-row>
-    <br><br>
-  
-    <div style="background-color: rgba(139, 99, 67, 0.637) ;" >
+
+  <br><br>
+    
+    <div  style=" padding: 5px; background-color: rgba(139, 99, 67, 0.637) ; text-align: right; " >
       <ion-row>
-        <ion-col  size-xs="3" size-sm="6" size-md="6" size-lg="5" offset-xs="1" offset-sm="4" offset-md="5" offset-lg="3" >
+        <ion-col  size-xs="5" size-sm="6" size-md="6" size-lg="5" offset-xs="1" offset-sm="4" offset-md="5" offset-lg="3" >
           <h1>  <ion-icon name="arrow-undo-outline"></ion-icon>  Click to roll</h1>
         </ion-col>
       </ion-row>  
