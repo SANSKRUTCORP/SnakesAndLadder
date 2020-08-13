@@ -15,7 +15,7 @@ export class RoomsPage implements OnInit {
  async showMessage() {
   const alert = await this.alertCtrl.create({
     cssClass: 'my-custom-class',
-    message: 'Password',
+    message: 'Enter Room Joining Code',
     inputs: [
       {
         type: 'password',

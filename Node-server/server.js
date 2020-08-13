@@ -11,7 +11,7 @@ var firebaseAdmin = admin.initializeApp({
   databaseURL: "https://sanskrut-interns.firebaseio.com"
 });
 
-var firedb = firebaseAdmin.database();
+var fireDB = firebaseAdmin.database();
 
 
 const app = express();
@@ -42,26 +42,26 @@ function randomgen(){
 };
 
 var count = 1;
-// var currentuser = firebaseAdmin.auth.Userinfo.displayName;
-var currentuser = 'Creator';
+// var currentUser = firebaseAdmin.auth.Userinfo.displayName;
+var currentUser = 'Creator';
 
 
 app.get('/createroom', function(req, res){
     
-    var roomtoken = randomgen();  
-    var roomref = firedb.ref('/rooms');
+    var roomToken = randomgen();  
+    var roomRef = firedb.ref('/rooms');
     
-    roomref.child('room_'+roomtoken).set({'roomid':roomtoken})
+    roomRef.child('room_'+roomToken).set({'roomid':roomToken})
             .then(function(){
-                console.log(roomtoken)
+                console.log(roomToken)
                 res.redirect('/createroom');
             })
             .catch(function(err){
                 console.log(err);
             });
     
-    var roomref1 = firedb.ref('/rooms/room_'+roomtoken+'/players');        
-    roomref1.child('player_'+count).set({name : currentuser})
+    var roomRef1 = firedb.ref('/rooms/room_'+roomToken+'/players');        
+    roomRef1.child('player_'+count).set({name : currentUser})
     .then(function(){
             count++;
             res.redirect('/joinroom');
@@ -70,7 +70,7 @@ app.get('/createroom', function(req, res){
         console.log(err);
     });
 
-    res.json({roomid : roomtoken, room_creator : currentuser});
+    res.json({roomid : roomToken, room_creator : currentUser});
 
 });
 
@@ -85,16 +85,16 @@ app.get('/joinroom', function(req, res){
 
 app.post('/joinroom', function(req, res){
 
-    var roomtoken = req.body.enterid;
-    var roomref = firedb.ref('/rooms/room_'+roomtoken+'/players');
+    var roomToken = req.body.enterid;
+    var roomRef = firedb.ref('/rooms/room_'+roomToken+'/players');
 
 
-    roomref.once('value', function(data){
+    roomRef.once('value', function(data){
                   
         var lenref = Object.keys(data.val()).length;
 
         if(lenref<4){
-            roomref.child('player_'+count).set({name : 'Harsh'})
+            roomRef.child('player_'+count).set({name : 'Harsh'})
                 .then(function(){
                         count++;
                         res.redirect('/joinroom');
