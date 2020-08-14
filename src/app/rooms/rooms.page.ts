@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { JoinRoomComponent } from './join-room/join-room.component';
+
 
 @Component({
   selector: 'app-rooms',
@@ -8,37 +10,25 @@ import { AlertController } from '@ionic/angular';
 })
 export class RoomsPage implements OnInit {
 
-  constructor(private alertCtrl: AlertController ) {
+  constructor(private modalController: ModalController) {
+
  }
 
-
- async showMessage() {
-  const alert = await this.alertCtrl.create({
-    cssClass: 'my-custom-class',
-    message: 'Password',
-    inputs: [
-      {
-        type: 'password',
-        placeholder: 'code',
-      },
-    ],
-    buttons: [
-      {
-        text: 'Okay',
-        handler: () => {
-          console.log('Confirm Okay');
-        }
-      }
-    ]
-  });
-
-  await alert.present();
-}
-
-message() {
-  console.log('ffdv');
-}
-
+  popup() {
+    const modal = this.modalController
+      .create({
+        component: JoinRoomComponent,
+        cssClass: 'my-custom-modal-css',
+        showBackdrop: true,
+        backdropDismiss: true,
+        swipeToClose: true
+      })
+      .then(popElement => {
+        popElement.present(),
+          popElement.onDidDismiss().then(resp => {
+          });
+      });
+  }
 
   ngOnInit() {
   }

@@ -1,25 +1,19 @@
  <ion-content>
-        
-      <ion-grid class="background-image" style="background-image: url(https://i.pinimg.com/originals/3a/7e/61/3a7e613f2e80f41729e210828405b820.jpg);">
-          
-          <ion-row><br> </ion-row>
-          <ion-row><br> </ion-row>
-          
-          <ion-row>
-            <ion-col size-xs="11" size-sm="6" size-md="7" size-lg="4" offset-xs="" offset-sm="3" offset-md="3" offset-lg="4">
-                <img src="../assets/snakes.png">
+        <ion-grid class="background-img">
+            <ion-row class="space">
+                <ion-col size-xs="11" size-sm="6" size-md="7" size-lg="5" offset-xs="" offset-sm="3" offset-md="3" offset-lg="4">
+                   <img src="../assets/snakes.png">
                 </ion-col>
-          </ion-row>
-
-           <ion-row>
-               <ion-col>
-                   <h1>
-                       hello
-                   </h1>
-               </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                     <h1>
+                         hello
+                     </h1>
+                </ion-col>
            </ion-row>
-           <br><br>
-          <ion-row>
+           
+          <ion-row class="space">
               <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="2" offset-sm="4" offset-md="5" offset-lg="5">
                   <ion-button class="grad" routerLink="/createroom" expand="block" shape="round" fill="clear" >
                       Create Room <ion-icon name="add-outline"></ion-icon>
@@ -27,17 +21,14 @@
               </ion-col>
           </ion-row>
 
-          <ion-row>
+          <ion-row class="space">
             <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="2" offset-sm="4" offset-md="5" offset-lg="5">
-                <ion-button (click)="showMessage()" class="grad" expand="block" shape="round"  fill="clear" >
+                <ion-button (click)="popup()" class="grad" expand="block" shape="round"  fill="clear" >
                     Join Room <ion-icon name="enter-outline"></ion-icon>
                 </ion-button>
             </ion-col>
-        </ion-row>
-       
-
-
-      </ion-grid>
+          </ion-row>
+       </ion-grid>
   </ion-content>
 
 

@@ -7,14 +7,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./board.page.scss'],
 })
 export class BoardPage implements OnInit {
-  diceNumber: number=0;
+  diceNumber =0;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   counter = Array;
+  // counter[0][1]=1;
+
 
   ngOnInit() {
+    // this.counter[0][1]=1;
+    // console.log(this.counter);
   }
+
 
   boardvals(){
     this.http.post<any>('http://localhost:3000/board', {dice_value: this.diceRoll(),
@@ -28,10 +33,12 @@ export class BoardPage implements OnInit {
   }
 
   diceRoll(){
-    let randomNum = Math.floor(Math.random() * 6) + 1;
+    const randomNum = Math.floor(Math.random() * 6) + 1;
     this.diceNumber = randomNum;
     console.log(this.diceNumber);
     return randomNum;
   }
 
 }
+
+
