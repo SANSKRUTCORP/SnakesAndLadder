@@ -1,7 +1,14 @@
-.background-image{
-    height: 100%;
-    width: 100%;
-  }
+
+.background-img{
+  background: url('/assets/wooden-bg.jpg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.space{
+  padding-top: 30px;
+}
 
   h1{
     font: italic small-caps bolder 40px arial sans-serif;
@@ -11,24 +18,15 @@
 
 
   .grad{
-    background-image: linear-gradient(to right, rgb(116, 73, 44), rgb(238, 185, 142)); 
-    color: darken($color: #0c0c0c, $amount: 0); 
+    background-image: linear-gradient(to right, rgba(119, 73, 52, 0.959), rgb(209, 155, 111)); 
+    color: darken($color: #331704, $amount: 0);
     border-radius: 40px;
     
   }
 
-  .box{
-    background-color: rgb(202, 155, 117);
-    color: black;
-    
-  }
-
-  .md-content-scroll .mbsc-fr-c {
-    height: 400px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.md-content-scroll .mbsc-popup {
-    filter: blur(8px);
-}
+  .my-custom-modal-css{
+    height: 20%;
+    top: 80%;
+    position: absolute; 
+    display: block;  
+ }
