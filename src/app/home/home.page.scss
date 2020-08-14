@@ -9,6 +9,7 @@
 }
 
 .grad{
+<<<<<<< HEAD
   background-image: linear-gradient(to right, rgba(119, 73, 52, 0.959), rgb(209, 155, 111)); 
   color: darken($color: #331704, $amount: 0); 
   border-radius: 30px;
@@ -17,3 +18,10 @@
 .space{
   padding-top: 30px;
 }
+=======
+  background-image: linear-gradient(to right, rgba(143, 92, 68, 0.89), rgb(218, 172, 134)); 
+  color: darken($color: #0c0c0c, $amount: 0); 
+  border-radius: 40px;
+  
+}
+>>>>>>> ebb076f458297ecd860c3368277c02295f24c6c2
