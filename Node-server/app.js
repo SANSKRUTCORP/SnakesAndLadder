@@ -6,11 +6,11 @@ const bodyParser  =  require("body-parser");
 const middlew     =  require("express-firebase-middleware");
 const randomroom  =  require("./models");
 
-var serviceAccount = require("./sanskrut-interns-firebase-adminsdk-jm6gx-28d2298760.json");
+var serviceAccount = require("enter path to service acc .json key");
 
 var firebaseAdmin = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://sanskrut-interns.firebaseio.com"
+  databaseURL: "your db URL"
 });
 
 var firedb = firebaseAdmin.database();
