@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+    <!-- firebaseUI -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.5.2/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.2/firebase-ui-auth.css" />
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {"add your firebase configs here"};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
+</head>
+<body>
+    <button id="gone" onclick="googlesigni()">
+        sign in with GOOGLE
+    </button>
+    <br>
+    <p id="google-displayName"></p>
+    <p id="google-email"></p>
+    <br>
+    <button id='signout' onclick="signout()">
+        SignOut
+    </button>
+
+    <script src="./logintemp.js"></script>
+
+
+</body>
+</html>
