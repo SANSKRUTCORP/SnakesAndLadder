@@ -7,15 +7,19 @@
       <ion-col class="box">
         <ion-row *ngFor='let el of arr;' >
           
-          <ion-col *ngFor='let ele of el;'  size-sm="1.2" size-md="1.0" size-lg="1.2" size-xs="1.2">
-            <!-- <div *ngIf='i%2==0'>
-              <div id="{{101 - (10*i+j+1)}}"  class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">  </div>
+           <ion-col *ngFor='let ele of el;'  size-sm="1.2" size-md="1.0" size-lg="1.2" size-xs="1.2">
+            <div *ngIf='i%2==0'>
+              <div id="{{101 - (10*i+j+1)}}"  class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">
+                <div class="image">
+                  
+                </div>  
+              </div>
             </div>
             <div *ngIf="i%2!=0">
               <div id="{{(10*(10-i)+1)+10*(10-i-1) - (101 - (10*i+j+1))}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}"> </div>
-            </div> -->
+            </div> 
             
-          <!-- </ion-col>
+           </ion-col> 
       </ion-row>
       </ion-col>
       <ion-col offset-xs="1" offset-sm="2" offset-md="2" offset-lg="3">
@@ -33,31 +37,28 @@
         </ion-row>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> 
 </div>  -->
 
-<!-- <div style="color: aliceblue;" *ngFor="let el of arr" 
-[ngStyle]="{'background-color': el%2==0 ? 'white' : 'grey'}" >
-{{el}}
- 
-</div>
-<div  *ngFor="let ele of el">
-  {{ele}}
-</div> -->
-<ion-grid>
+
+
+
+ <ion-grid>
     
   <ion-row style="width: 200%;">
     <ion-col class="box" style="box-shadow: 2px 6px 16px rgb(161, 105, 31);">
       <ion-row *ngFor='let el of arr;' style="color: burlywood;">
-        <div *ngFor='let ele of el;' style="background-color: rgb(126, 81, 23);width:10vh;height:10vh;border-style: ridge;">
+        <div *ngFor='let ele of el;' class="block_styling" style="background-color: rgb(126, 81, 23);width:10vh;height:10vh;border-style: ridge;">
           {{ele}}
         </div>
       </ion-row>
     </ion-col>
+
+  
     <ion-col>
-      <ion-button (click)="diceRoll()">
+      <ion-button (click)="diceRollChance()">
         {{diceNumber}}
       </ion-button>
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid> 

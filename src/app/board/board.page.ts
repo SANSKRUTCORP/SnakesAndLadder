@@ -7,8 +7,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./board.page.scss'],
 })
 export class BoardPage implements OnInit {
+  ;
   diceNumber: any;
-  
+  nums: any;
+  members: any;
+  player: any;
+  memberChance: any;
+  ngOnInit() {
+    
+  }
   
   
 
@@ -25,36 +32,50 @@ export class BoardPage implements OnInit {
   [21,22,23,24,25,26,27,28,29,30],
   [20,19,18,17,16,15,14,13,12,11],
   [1,2,3,4,5,6,7,8,9,10],
-];
   
-  // counter = Array;
-  // counter[0][1]=1;
+];
 
-
-  ngOnInit() {
-    // this.counter[0][1]=1;
-    // console.log(this.counter);
+arrr=[
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0],            
+  [0,0,0,0,0,0,0,0,0,0],
+  [[1,1,1,1],0,0,0,0,0,0,0,0,0,0]   /*these 1,1,1,1 indicates the TOKEN of four playes starting position
+                                      and zero indicates no token at that position.*/
+]
+ i=1;
+diceRollChance() {  
+  /*on every click of dice this function gives one by one chance 
+  to all player to roll it*/                                                
+  var player: number;                                                                             
+  for(player = this.i;player<=4;player++) { 
+     this.memberChance =  this.i; 
+     console.log("this chance is of member",this.memberChance); 
+     this.diceRoll();
+     break;  
+  }   
+  if(this.i<5){
+    this.i =this.i+1; 
   }
+  else{
+    this.i=1;   /*bcoz we apply the condition player<=4 so when 
+                 dice roll fifth time then again i should initilise with 1*/
+  } 
+}
 
-
-  // boardvals(){
-  //   this.http.post<any>('http://localhost:3000/board', {dice_value: this.diceRoll(),
-  //                                                       player_1_pos : '',
-  //                                                       player_2_pos : '',
-  //                                                       player_3_pos : '',
-  //                                                       player_4_pos : ''})
-  //   .subscribe(resp => {
-  //     console.log(resp);
-  //   });
-  // }
-
-   diceRoll(){
+   diceRoll(){                                                  
+     //this function is to generate random numberin the dice
      const randomNum = Math.floor(Math.random() * 6) + 1;
      this.diceNumber = randomNum;
-     console.log(this.diceNumber);
+     console.log(" dice value is",this.diceNumber);
      return randomNum;
    }
-
+   
 }
 
 
