@@ -42,7 +42,35 @@
       background-image: linear-gradient(to right, rgb(9, 65, 13), rgba(55, 138, 66, 0.932)); 
       color: darken($color: #0c0c0c, $amount: 0); 
       border-radius: 40px;
-      
-    }
-  
+      font-family: cursive;
+      border: 2px solid rgb(14,13,13);
+      padding-bottom: 5px;
+      padding-top: 5px;
+      height: 40px;
+      box-shadow: 0 8px 16px 0 rgba(231, 177, 152, 0.836), 0 6px 50px 0 rgb(136, 55, 55)
+     
+ }
+  .space1
+  {
+    position: relative;
+    color: #fff;
+    font-size: 5em;
+    text-shadow: 0 0 50px #0f0,
+                0 0 100px #0f0,
+                0 0 150px #0f0,
+                0 0 200px #0f0,
+                0 0 250px #0f0;
+  animation: animate 5s linear infinite;
+  }
+  @keyframes animate
+{ 
+  0%
+  {
+    filter: hue-rotate(0deg);
+  }
+  100%
+  {
+    filter: hue-rotate(360deg);
+  }
+}
   
