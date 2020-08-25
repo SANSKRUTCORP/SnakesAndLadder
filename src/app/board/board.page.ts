@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AttachSession } from 'protractor/built/driverProviders';
+import { ModalController } from '@ionic/angular';
+import { WinComponent } from './win/win.component';
 
 
 @Component({
@@ -9,6 +11,7 @@ import { AttachSession } from 'protractor/built/driverProviders';
   styleUrls: ['./board.page.scss'],
 })
 export class BoardPage implements OnInit {
+  modalController: any;
   // posPlayer: number;
   
   
@@ -178,8 +181,38 @@ playerPosition(){
   }
 }
 
+ 
 
+
+ 
+
+  boardvals(){
+    this.http.post<any>('http://localhost:3000/board', {dice_value: this.diceRoll(),
+                                                        player_1_pos : '',
+                                                        player_2_pos : '',
+                                                        player_3_pos : '',
+                                                        player_4_pos : ''})
+    .subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+ 
+  
+  
+// }
+
+//  export class Boardpage {
+
+//   constructor(private modalController: ModalController) {
+// // }
+ openModal()
+ {
+   this.modalController.create({component:WinComponent}).then((winElement)=>{winElement.present()});
+ }
 }
+
+ 
 
 
 
