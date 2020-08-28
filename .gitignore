@@ -30,3 +30,4 @@ npm-debug.log*
 /plugins
 /www
 /Node-server/node_modules/
+/Node-server/views

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AuthserviceService } from '../services/authservices.service';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public route: Router, private auth : AuthserviceService) { }
 
+  ngOnInit(): void {
+    this.SignIn()
+  }
+  SignIn(){
+    let status
+    status = this.auth.GoogleSignIn()
+    if(status){
+      this.route.navigateByUrl('/rooms')
+    }
+  }
 
  
 }
