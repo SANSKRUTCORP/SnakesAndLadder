@@ -8,10 +8,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { JoinRoomComponent } from './rooms/join-room/join-room.component';
+
+
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, JoinRoomComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
 
