@@ -1,6 +1,25 @@
- <ion-content>
+ <ion-content> 
+  
    <form class="pop">
-   <ion-item>win</ion-item>
-   <ion-button (click)="CloseModal()" size="small" slot="end">close</ion-button>
+    <ion-grid class="background-img">
+      
+      <ion-row class="space1">
+        <ion-col size-xs="14.5" size-sm="11" size-md="13" size-lg="7" offset-xs="-1.2" offset-sm="3" offset-md="-4" offset-lg="0">
+        <img src="../assets/congo.png">
+        </ion-col>
+      </ion-row>
+      <ion-row class="space2">
+        <ion-col size-xs="14.5" size-sm="11" size-md="13" size-lg="2.5" offset-xs="-1.2" offset-sm="3" offset-md="-4" offset-lg="-5">
+        <img src="../assets/gold.png">
+        </ion-col>
+      </ion-row>
+
+<div class="space">
+   <ion-button (click)="CloseModal()" size="small" slot="end">Close</ion-button>
+</div>
+<div class="space3">
+  <ion-button (click)="CloseModal()" size="small" routerLink="/rooms" >Replay</ion-button>
+</div>
+    </ion-grid>
    </form>
  </ion-content>

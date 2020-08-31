@@ -11,7 +11,7 @@ import { WinComponent } from './win/win.component';
   styleUrls: ['./board.page.scss'],
 })
 export class BoardPage implements OnInit {
-  modalController: any;
+   
   // posPlayer: number;
   
   
@@ -36,8 +36,9 @@ export class BoardPage implements OnInit {
     
   }
   
-constructor(private http: HttpClient) {
+constructor(private http: HttpClient, private modalController: ModalController) {
 
+  
    this.arr=[]
     for(let el = 0; el <10; el++) {
       this.arr[el]=[]
@@ -204,13 +205,35 @@ playerPosition(){
 
 //  export class Boardpage {
 
-//   constructor(private modalController: ModalController) {
+  // constructor(private modalController: ModalController) {
 // // }
- openModal()
- {
-   this.modalController.create({component:WinComponent}).then((winElement)=>{winElement.present()});
+//  openModal()
+//  {
+//    this.modalController.create({component:WinComponent}).then((winElement: { present: () => void; })=>{winElement.present()});
+// }
+popup() {
+    const modal = this.modalController
+    .create({
+      component: WinComponent,
+      cssClass: 'my-custom-modal-css',
+      showBackdrop: true,
+      backdropDismiss: true,
+      swipeToClose: true
+    })
+    .then(popElement => {
+      popElement.present(),
+        popElement.onDidDismiss().then(resp => {
+        });
+    });
+  }
+  Calltoggle(){
+    
+    function Calltoggle(){
+      var blur = document.getElementById('blur');
+      blur.classList.toggle('active')
+    }
+  }
  }
-}
 
  
 

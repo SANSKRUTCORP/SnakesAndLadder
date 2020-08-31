@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-
+declare var toggle;
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -10,6 +10,9 @@ export class HomePage {
 
   constructor() {}
 
-
+Calltoggle()
+{
+  toggle();
+}
  
 }
