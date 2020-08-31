@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  firebase:{
+    //enter your firebase credentials here
+  }
  
 };
 
