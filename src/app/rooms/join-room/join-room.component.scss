@@ -1,5 +1,5 @@
 .pop{
-    padding-top: 20%;
+    padding-top: 5%;
     padding-left: 34%;
     padding-bottom: -10%;
     align-content: center;
@@ -23,76 +23,148 @@
     border-radius: 20px;
     color: white;
     background-color: whitesmoke;
-    
+    margin-left: -50%;
 }
 .space{
     padding-top: 40px;
     padding-left: 70px;
     margin-top: 00px;
 }
-.space1
-{
-    margin-top: -140.5px;
+// .space1
+// {
+//     margin-top: -40%;
     
-}
-.space2
-{
-    margin-top: -200px;
-    color: white;
-    text-shadow: black;
-}
-.space3
-{
-    margin-top: -8px;
-}
-@media only screen and (max-width: 900px){
-    .space1
-    {
-       margin-top: -70px;
+    
+
+// .space2
+// {
+//     margin-top: -200px;
+//     color: white;
+//     text-shadow: black;
+// }
+// .space3
+// {
+//     margin-top: -8px;
+// }
+// @media only screen and (max-width: 900px){
+//     // .space1
+//     // {
+//     //    margin-top: -70px;
        
-    }
-    .button{
-        margin-left: -60px;
-    }
-}
-@media only screen and (max-width: 500px){
-    .space1
-    {
-       margin-top: 20px;
+//     // }
+//     .button{
+//         margin-left: -60px;
+//     }
+// }
+// @media only screen and (max-width: 500px){
+//     // .space1
+//     // {
+//     //    margin-top: 20px;
        
-    }
-    .button{
-        margin-left: -30px;
-        margin-top: -40px;
-    }
+//     // }
+//     .button{
+//         margin-left: -30px;
+//         margin-top: -40px;
+//     }
+//     .space2{
+//         margin-top: -170px;
+//     }
+//     .space3{
+//         width: -10vh;
+
+//     }
+// }
+// @media only screen and (max-width: 500px,1000px){
+//     // .space1
+//     // {
+//     //    margin-top: 10.5px;
+//     //    margin-bottom: 5px;
+//     // }
+//     .space2{
+//         margin-top: -170px;
+//     }
+//     .button{
+//         margin-left: -20px;
+//     }
+//     .code{
+//         width: 110%;
+
+//     }
+// }
+// @media only screen and (max-width: 1000px){
+//     .code{
+//         width: 120%;
+
+//     }
+// }
+@media only screen and (min-width: 500px) and (max-width: 600px){
     .space2{
-        margin-top: -170px;
+        margin-left: -2%;
     }
     .space3{
-        width: -10vh;
+        margin-left: -3%;
+    }
+   .button{
+       margin-left: -30%;
 
     }
 }
-@media only screen and (max-width: 500px,1000px){
-    .space1
-    {
-       margin-top: 10.5px;
-       margin-bottom: 5px;
-    }
+@media only screen and (min-width: 400px) and (max-width: 600px){
     .space2{
-        margin-top: -170px;
+        margin-left: -2%;
     }
+    .space3{
+        margin-left: -1%;
+        width: 10%;
+    }
+   .button{
+       margin-left: -30%;
+
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 700px){
+.button{
+    margin-left: -400%;
+
+ }
+}
+@media only screen and (min-width: 696px) and (max-width: 700px){
     .button{
-        margin-left: -20px;
+        margin-left: -150%;
+    
+     }
     }
-    .code{
-        width: 110%;
-
-    }
-}
-@media only screen and (max-width: 1000px){
-    .code{
-        width: 120%;
-
-    }
-}
+    @media only screen and (min-width: 684px) and (max-width: 700px){
+        .button{
+            margin-left: -150%;
+        
+         }
+        }
+        @media only screen and (min-width: 676px) and (max-width: 700px){
+            .button{
+                margin-left: -150%;
+            
+             }
+            }
+            @media only screen and (min-width: 584px) and (max-width: 600px){
+                .button{
+                    margin-left: -800%;
+                
+                 }
+                 .space3{
+                     margin-left: -30%;
+                 }
+                }
+                @media only screen and (min-width: 666px) and (max-width: 700px){
+                    .button{
+                        margin-left: -200%;
+                    
+                     }
+                    }
+                    @media only screen and (min-width: 660px) and (max-width: 700px){
+                        .button{
+                            margin-left: -200%;
+                        
+                         }
+                        }
+                        
