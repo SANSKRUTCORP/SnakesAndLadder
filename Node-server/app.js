@@ -100,11 +100,8 @@ app.get('/createroom', function(req, res){
 app.post('/board/:id', function(req, res){
     var player_pos = [req.body.player_1_pos, req.body.player_2_pos, req.body.player_3_pos, req.body.player_4_pos];
     var dice = req.body.dice_value;
-    // console.log(dice, player_pos[0], player_pos[1], player_pos[2], player_pos[3]);
     var roomToken = req.params.id;
-    // var roomToken = 8481322;
     var ref = firedb.ref('/rooms/room_'+roomToken+'/players');
-    // console.log(ref.child('player_'+1));
     for(var i=1;i<=4;i++){
         if(player_pos[i-1]!=null){
             ref.child('player_'+i)
