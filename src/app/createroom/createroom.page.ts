@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { CreateroomService } from '../services/createroom.service'
 import { AngularFireDatabase } from '@angular/fire/database';
-import * as firebase from 'firebase';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-createroom',
