@@ -1,15 +1,30 @@
-
-
+<ion-content>
   <form class="pop">
-    <input type="password" > 
+    
+      <ion-grid class="background-img">
+        <ion-row class="space1">
+          <ion-col size-xs="14.5" size-sm="11" size-md="13" size-lg="9" offset-xs="-1.2" offset-sm="3" offset-md="-4" offset-lg="-1">
+          <img src="../assets/img.png">
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="space2">
+          <ion-col size-xs="12" size-sm="6" size-md="11" size-lg="10" offset-xs="0" offset-sm="3" offset-md="-2.5" offset-lg="0.1">
+        <p><b>ENTER YOUR CODE HERE</b></p>
+          </ion-col>
+        </ion-row>
+   
+        <ion-row class="space3">
+          <ion-col size-xs="9" size-sm="6" size-md="7.5" size-lg="10" offset-xs="0.5" offset-sm="3" offset-md="-2" offset-lg="0.1">
+    <input type="password" class="code">
+          </ion-col>
+        </ion-row>
     <div class="space">
-      <ion-button routerLink="/createroom" class="button" fill="clear" shape="round">
-        OK
-      </ion-button>
-    </div>
       
+          <ion-button routerLink="/createroom" class="button" shape="round">
+            OK
+          </ion-button>
+       </div>
+      </ion-grid>
   </form>
-
-  
-
-
+</ion-content>

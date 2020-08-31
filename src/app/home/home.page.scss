@@ -2,7 +2,7 @@
 
 
 .background-img{
-  background: url('/assets/wooden-bg.jpg');
+  background: url('https://vignette4.wikia.nocookie.net/star-and-the-forces-of-evil/images/0/09/Diaz_Family_Vacation_background_-_Forest_of_Death_2.png/revision/latest?cb=20160708102201');
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -16,4 +16,29 @@
 
 .space{
   padding-top: 30px;
+}
+.image { 
+  // background-image: url(/css/images/logo.png); 
+ 
+  -webkit-animation-duration: 3s;
+  animation-duration: 2s; 
+  -webkit-animation-fill-mode: both; 
+  animation-fill-mode: both; 
+}
+
+@-webkit-keyframes bounce { 
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 
+  40% {-webkit-transform: translateY(-670px);} 
+  60% {-webkit-transform: translateY(-20px);} 
+} 
+
+@keyframes bounce { 
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+  40% {transform: translateY(-670px);} 
+  60% {transform: translateY(-120px);} 
+}
+
+.bounce { 
+  -webkit-animation-name: bounce; 
+  animation-name: bounce; 
 }

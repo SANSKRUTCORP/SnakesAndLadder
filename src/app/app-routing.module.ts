@@ -23,6 +23,7 @@ const routes: Routes = [
     path: 'board',
     loadChildren: () => import('./board/board.module').then( m => m.BoardPageModule)
   },
+ 
 
 
 
