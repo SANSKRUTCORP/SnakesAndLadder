@@ -1,36 +1,77 @@
 
 <div class="board">
   
-  <ion-grid>
+   <!-- <ion-grid>
     
-    <ion-row>
-      <ion-col class="box">
-        <ion-row *ngFor='let Loop of counter(10); let i=index'>
-          <ion-col *ngFor='let Loop of counter(10); let j=index'  size-sm="1.2" size-md="1.0" size-lg="1.2" size-xs="1.2">
-            <div *ngIf='i%2==0'>
-              <div id="{{101 - (10*i+j+1)}}"  class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}">  </div>
-            </div>
-            <div *ngIf="i%2!=0">
-              <div id="{{(10*(10-i)+1)+10*(10-i-1) - (101 - (10*i+j+1))}}" class="background"  [ngStyle]="{'background-color': (j+i)%2==0 ? 'rgb(146, 94, 45)' : ' rgb(233, 199, 140)'}"> </div>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col offset-xs="1" offset-sm="2" offset-md="2" offset-lg="3">
-        <ion-button class="dice" fill="clear" (click)="diceRoll()">
-           <span style="font-size: 180%; color: burlywood; "> {{diceNumber}}</span>
-        </ion-button>
-      
-        <ion-row>
-          <ion-col size-xs="3" size-sm="4" size-md="4" size-lg="5" offset-xs="1" offset-sm="2" offset-md="2" offset-lg="2" > <h1><img src="../assets/red.png" height="20px" width="20px" > </h1> </ion-col>
-          <ion-col size-xs="3" size-sm="4" size-md="4" size-lg="5" offset-xs="1" offset-sm="2" offset-md="2" offset-lg="2"> <h1><img src="../assets/blue.png" height="20px" width="20px" >  </h1>  </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size-xs="3" size-sm="4" size-md="4" size-lg="8" offset-xs="1" offset-sm="2" offset-md="2" offset-lg="2" >  <h1><img src="../assets/green.png" height="22px" width="20px" > </h1></ion-col>
-          <ion-col size-xs="3" size-sm="4" size-md="4" size-lg="8" offset-xs="1" offset-sm="2" offset-md="2" offset-lg="2" >  <h1><img src="../assets/yel.png" height="20px" width="20px" > </h1></ion-col>
-        </ion-row>
+
+    
+    <ion-row class="space">
+      <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
+          <ion-button (click)="openModal()" class="grad" expand="block" shape="round"  fill="clear" >
+              Winner<ion-icon name="enter-outline"></ion-icon>
+          </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>  -->
 </div>
 
+<ion-grid >
+  <ion-row style="width: 200%;">
+    <ion-col class="box bounce" style="
+                                background-image: url(../../assets/SNAKE\ AND\ LADDER.png);
+                                background-repeat: no-repeat;
+                                background-size: 645px 645px;
+                                ">
+      <ion-row *ngFor='let el of arr;' style="color: rgb(7, 7, 7);">
+       
+        <div *ngFor='let ele of el;'  style="background-color: rgba(179, 105, 8, 0.267);
+                                             width:10vh;height:10vh;
+                                             border: 1px solid rgba(179, 105, 8, 0.342); ">
+         <b> {{ele}}</b>
+         <!-- we have green color for player 1
+                      red color for player 2
+                      blue color for player3
+                      yellow color for player4 -->
+              
+            <div *ngIf="ele==posPlayer1" >
+              <img src="../../assets/g1.png" style=" width: 35%;height:35%;margin-left:35%;">
+            </div>
+            <div *ngIf="ele==posPlayer2" >
+              <img src="../../assets/r1.png"   style="width: 35%;height:35%; margin-left:35%;">
+            </div>
+            <div *ngIf="ele==posPlayer3" >
+              <img src="../../assets/b1.png" style="width: 35%;height:35%; margin-left:35%;">
+            </div>
+            <div *ngIf=" ele==posPlayer4" >
+              <img src="../../assets/y1.png"  style="width: 35%;height:35%; margin-left:35%;">
+            </div>
+            <div *ngIf=" ele==100" >
+              <img src="https://newyorkparkingticket.com/wp-content/uploads/2009/09/NYPT-WIN_how-to-beat-a-NYC-parking-ticket.png"  style="width: 100%;height:100%; margin-left:5%;">
+            </div>
+            <div *ngIf=" ele==1" >
+              <img src="http://www.clker.com/cliparts/C/n/U/D/t/D/transparent-arrow-hi.png"  style="width: 100%;height:100%; ">
+            </div>
+
+
+
+            
+            <!-- <div *ngIf="ele==6 ">
+              <img src="../../assets/bgg.png" >
+            </div> -->
+            
+           
+            
+           
+        </div>
+  
+      </ion-row>
+        
+      
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="diceRollChance()" >
+        {{diceNumber}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid> 

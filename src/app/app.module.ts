@@ -13,10 +13,14 @@ import { JoinRoomComponent } from './rooms/join-room/join-room.component';
 
 
 
+
+
+
 @NgModule({
   declarations: [AppComponent, JoinRoomComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+   ],
 
   providers: [
     StatusBar,
