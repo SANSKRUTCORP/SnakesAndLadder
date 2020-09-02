@@ -6,9 +6,17 @@
     width: 100%;
 }
 
+p{
+  font-family: cursive;
+}
+
+h2{
+  font-family: cursive;
+}
+
   h1{
     // background-color: rgba(128, 73, 36, 0.712);
-    font: italic small-caps bolder 30px arial sans-serif;
+    font-family: cursive;
     color: rgba(8, 8, 8, 0.959);
     text-align: center;
      
@@ -20,22 +28,24 @@
 
   .space{
     padding-top: 50px;
+    
      }
 
   .styling{
-    background-color: rgba(156, 106, 74, 0.671);
-    font: bolder small-caps italic 30px arial sans-serif;
+    background-color: rgba(156, 105, 74, 0.575);
+    // font: bolder small-caps italic 30px arial sans-serif;
     color: rgb(2, 2, 2);
     text-align: center;
     padding-top: 20px;
+    border: 2px solid black;
      }
     
 
-  h3{
-    font: bolder small-caps italic 30px arial sans-serif;
-    color: rgb(8, 8, 8);
-    text-align: center;
-     }   
+  // h3{
+  //   font: bolder small-caps italic 30px arial sans-serif;
+  //   color: rgb(8, 8, 8);
+  //   text-align: center;
+  //    }   
   
      //button
  .grad{
