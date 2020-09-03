@@ -9,18 +9,18 @@ import { AuthserviceService } from '../services/authservices.service';
 })
 export class HomePage {
 
-  constructor(public route: Router, private auth : AuthserviceService) { }
+  constructor(public route: Router, public auth : AuthserviceService) { }
 
   ngOnInit(): void {
-    this.SignIn()
-  }
-  SignIn(){
-    let status
-    status = this.auth.GoogleSignIn()
-    if(status){
-      this.route.navigateByUrl('/rooms')
-    }
+    this.Signin();
   }
 
+  Signin(){
+    var status;
+    status = this.auth.GoogleSignIn();
+    if(status){
+      console.log('Signed in');
+    }
+  }
  
 }

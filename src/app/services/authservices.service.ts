@@ -10,13 +10,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 export class AuthserviceService {
   isSignedIn = false;
+  loggedInUserId: any;
+  loggedInEmail: any;
 
-  constructor(public router:Router, private afAuth : AngularFireAuth) {
+  constructor(public router:Router, public afAuth : AngularFireAuth) {
     this.afAuth.user.subscribe(function(res){
       if(res.uid){
         this.isSignedIn = true
         console.log(res.uid)
-        this.router.navigateByUrl("/rooms")
       }
       else{
         this.isSignedIn = false
@@ -39,20 +40,38 @@ export class AuthserviceService {
     return this.isSignedIn
   }
 
+
+  
   GoogleSignIn() {
-    let provider = new firebase.auth.GoogleAuthProvider();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    console.log('provider:',provider)
     this.afAuth.signInWithPopup(provider)
-        .then(function (data) {
+        .then((data)=>{
           this.isSignedIn = true
+          this.loggedInUserId  = data.user.uid
+          this.loggedInEmail = data.user.email
           console.log('signed in!')
+          console.log(this.getToken())
           console.log(data)
           return true
         })
         .catch(function (err) {
             console.log(err)
-        })
-  
-      
+        })      
+  }
+
+  getUserId(){
+    return this.loggedInUserId
+  }
+
+  getUserEmail(){
+    return this.loggedInEmail
+  }
+
+  getToken():any{
+    this.afAuth.user.subscribe(res=>{
+      return res.getIdToken()
+    }) 
   }
 
 }
