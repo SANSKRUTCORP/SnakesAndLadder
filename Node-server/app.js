@@ -70,6 +70,7 @@ app.get('/createroom', function(req, res){
                                     roomRef.child('room_'+roomToken).set({roomid:roomToken, tempCounter:2})
                                                                     .then(function(){
                                                                         console.log("roomToken add to db");
+                                                                        res.send({room_token : roomToken});
                                                                     })
                                                                     .catch(function(err){
                                                                         console.log(err);
