@@ -283,14 +283,12 @@ win(){
  
 
 
- 
-
   boardvals(){
-    this.http.post<any>('http://localhost:3000/board', {dice_value: this.diceRoll(),
-                                                        player_1_pos : '',
-                                                        player_2_pos : '',
-                                                        player_3_pos : '',
-                                                        player_4_pos : ''})
+    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.diceRoll(),
+                                                        player_1_pos : this.posPlayer1,
+                                                        player_2_pos : this.posPlayer2,
+                                                        player_3_pos : this.posPlayer3,
+                                                        player_4_pos : this.posPlayer4})
     .subscribe(resp => {
       console.log(resp);
     });
