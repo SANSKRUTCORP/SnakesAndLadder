@@ -15,5 +15,6 @@ export class WinComponent implements OnInit {
   CloseModal()
   {
     this.modalController.dismiss();
+    
   }
 }
