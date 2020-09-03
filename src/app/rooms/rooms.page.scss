@@ -7,22 +7,98 @@
 }
 
 .space{
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
+
   h1{
-    font: italic small-caps bolder 40px arial sans-serif;
-    color: rgb(207, 151, 78);
+    font-family: cursive;
+    // font: italic small-caps bolder 40px arial sans-serif;
+    color: rgb(226, 143, 75);
     text-align: center;
+    // text-shadow: 2px 2px 3px rgb(219, 132, 73);
+    font-size: 10vh;
+    padding-top: 20%;
+    padding-bottom: 10%;
   }
 
+p{
+  font-family: cursive;
+  color: black;
+}
 
   .grad{
-    background-image: linear-gradient(to right, rgba(119, 73, 52, 0.959), rgb(209, 155, 111)); 
+    background-image: linear-gradient(to right, rgba(150, 88, 60, 0.959), rgb(235, 181, 137)); 
     color: darken($color: #331704, $amount: 0);
-    border-radius: 40px;
-    
+    border-radius: 40px; 
+    border: 2px solid black; 
+    box-shadow: 0 4px 8px 0 rgb(189, 155, 155), 0 6px 20px 0 rgb(151, 44, 44);
   }
+
  
+
+  @media only screen and (min-width:360px) and (max-width:400px){
+    .grad{
+      font-size: 12px;
+    }
+    h1{
+      font-size: 8vh;
+    }
+  }
+
+  @media only screen and (min-width:310px) and (max-width:360px){
+    .grad{
+      font-size: 9px;
+    }
+    h1{
+      font-size: 8vh;
+    }
+  }
+
+  @media only screen and (min-width:250px) and (max-width:310px){
+    .grad{
+      font-size: 10px;
+    }
+    h1{
+      font-size: 7vh;
+    }
+    .button{
+      width: 30vh;
+      padding-left: 9%;
+      padding-right: 9%;
+      
+    }
+  }
+
+  @media only screen and (min-width:225px) and (max-width:250px){
+    .grad{
+      font-size: 10px;
+    }
+    h1{
+      font-size: 6vh;
+    }
+    .button{
+      width: 30vh;
+      padding-left: 4%;
+      padding-right: 35%;
+      
+    }
+  }
+
+  @media only screen and (min-width:150px) and (max-width:225px){
+    .grad{
+      font-size: 10px;
+    }
+    h1{
+      font-size: 5vh;
+    }
+    .button{
+      width: 30vh;
+      padding-left: 0%;
+      padding-right: 60%;
+      
+    }
+  }
+
 
 

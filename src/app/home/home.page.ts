@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthserviceService } from '../services/authservices.service';
 
+
+declare var toggle;
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -22,5 +24,9 @@ export class HomePage {
       console.log('Signed in');
     }
   }
+Calltoggle()
+{
+  toggle();
+}
  
 }
