@@ -17,7 +17,6 @@ export class CreateroomPage implements OnInit {
   
 
   listenPlayers(){
-    // this.roomToken = this.getRoomToken()
     var ref = this.db.database.ref('/rooms/room_'+this.roomToken+'/players')
     ref.on("value", (snapshot)=>{
       this.roomToken = this.getRoomToken()
