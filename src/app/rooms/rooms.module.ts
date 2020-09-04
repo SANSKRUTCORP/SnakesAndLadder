@@ -10,6 +10,7 @@ import { RoomsPage } from './rooms.page';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +18,6 @@ import { RoomsPage } from './rooms.page';
     IonicModule,
     RoomsPageRoutingModule
   ],
-  declarations: [RoomsPage]
+  declarations: [RoomsPage],
 })
 export class RoomsPageModule {}
