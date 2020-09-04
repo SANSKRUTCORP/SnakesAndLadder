@@ -4,12 +4,10 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-
 import { HomePageRoutingModule } from './home-routing.module';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
 import { AuthserviceService } from '../services/authservices.service';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../../environments/environment';
 
 
 @NgModule({
@@ -18,12 +16,11 @@ import { AuthserviceService } from '../services/authservices.service';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase), 
     HttpClientModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase)
   ],
   declarations: [HomePage],
-  providers:[AuthserviceService]
+  providers: [AuthserviceService]
   
 })
 export class HomePageModule {}

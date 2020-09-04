@@ -12,48 +12,54 @@ export class AuthserviceService {
   isSignedIn = false;
   loggedInUserId: any;
   loggedInEmail: any;
+  LoggedInName: any;
 
   constructor(public router:Router, public afAuth : AngularFireAuth) {
     this.afAuth.user.subscribe(function(res){
+      if(!res){
+        return null;
+      }
       if(res.uid){
         this.isSignedIn = true
-        console.log(res.uid)
+        console.log('User state : ', this.isSignedIn)
+        router.navigateByUrl('/rooms')
       }
       else{
         this.isSignedIn = false
+        router.navigateByUrl('/home')
       }
     })
   }
 
+  isUserSignedIn(){
+    return this.isSignedIn;
+  }
+
 
   SignOut(){
-    if(this.isUserSignedIn()){
+    if(this.isSignedIn){
       this.isSignedIn = false
       this.afAuth.signOut()
-      console.log('signed out!')
+      // console.log('signed out!')
       location.reload()
       this.router.navigateByUrl("/home")
+    } else{
+      console.log("not signed in!")
+      console.log(this.isSignedIn)
     }
   }
-
-  isUserSignedIn(){
-    return this.isSignedIn
-  }
-
 
   
   GoogleSignIn() {
     var provider = new firebase.auth.GoogleAuthProvider();
-    console.log('provider:',provider)
+    // console.log('provider:',provider)
     this.afAuth.signInWithPopup(provider)
         .then((data)=>{
           this.isSignedIn = true
           this.loggedInUserId  = data.user.uid
           this.loggedInEmail = data.user.email
-          console.log('signed in!')
-          console.log(this.getToken())
-          console.log(data)
-          return true
+          this.LoggedInName = data.user.displayName
+          console.log('User state : ',this.isUserSignedIn())
         })
         .catch(function (err) {
             console.log(err)
@@ -68,10 +74,18 @@ export class AuthserviceService {
     return this.loggedInEmail
   }
 
-  getToken():any{
-    this.afAuth.user.subscribe(res=>{
-      return res.getIdToken()
-    }) 
+  getToken() : any{
+    if(this.isUserSignedIn()){
+      this.afAuth.idToken.subscribe(res=>{
+        console.log('idRes : ',res)
+        return res
+      })
+    }
   }
+
+  getUserName():any{
+    return this.LoggedInName
+  }
+
 
 }
