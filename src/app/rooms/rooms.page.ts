@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { JoinRoomComponent } from './join-room/join-room.component';
+import { AuthserviceService } from '../services/authservices.service';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { JoinRoomComponent } from './join-room/join-room.component';
 })
 export class RoomsPage implements OnInit {
 
-  constructor(private modalController: ModalController) {
+  constructor(private modalController: ModalController, public auth : AuthserviceService) {
+
+    
 }
 
   popup() {
@@ -29,6 +32,15 @@ export class RoomsPage implements OnInit {
       });
   }
 
-  ngOnInit() {
+  signOut(){
+    if(this.auth.isUserSignedIn()){
+      console.log(this.auth.loggedInEmail)
+      this.auth.SignOut()
+    } else{
+      console.log('Not signed in at rooms?!')
+    }
+    
   }
+
+  ngOnInit() {  }
 }
