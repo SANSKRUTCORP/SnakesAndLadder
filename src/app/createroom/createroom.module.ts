@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { environment } from '../../environments/environment';
 
 
 import { IonicModule } from '@ionic/angular';
@@ -21,8 +18,6 @@ import { TokenInterceptor } from '../services/auth.interceptor';
     FormsModule,
     IonicModule,
     CreateroomPageRoutingModule, 
-    AngularFireModule.initializeApp(environment.firebase), 
-    AngularFireDatabaseModule
   ],
   declarations: [CreateroomPage],
   providers:[
