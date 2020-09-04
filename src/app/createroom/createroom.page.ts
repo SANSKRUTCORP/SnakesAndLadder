@@ -19,7 +19,7 @@ export class CreateroomPage implements OnInit {
   listenPlayers(){
     var ref = this.db.database.ref('/rooms/room_'+this.roomToken+'/players')
     ref.on("value", (snapshot)=>{
-      this.roomToken = this.getRoomToken()
+      // this.roomToken = this.getRoomToken()
       console.log("this is...",this.names)
       for(var i=1;i<=4;i++){
         var user = snapshot.child('player_'+i+'/name').val();
@@ -36,11 +36,11 @@ export class CreateroomPage implements OnInit {
   
   getRoomToken() : any{
     this.http.get<any>('http://localhost:3000/createroom').subscribe((res)=>{
-      console.log("response is : ",res.room_token);
-      return res.room_token
+      console.log("response is : ",res['room_token']);
+      return res['room_token']
     },(error)=>{
       console.log("Error on req : ",error);
-      return 0;
+      return null;
     })
   }
 
@@ -50,3 +50,8 @@ export class CreateroomPage implements OnInit {
     this.getRoomToken();
   }
 }
+
+
+
+//total wins & loses
+//total games played
