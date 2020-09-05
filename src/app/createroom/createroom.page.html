@@ -5,17 +5,12 @@
       <ion-row class="space">
         <ion-col class="styling" size-xs="10" size-sm="8" size-md="9" size-lg="4" offset-xs="1" offset-sm="2" offset-md="1" offset-lg="4">
           <div>
-            <h1>Room created by "User"</h1>
+            <h1>Room created by {{leader}}</h1>
             
             <h1>Joined Players</h1>
-            <ion-row class="padding">
-              <h2> <ion-icon name="arrow-redo-circle-outline"></ion-icon> Player  </h2>
-            </ion-row>
-            <ion-row class="padding">
-              <h2> <ion-icon name="arrow-redo-circle-outline"></ion-icon>  Player  </h2>
-            </ion-row>
-            <ion-row class="padding">
-              <h2> <ion-icon name="arrow-redo-circle-outline"></ion-icon> Player  </h2>
+            <ion-row *ngFor="let name of names">
+              <ion-icon *ngIf="name!=null" name="caret-forward-outline"></ion-icon>
+              <div>{{name}}</div>
             </ion-row>
           </div> 
         </ion-col>
