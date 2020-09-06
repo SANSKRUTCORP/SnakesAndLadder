@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthserviceService } from '../services/authservices.service';
+
 
 declare var toggle;
 @Component({
@@ -8,8 +11,19 @@ declare var toggle;
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public route: Router, public auth : AuthserviceService) { }
 
+  ngOnInit(): void {
+    this.Signin();
+  }
+
+  Signin(){
+    var status;
+    status = this.auth.GoogleSignIn();
+    if(status){
+      console.log('Signed in');
+    }
+  }
 Calltoggle()
 {
   toggle();
