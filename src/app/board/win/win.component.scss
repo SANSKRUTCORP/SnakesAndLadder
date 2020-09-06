@@ -1,29 +1,69 @@
 .pop{
-  padding-top: 18%;
+  padding-top: 30%;
   padding-left: 34%;
-  padding-bottom: -1%;
+  padding-bottom: 50.5%;
   align-content: center;
-  background-color: linear-gradient(to right, rgb(9, 65, 13), rgba(55, 138, 66, 0.932));
-  overflow: hidden;
+  background-color: black;
+
+    overflow: hidden;
   border: 3px solid rgb(255,223,0); 
-  ;
-}
-.space1{
-  margin-top: -23%;
   
 }
-.space2{
-  margin-top: 4%;
+.space1{
+  margin-top: -20%;
 }
-.space{
-  margin-top: 6%;
-  margin-left: 30%;
+
+.space2{
+  margin-top: -70%;
+  width: 250%;
+  
 }
 .space3{
-  margin-top: -8.5%;
+  color: white;
+  margin-top: 5%;
+
 }
+.space4{
+  margin-top: -100%;
+  width: -10%;
+}
+.grad{
+   
+  color: white;
+}
+@media only screen and (min-width:916px) and (max-width: 950px){
+  .pop{
+    padding-top: 40%;
+   padding-bottom: 40.5%;
+  }
+  .space4{
+    margin-top: -100%;
+  }
+  .space1{
+    margin-top: -40%;
+  }
 
-
-
-
-
+}
+@media only screen and (min-width:768px) and (max-width: 876px){
+  .pop{
+    padding-top: 35%;
+   padding-bottom: 45.6%;
+  }
+  .space4{
+    margin-top: -97%;
+  }
+  .space1{
+    margin-top: -32%;
+  }
+}
+@media only screen and (max-width: 767px){
+  .pop{
+    padding-bottom: 69%;
+  }
+  .space1{
+    margin-top: -10%;
+  }
+  .space4{
+    margin-top: -110%;
+  }
+}

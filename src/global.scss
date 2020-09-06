@@ -25,10 +25,31 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.my-custom-modal-css .modal-wrapper {
-    background-color: rgb(226, 220, 215);
-    height: 50%;
-    width: 50%;
-    top: 10%; 
-    display: block;  
- }
+// .my-custom-modal-css .modal-wrapper {
+//     background-color: rgb(226, 220, 215);
+//     height: 50%;
+//     width: 50%;
+//     top: 10%; 
+//     display: block;  
+//  }
+ 
+.my-custom-modal-css
+{
+    .modal-wrapper{
+        .modal-content{
+            @media (min-width: 650px) and (max-width: 1800px){
+                background-color: rgb(226, 220, 215);
+                height: 50%;
+                width: 80%;
+                // top: 10%; 
+                // display: block; 
+            }
+            @media (min-width: 0px) and (max-width: 650px){
+                height: 100%;
+                width: 100%;
+                // top: 10%; 
+                display: block;
+            }
+        }
+    }
+}
