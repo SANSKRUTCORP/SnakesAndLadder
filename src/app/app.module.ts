@@ -10,12 +10,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JoinRoomComponent } from './rooms/join-room/join-room.component';
 import { WinComponent } from './board/win/win.component';
-
+import { AllComponent } from './board/all/all.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, JoinRoomComponent, WinComponent],
+  declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
    ],

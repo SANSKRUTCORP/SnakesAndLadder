@@ -2,21 +2,28 @@
 
 
 <ion-grid>
-  <div class="board" id="blur">
+  <div class="board" >
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup()" class="grad" expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
+          <ion-button (click)="popup()" class="grad" expand="block" shape="round"  fill="clear" >
               Winner<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
       </ion-col>
     </ion-row>
+    <ion-row class="space">
+      <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
+          <ion-button (click)="popup1()" class="grad" expand="block" shape="round"  fill="clear" >
+              popup<ion-icon name="enter-outline"></ion-icon>
+          </ion-button>
+      </ion-col>
+    </ion-row>
     </div>
-     <script type="text/javascript" >
+     <!-- <script type="text/javascript" >
       function Calltoggle(){
         var blur = document.getElementById('blur');
         blur.classList.Calltoggle('active')
       }
-    </script> 
+    </script>  -->
   <ion-row style="width: 200%;">
     <ion-col class="box bounce" style="
                                 background-image: url(../../assets/SNAKE\ AND\ LADDER.png);
