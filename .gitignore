@@ -30,3 +30,6 @@ npm-debug.log*
 /plugins
 /www
 /Node-server/node_modules/
+/Node-server/views
+/Node-server/sanskrut-interns-firebase-adminsdk-jm6gx-128ac628dc.json
+/src/environments
