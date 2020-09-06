@@ -1,21 +1,14 @@
+<ion-grid class="background-img" > 
 
- <ion-grid class="background-img" > 
-
-<<<<<<< HEAD
-
-<ion-grid>
-  <div class="board" >
-=======
-  <!-- <div class="board" id="blur">
->>>>>>> cd738842c51617a2c6d06f0022945451461dc29b
+  <div class="board" id="blur">
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup()" class="grad" expand="block" shape="round"  fill="clear" >
+          <ion-button (click)="popup()" class="grad" expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
               Winner<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
       </ion-col>
     </ion-row>
-<<<<<<< HEAD
+    </div>
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
           <ion-button (click)="popup1()" class="grad" expand="block" shape="round"  fill="clear" >
@@ -23,57 +16,6 @@
           </ion-button>
       </ion-col>
     </ion-row>
-    </div>
-     <!-- <script type="text/javascript" >
-=======
-    </div> -->
-     <!-- <script type="text/javascript">
->>>>>>> cd738842c51617a2c6d06f0022945451461dc29b
-      function Calltoggle(){
-        var blur = document.getElementById('blur');
-        blur.classList.Calltoggle('active')
-      }
-    </script>  -->
-<<<<<<< HEAD
-  <ion-row style="width: 200%;">
-    <ion-col class="box bounce" style="
-                                background-image: url(../../assets/SNAKE\ AND\ LADDER.png);
-                                background-repeat: no-repeat;
-                                background-size: 645px 645px;
-                                ">
-      <ion-row *ngFor='let el of arr;' style="color: rgb(7, 7, 7);">
-       
-        <div *ngFor='let ele of el;'  style="background-color: rgba(179, 105, 8, 0.267);
-                                             width:10vh;height:10vh;
-                                             border: 1px solid rgba(179, 105, 8, 0.342); ">
-         <b> {{ele}}</b>
-         <!-- we have green color for player 1
-                      red color for player 2
-                      blue color for player3
-                      yellow color for player4 -->
-              
-            <div *ngIf="ele==posPlayer1" >
-              <img src="../../assets/g1.png" style=" width: 35%;height:35%;margin-left:35%;">
-            </div>
-            <div *ngIf="ele==posPlayer2" >
-              <img src="../../assets/r1.png"   style="width: 35%;height:35%; margin-left:35%;">
-            </div>
-            <div *ngIf="ele==posPlayer3" >
-              <img src="../../assets/b1.png" style="width: 35%;height:35%; margin-left:35%;">
-            </div>
-            <div *ngIf=" ele==posPlayer4" >
-              <img src="../../assets/y1.png"  style="width: 35%;height:35%; margin-left:35%;">
-            </div>
-            <div *ngIf=" ele==100" >
-              <img src="https://newyorkparkingticket.com/wp-content/uploads/2009/09/NYPT-WIN_how-to-beat-a-NYC-parking-ticket.png"  style="width: 100%;height:100%; margin-left:5%;">
-            </div>
-            <div *ngIf=" ele==1" >
-              <img src="http://www.clker.com/cliparts/C/n/U/D/t/D/transparent-arrow-hi.png"  style="width: 100%;height:100%; ">
-            </div>
-
-
-=======
->>>>>>> cd738842c51617a2c6d06f0022945451461dc29b
 
   <ion-row>
     <!-- <div style="background-image: url('../../assets/SNAKE\ AND\ LADDER.png'); ">  -->
