@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -51,19 +52,22 @@ export class AuthserviceService {
 
   
   GoogleSignIn() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    // console.log('provider:',provider)
-    this.afAuth.signInWithPopup(provider)
-        .then((data)=>{
-          this.isSignedIn = true
-          this.loggedInUserId  = data.user.uid
-          this.loggedInEmail = data.user.email
-          this.LoggedInName = data.user.displayName
-          console.log('User state : ',this.isUserSignedIn())
-        })
-        .catch(function (err) {
-            console.log(err)
-        })      
+    return this.afAuth.setPersistence('session').then(_=>{
+      var provider = new firebase.auth.GoogleAuthProvider();
+      // console.log('provider:',provider)
+      return this.afAuth.signInWithPopup(provider)
+                        .then((data)=>{
+                          this.isSignedIn = true
+                          this.loggedInUserId  = data.user.uid
+                          this.loggedInEmail = data.user.email
+                          this.LoggedInName = data.user.displayName
+                          console.log('User state : ',this.isUserSignedIn())
+                        })
+                        .catch(function (err) {
+                            console.log(err)
+                        })   
+    })
+       
   }
 
   getUserId(){
