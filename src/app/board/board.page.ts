@@ -6,6 +6,7 @@ import { WinComponent } from './win/win.component';
 import { identifierModuleUrl } from '@angular/compiler';
 import { AngularFireDatabase } from '@angular/fire/database';
 
+import { AllComponent } from './all/all.component';
 
 @Component({
   selector: 'app-board',
@@ -346,14 +347,29 @@ popup() {
         });
     });
   }
-  Calltoggle(){
-    
-    function Calltoggle(){
-      var blur = document.getElementById('blur');
-      blur.classList.toggle('active')
-    }
+  popup1() {
+    const modal = this.modalController
+    .create({
+      component: AllComponent,
+      cssClass: 'my-custom-modal-css',
+      showBackdrop: true,
+      backdropDismiss: true,
+      swipeToClose: true
+    })
+    .then(popElement => {
+      popElement.present(),
+        popElement.onDidDismiss().then(resp => {
+        });
+    });
   }
- }
+//   Calltoggle(){
+    
+//     function Calltoggle(){
+//       var blur = document.getElementById('blur');
+//       blur.classList.toggle('active')
+//     }
+//   }
+}
 
  
 

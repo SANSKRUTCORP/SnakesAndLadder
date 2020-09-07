@@ -13,11 +13,12 @@ import { WinComponent } from './board/win/win.component';
 import { environment } from '../environments/environment';
 import { AuthserviceService } from './services/authservices.service';
 import { AuthGuardService } from './services/auth-gaurd.service';
+import { AllComponent } from './board/all/all.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, JoinRoomComponent, WinComponent],
+  declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent ],
   entryComponents: [],
   imports: [
     BrowserModule, 
