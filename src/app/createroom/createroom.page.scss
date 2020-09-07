@@ -11,12 +11,12 @@ p{
 }
 
 h2{
-  font-family: cursive;
+  font-family: 'Pacifico', cursive;
 }
 
   h1{
     // background-color: rgba(128, 73, 36, 0.712);
-    font-family: cursive;
+    font-family: 'Pacifico', cursive;
     color: rgba(8, 8, 8, 0.959);
     text-align: center;
      
@@ -52,7 +52,7 @@ h2{
       background-image: linear-gradient(to right, rgb(9, 65, 13), rgba(55, 138, 66, 0.932)); 
       color: darken($color: #0c0c0c, $amount: 0); 
       border-radius: 40px;
-      font-family: cursive;
+      font-family: 'Pacifico', cursive;
       border: 2px solid rgb(14,13,13);
       padding-bottom: 5px;
       padding-top: 5px;
@@ -199,6 +199,7 @@ h2{
                 margin-left: 1%;
               }
               }
+    
              
                   @media only screen and (min-width: 500px) and (max-width:  600px) {
                     .space1{

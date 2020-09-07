@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-join-room',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinRoomComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalController:ModalController) { }
 
  
 
   ngOnInit() {}
+  CloseModal()
+  {
+    this.modalController.dismiss();
+    
+  }
 
 }

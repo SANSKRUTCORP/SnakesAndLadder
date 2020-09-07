@@ -1,7 +1,5 @@
+<ion-grid class="background-img" > 
 
-
-
-<ion-grid>
   <div class="board" id="blur">
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
@@ -11,69 +9,89 @@
       </ion-col>
     </ion-row>
     </div>
-     <script type="text/javascript" >
-      function Calltoggle(){
-        var blur = document.getElementById('blur');
-        blur.classList.Calltoggle('active')
-      }
-    </script> 
-  <ion-row style="width: 200%;">
-    <ion-col class="box bounce" style="
-                                background-image: url(../../assets/SNAKE\ AND\ LADDER.png);
-                                background-repeat: no-repeat;
-                                background-size: 645px 645px;
-                                ">
-      <ion-row *ngFor='let el of arr;' style="color: rgb(7, 7, 7);">
-       
-        <div *ngFor='let ele of el;'  style="background-color: rgba(179, 105, 8, 0.267);
-                                             width:10vh;height:10vh;
-                                             border: 1px solid rgba(179, 105, 8, 0.342); ">
-         <b> {{ele}}</b>
-         <!-- we have green color for player 1
-                      red color for player 2
-                      blue color for player3
-                      yellow color for player4 -->
-              
-            <div *ngIf="ele==posPlayer1" >
-              <img src="../../assets/g1.png" style=" width: 35%;height:35%;margin-left:35%;">
-            </div>
-            <div *ngIf="ele==posPlayer2" >
-              <img src="../../assets/r1.png"   style="width: 35%;height:35%; margin-left:35%;">
-            </div>
-            <div *ngIf="ele==posPlayer3" >
-              <img src="../../assets/b1.png" style="width: 35%;height:35%; margin-left:35%;">
-            </div>
-            <div *ngIf=" ele==posPlayer4" >
-              <img src="../../assets/y1.png"  style="width: 35%;height:35%; margin-left:35%;">
-            </div>
-            <div *ngIf=" ele==100" >
-              <img src="https://newyorkparkingticket.com/wp-content/uploads/2009/09/NYPT-WIN_how-to-beat-a-NYC-parking-ticket.png"  style="width: 100%;height:100%; margin-left:5%;">
-            </div>
-            <div *ngIf=" ele==1" >
-              <img src="http://www.clker.com/cliparts/C/n/U/D/t/D/transparent-arrow-hi.png"  style="width: 100%;height:100%; ">
-            </div>
+    <ion-row class="space">
+      <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
+          <ion-button (click)="popup1()" class="grad" expand="block" shape="round"  fill="clear" >
+              popup<ion-icon name="enter-outline"></ion-icon>
+          </ion-button>
+      </ion-col>
+    </ion-row>
 
-
-
-            
-            <!-- <div *ngIf="ele==6 ">
-              <img src="../../assets/bgg.png" >
-            </div> -->
-            
-           
-            
-           
-        </div>
-  
-      </ion-row>
-        
+  <ion-row>
+    <!-- <div style="background-image: url('../../assets/SNAKE\ AND\ LADDER.png'); ">  -->
+       <!-- <ion-col class="box" size-xs="10" size-sm="9" size-md="8" size-lg="7" size-xl="8" >  -->
       
-    </ion-col>
-    <ion-col>
-      <ion-button (click)="diceRollChance()" >
-        {{diceNumber}}
-      </ion-button>
-    </ion-col>
-  </ion-row>
+        <ion-col class="box-padding" size-xs="12" size-sm="9" size-md="9" size-lg="8" size-xl="8"> 
+                               
+        <ion-row *ngFor='let el of arr;'>
+         
+          <div *ngFor='let ele of el;' class="block">
+                                               
+                                               
+           <b> {{ele}}</b> 
+           <!-- we have green color for player 1
+                        red color for player 2
+                        blue color for player3
+                        yellow color for player4 -->
+                
+               <div *ngIf="ele==posPlayer1" >
+                <img src="../../assets/g1.png" style=" width: 35%;height:35%;margin-left:35%;">
+              </div>
+              <div *ngIf="ele==posPlayer2" >
+                <img src="../../assets/r1.png"   style="width: 35%;height:35%; margin-left:35%;">
+              </div>
+              <div *ngIf="ele==posPlayer3" >
+                <img src="../../assets/b1.png" style="width: 35%;height:35%; margin-left:35%;">
+              </div>
+              <div *ngIf=" ele==posPlayer4" >
+                <img src="../../assets/y1.png"  style="width: 35%;height:35%; margin-left:35%;">
+              </div>
+              <div *ngIf=" ele==100" >
+                <img src="https://newyorkparkingticket.com/wp-content/uploads/2009/09/NYPT-WIN_how-to-beat-a-NYC-parking-ticket.png"  style="width: 70%;height:70%; margin-left:5%;">
+              </div>
+              <div *ngIf=" ele==1" >
+                <img src="http://www.clker.com/cliparts/C/n/U/D/t/D/transparent-arrow-hi.png"  style="width: 100%;height:100%; ">
+              </div> 
   
-</ion-grid> 
+              <!-- <div *ngIf="ele==6 ">
+                <img src="../../assets/bgg.png" >
+              </div> --> 
+                       
+           </div>
+        
+        </ion-row>
+      
+      </ion-col>
+    <!-- </div> -->
+
+       <ion-col class="padding">
+      <ion-row>
+        <ion-button (click)="rollDiceChance()"  >
+          {{diceNumber}}
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="padding">
+        <img src="../../assets/g1.png" style="height: 15px; width: 15px;"> 
+        <!-- Player 1 -->
+      </ion-row>
+
+      <ion-row class="padding">
+        <img src="../../assets/r1.png" style="height: 15px; width: 15px;"> 
+        <!-- Player 1 -->
+      </ion-row>
+
+      <ion-row class="padding">
+        <img src="../../assets/b1.png" style="height: 15px; width: 15px;"> 
+        <!-- Player 1 -->
+      </ion-row>
+
+      <ion-row class="padding">
+        <img src="../../assets/y1.png" style="height: 15px; width: 15px;"> 
+        <!-- Player 1 -->
+      </ion-row>
+    </ion-col>   
+
+   </ion-row>
+  
+</ion-grid>  
