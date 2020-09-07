@@ -4,6 +4,7 @@ import { AttachSession } from 'protractor/built/driverProviders';
 import { ModalController } from '@ionic/angular';
 import { WinComponent } from './win/win.component';
 import { identifierModuleUrl } from '@angular/compiler';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 
 @Component({
@@ -34,15 +35,17 @@ export class BoardPage implements OnInit {
   s:number;
   snakeposition:number;
   winPos:number;
+  newPos:number;
+  updatePos:number;
 
   
   ngOnInit() {
     
   }
   
-constructor(private http: HttpClient, private modalController: ModalController) {
-
+constructor(private http: HttpClient, private modalController: ModalController, public db : AngularFireDatabase) {
   
+
    this.arr=[]
     for(let el = 0; el <10; el++) {
       this.arr[el]=[]
@@ -59,17 +62,36 @@ constructor(private http: HttpClient, private modalController: ModalController) 
    
 }
 
-diceRoll(){                                                  
-  //this function is to generate random numberin the dice
-  const randomNum = Math.floor(Math.random() * 6) + 1;
-  this.diceNumber = randomNum;
-  console.log("%c dice value is"+" "+this.diceNumber, 'font-weight : bold');
-  return randomNum;
-  
+rollDice(){                                                  
+  this.http.get<any>('http://localhost:3000/board').subscribe((res)=>{
+      console.log("response is : ",res);
+      return res['dice_val']
+    },(error)=>{
+      console.log("Error on req : ",error);
+      return null;
+    })
 }  
 
+
+checkForSnakeLadder(required_pos){
+  var ref = this.db.database.ref('/SnakesAndLadders')
+  ref.once('value', (snapshot)=>{
+      var myvals = snapshot.val();
+      if(required_pos in myvals){
+          this.updatePos = myvals[required_pos]
+          console.log("new pos : ",required_pos)
+      } else{
+          console.log('Not found')
+      }
+  })
+  return this.updatePos;
+}
+
+
+
+
  i=1;
-diceRollChance(){  
+rollDiceChance(){  
   /*on every click of dice this function gives one by one chance 
   to all player to roll it*/    
                                               
@@ -77,20 +99,22 @@ diceRollChance(){
   for(player = this.i;player<=4;player++) {
      this.memberChance =  this.i; 
      console.log("player"+" "+this.memberChance+" "+"turn"); 
-     this.diceRoll();
+     this.rollDice();
      this.playerPosition();
-     
+        
      break;  
   }
   if(this.i<5){
     this.i =this.i+1; 
   }
   else{
-    this.i=1;   /*bcoz we apply the condition player<=4 so when 
+    this.i=1;   /*bcoz we apply the condition player<=4 so when ￼
+    Harsh Soni
                  dice roll fifth time then again i should initilise with 1*/
   } 
  
 }
+
 
 Ladder(m:number){
 //ladder starting points are  17 ,22 ,24 , 39, 54, 60 
@@ -284,7 +308,7 @@ win(){
 
 
   boardvals(){
-    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.diceRoll(),
+    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.rollDice(),
                                                         player_1_pos : this.posPlayer1,
                                                         player_2_pos : this.posPlayer2,
                                                         player_3_pos : this.posPlayer3,
