@@ -1,4 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+
 .background-img{
   background: url('/assets/wooden-bg.jpg');
   background-size: cover;
@@ -11,93 +14,45 @@
 }
 
   h1{
-    font-family: 'Pacifico', cursive;
-    // font: italic small-caps bolder 40px arial sans-serif;
-    color: rgb(226, 143, 75);
+    font-family: 'Indie Flower', cursive;
+    color: rgb(235, 159, 97);
     text-align: center;
-    // text-shadow: 2px 2px 3px rgb(219, 132, 73);
-    font-size: 10vh;
-    padding-top: 20%;
+    text-shadow: 2px 2px 3px rgb(219, 132, 73);
+    font-size: 370%;
+    padding-top: 10%;
     padding-bottom: 10%;
   }
 
-p{
-  font-family: 'Pacifico', cursive;
-  color: black;
-}
-
   .grad{
     background-image: linear-gradient(to right, rgba(150, 88, 60, 0.959), rgb(235, 181, 137)); 
-    color: darken($color: #331704, $amount: 0);
+    color: darken($color: #0c0c0b, $amount: 0);
+    font-family: 'Poppins', sans-serif;
     border-radius: 40px; 
     border: 2px solid black; 
-    box-shadow: 0 4px 8px 0 rgb(189, 155, 155), 0 6px 20px 0 rgb(151, 44, 44);
-    font-family: 'Pacifico', cursive;
-  }
- 
-
-  @media only screen and (min-width:360px) and (max-width:400px){
-    .grad{
-      font-size: 12px;
-    }
-    h1{
-      font-size: 8vh;
-    }
+    box-shadow: 0 4px 8px 0 rgb(223, 166, 166), 0 6px 20px 0 rgb(212, 134, 69);
   }
 
-  @media only screen and (min-width:310px) and (max-width:360px){
-    .grad{
-      font-size: 9px;
-    }
-    h1{
-      font-size: 8vh;
-    }
-  }
+ p{
+   font-size: 15px;
+ }
 
-  @media only screen and (min-width:250px) and (max-width:310px){
-    .grad{
-      font-size: 10px;
+  @media only screen and (min-width:300px) and (max-width:370px){
+   
+    p{
+      font-size:10px ;
     }
-    h1{
-      font-size: 7vh;
-    }
-    .button{
-      width: 30vh;
-      padding-left: 9%;
-      padding-right: 9%;
-      
-    }
-  }
+   }
 
-  @media only screen and (min-width:225px) and (max-width:250px){
-    .grad{
-      font-size: 10px;
+   @media only screen and (min-width:250px) and (max-width:300px){
+  
+    p{
+      font-size: 6px;
     }
-    h1{
-      font-size: 6vh;
-    }
-    .button{
-      width: 30vh;
-      padding-left: 4%;
-      padding-right: 35%;
-      
-    }
-  }
+   }
 
-  @media only screen and (min-width:150px) and (max-width:225px){
-    .grad{
-      font-size: 10px;
-    }
-    h1{
-      font-size: 5vh;
-    }
-    .button{
-      width: 30vh;
-      padding-left: 0%;
-      padding-right: 60%;
-      
-    }
-  }
+  
+
+
 
 
 
