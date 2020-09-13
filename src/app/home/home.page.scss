@@ -1,27 +1,29 @@
 
-// @import "https://fonts.google.com/specimen/Comfortaa";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 
 .background-img{
   background: url('/assets/wooden-bg.jpg');
-  // background: url('https://vignette4.wikia.nocookie.net/star-and-the-forces-of-evil/images/0/09/Diaz_Family_Vacation_background_-_Forest_of_Death_2.png/revision/latest?cb=20160708102201');
   background-size: cover;
   height: 100%;
   width: 100%;
 }
 
+.logo-g{
+  height: 121%; 
+  width: 30%;
+}
+
 .grad{
-  background-image: linear-gradient(to right, rgba(119, 73, 52, 0.959), rgb(209, 155, 111)); 
+  background-image: linear-gradient(to right, rgba(199, 137, 108, 0.959), rgb(110, 61, 21)); 
   color: darken($color: #0f0f0f, $amount: 0); 
   border-radius: 30px;
-  font-family: 'Pacifico', cursive;
+  font-family: 'Poppins', sans-serif;
   border: 2px solid black;
-  box-shadow: 0 4px 8px 0 rgb(189, 155, 155), 0 6px 20px 0 rgb(151, 44, 44);
+  box-shadow: 0 4px 8px 0 rgb(223, 166, 166), 0 6px 20px 0 rgb(212, 134, 69);
 }
 
 
 .image { 
-  // background-image: url(/css/images/logo.png); 
- 
   -webkit-animation-duration: 3s;
   animation-duration: 2s; 
   -webkit-animation-fill-mode: both; 
@@ -53,11 +55,6 @@
     padding-bottom: 3%;
   }
 
-  .btn-space{
-    padding-top: 5%;
-    padding-bottom: 5%;
-  }
-
 }
 
 @media only screen and (min-width: 992px) and (max-width:1200px) {
@@ -66,24 +63,17 @@
     padding-top: 5%;
     padding-bottom: 3%;
   }
-
-  .btn-space{
-    padding-top: 3%;
-    padding-bottom: 5%;
-  }
   
 }
 
 @media only screen and (min-width: 768px) and (max-width:992px) {
 
+  // .logo-g{
+  //   width: 21%;
+  // }
   .logo-padding{
     padding-top: 3%;
     padding-bottom: 3%;
-  }
-
-  .btn-space{
-    padding-top: 2%;
-    padding-bottom: 5%;
   }
   
 }
@@ -94,11 +84,6 @@
     padding-top: 5%;
     padding-bottom: 5%;
   }
-
-  .btn-space{
-    padding-top: 3%;
-    padding-bottom: 7%;
-  }
   
 }
 
@@ -108,112 +93,60 @@
     padding-top: 11%;
     padding-bottom: 7%;
   }
-
-  .btn-space{
-    padding-top: 3%;
-    padding-bottom: 5%;
-  }
   
 }
 
 @media only screen and (min-width: 400px) and (max-width:460px) {
- .bounce{
-   height: 27vh;
-   width: 74vh;
- }
+
   .logo-padding{
-    padding-top: 25%;
+    padding-top: 20%;
     padding-bottom: 10%;
   }
 
-  .btn-space{
-    padding-top: 3%;
-    padding-bottom: 5%;
-    padding-right: 13%;
-    padding-left: 13%;
+  .img{
+    max-width: 102%;
   }
 
   .grad{
-    height: 7vh;
-    width: 30vh;
+    width: 108%;
   }
-  p{
-    font-size: 10px;
-  }
-  
 }
 
 @media only screen and (min-width: 300px) and (max-width:400px) {
-  .bounce{
-    height: 27vh;
-    width: 74vh;
-  }
    .logo-padding{
-     padding-top: 25%;
+     padding-top: 20%;
      padding-bottom: 10%;
    }
- 
-   .btn-space{
-     padding-top: 3%;
-     padding-bottom: 5%;
-     padding-right: 14%;
-     padding-left: 6%;
+
+   .img{
+     max-width: 110%;
    }
+
    .grad{
-     height: 7vh;
-     width: 30vh;
+     width: 101%;
    }
-   p{
-     font-size: 9px;
-   
+
+   h5{
+     font-size: 13px;
    }
    
  }
 
- @media only screen and (min-width: 200px) and (max-width:300px) {
+ @media only screen and (max-width:300px) {
   
    .logo-padding{
      padding-top: 37%;
      padding-bottom: 15%;
    }
- 
-   .btn-space{
-     padding-top: 20%;
-     padding-bottom: 5%;
-     padding-right: 30vh;
-     padding-left: 10%;
-   }
-   .grad{
-     height: 7vh;
-     width: 30vh;
-   }
-   p{
+   h5{
      font-size: 9px;
    }
+
+   .logo-g{
+     height: 84%;
+     width: 52%;
+   } 
    
  }
-
- @media only screen and (max-width:200px) {
-  
-  .logo-padding{
-    padding-top: 37%;
-    padding-bottom: 15%;
-  }
-
-  .btn-space{
-    padding-top: 45%;
-    padding-bottom: 5%;
-    padding-right: 32vh;
-    padding-left: 0;
-  }
-  .grad{
-    height: 7vh;
-    width: 30vh;
-  }
-  p{
-    font-size: 9px;
-  }
-  
-}
 
 
