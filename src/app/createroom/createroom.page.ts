@@ -22,7 +22,7 @@ export class CreateroomPage implements OnInit {
     this.roomToken = this.route.snapshot.queryParamMap.get('room');
     const ref = this.db.database.ref('/rooms/room_' + this.roomToken + '/players');
 
-    ref.on("value", (snapshot)=>{
+    ref.on('value', (snapshot) => {
       // this.roomToken = this.getRoomToken()
       for(let i = 1; i <= 4; i++){
         const user = snapshot.child('player_' + i + '/name').val();
