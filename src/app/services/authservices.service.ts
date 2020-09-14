@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { first } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -10,85 +13,78 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 
 export class AuthserviceService {
-  isSignedIn = false;
   loggedInUserId: any;
   loggedInEmail: any;
   LoggedInName: any;
+  userToken: any;
 
-  constructor(public router:Router, public afAuth : AngularFireAuth) {
-    this.afAuth.user.subscribe(function(res){
-      if(!res){
+  constructor(public router: Router, public afAuth: AngularFireAuth, private db: AngularFireDatabase, private http: HttpClient) {
+    this.afAuth.user.subscribe(res => {
+      if (!res){
         return null;
       }
-      if(res.uid){
-        this.isSignedIn = true
-        console.log('User state : ', this.isSignedIn)
-        router.navigateByUrl('/rooms')
+      if (res.uid){
+        // console.log('User state : ', this.isSignedIn)
+        router.navigateByUrl('/rooms');
       }
       else{
-        this.isSignedIn = false
-        router.navigateByUrl('/home')
+        router.navigateByUrl('/home');
       }
-    })
+    });
   }
 
   isUserSignedIn(){
-    return this.isSignedIn;
+    return this.afAuth.authState.pipe(first()).toPromise();
   }
 
 
   SignOut(){
-    if(this.isSignedIn){
-      this.isSignedIn = false
-      this.afAuth.signOut()
-      // console.log('signed out!')
-      location.reload()
-      this.router.navigateByUrl("/home")
-    } else{
-      console.log("not signed in!")
-      console.log(this.isSignedIn)
-    }
+    this.isUserSignedIn().then(res => {
+      console.log(res);
+      if (res){
+
+        this.afAuth.signOut();
+        console.log('signed out!');
+        sessionStorage.setItem('keyid', '');
+        sessionStorage.setItem('tempid', '');
+        // this.isUserSignedIn().then(res=>{
+        //   console.log(res)
+        // })
+        // location.reload()
+        this.router.navigateByUrl('/home');
+      } else{
+        console.log('not signed in!');
+      }
+    });
+
   }
 
-  
   GoogleSignIn() {
-    return this.afAuth.setPersistence('session').then(_=>{
-      var provider = new firebase.auth.GoogleAuthProvider();
+    return this.afAuth.setPersistence('session').then(_ => {
+      const provider = new firebase.auth.GoogleAuthProvider();
       // console.log('provider:',provider)
       return this.afAuth.signInWithPopup(provider)
-                        .then((data)=>{
-                          this.isSignedIn = true
-                          this.loggedInUserId  = data.user.uid
-                          this.loggedInEmail = data.user.email
-                          this.LoggedInName = data.user.displayName
-                          console.log('User state : ',this.isUserSignedIn())
+                        .then((data) => {
+                          this.loggedInUserId  = data.user.uid;
+                          this.loggedInEmail = data.user.email;
+                          this.LoggedInName = data.user.displayName;
+                          sessionStorage.setItem('tempid', this.loggedInUserId);
                         })
-                        .catch(function (err) {
-                            console.log(err)
-                        })   
-    })
-       
+                        .catch(err => {
+                            console.log(err);
+                        });
+    });
+
   }
 
-  getUserId(){
-    return this.loggedInUserId
+  getToken(){
+    this.afAuth.idToken.subscribe(res => {
+      sessionStorage.setItem('keyid', res);
+    });
   }
 
-  getUserEmail(){
-    return this.loggedInEmail
-  }
-
-  getToken() : any{
-    if(this.isUserSignedIn()){
-      this.afAuth.idToken.subscribe(res=>{
-        console.log('idRes : ',res)
-        return res
-      })
-    }
-  }
-
-  getUserName():any{
-    return this.LoggedInName
+  getUser(){
+    return this.afAuth.currentUser;
   }
 
 
