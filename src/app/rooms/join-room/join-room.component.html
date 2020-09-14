@@ -1,27 +1,66 @@
 <ion-content>
+  <ion-grid>
+    <ion-row class="ion-text-center">
+
+      <ion-col  size-xs="12" size-sm="6" size-xl="8">
+        <img src="../assets/snake.png" class="image">
+      </ion-col>
+      
+      <ion-col>
+        <ion-row class="ion-text-center ">
+          <ion-col>
+            <form>
+              <p><b>ENTER YOUR CODE HERE</b></p>
+              <input type="password">
+            </form>
+          </ion-col>  
+        </ion-row>
+        
+        <ion-row class="ion-text-center">
+          <ion-col>
+            <ion-button routerLink="/createroom" class="button" fill="round" shape="round" (click)="CloseModal()">
+              OK
+            </ion-button>
+          </ion-col>       
+        </ion-row>   
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+
+
+
+
+
+
+
+<!-- <ion-content>
   <form class="pop">
     
-      <ion-grid class="background-img">
+      <ion-grid>
          <ion-row class="space1">
-          <ion-col size-xs="13" size-sm="10" size-md="8.5" size-lg="11" offset-xs="-3" offset-sm="-6" offset-md="-6" offset-lg="-6">
-          <img src="../assets/snake.png">
+           <ion-col size-xs="13" size-sm="10" size-md="8.5" size-lg="11" >
+             <img src="../assets/snake.png">
           </ion-col>
         </ion-row> 
 
         <ion-row class="space2">
-          <ion-col size-xs="16" size-sm="11" size-md="" size-lg="10" offset-xs="-3" offset-sm="4" offset-md="2.5" offset-lg="5">
-        <p><b>ENTER YOUR CODE HERE</b></p>
+          <ion-col size-xs="16" size-sm="11" size-md="" size-lg="10">
+            <p><b>ENTER YOUR CODE HERE</b></p>
           </ion-col>
         </ion-row>
    
         <ion-row class="space3">
-          <ion-col size-xs="9" size-sm="8" size-md="7.5" size-lg="10" offset-xs="-3" offset-sm="4" offset-md="2.5" offset-lg="5">
-    <input type="password" class="code">
+          <ion-col size-xs="9" size-sm="8" size-md="7.5" size-lg="10" >
+             <input type="password" class="code">
           </ion-col>
         </ion-row>
     <div class="space">
       <ion-row class="space">
-        <ion-col size-xs="9" size-sm="6" size-md="7.5" size-lg="10" offset-xs="2" offset-sm="7" offset-md="6.5" offset-lg="8.4">
+        <ion-col size-xs="9" size-sm="6" size-md="7.5" size-lg="10" >
           <ion-button routerLink="/createroom" class="button" shape="round" (click)="CloseModal()">
             OK
           </ion-button>
@@ -30,4 +69,4 @@
        </div>
       </ion-grid>
   </form>
-</ion-content>
+</ion-content> -->
