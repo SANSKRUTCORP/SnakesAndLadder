@@ -25,31 +25,53 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+
 // .my-custom-modal-css .modal-wrapper {
-//     background-color: rgb(226, 220, 215);
-//     height: 50%;
-//     width: 50%;
-//     top: 10%; 
-//     display: block;  
-//  }
- 
-.my-custom-modal-css
-{
-    .modal-wrapper{
-        .modal-content{
-            @media (min-width: 650px) and (max-width: 1800px){
-                background-color: rgb(226, 220, 215);
-                height: 50%;
-                width: 80%;
-                // top: 10%; 
-                // display: block; 
-            }
-            @media (min-width: 0px) and (max-width: 650px){
-                height: 100%;
-                width: 100%;
-                // top: 10%; 
-                display: block;
-            }
-        }
+//     background-color: rgb(194, 147, 108);
+// }
+
+
+// .my-custom-modal-css .modal-wrapper{
+//     background-color: black;
+// }
+
+
+ @media only screen and (max-width:576px){
+    .my-custom-modal-css .modal-wrapper{
+        height: 90%;         
+        width: 90%;
     }
+     
+ }
+
+ @media only screen and (min-width:576px) and (max-width:900px)  {
+    .my-custom-modal-css .modal-wrapper{
+        height: 50%;         
+        width: 80%;
+      
+    }
+     
 }
+
+@media only screen and (min-width:900px) and (max-width:1200px)  {
+    .my-custom-modal-css .modal-wrapper{
+        height: 50%;         
+        width: 70%;
+      
+    }
+     
+}
+
+@media only screen and (min-width:1200px)  {
+    .my-custom-modal-css .modal-wrapper{
+        height: 60%;         
+        width: 60%;
+      
+    }
+     
+}
+
+
+
+
+    
