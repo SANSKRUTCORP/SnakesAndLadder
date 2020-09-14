@@ -9,14 +9,14 @@
            <ion-row class="padding">
               <ion-col size-xs="10" size-sm="7" size-md="5" size-lg="4" size-xl="4" offset-xs="1.5" offset-sm="2.5" offset-md="3.5" offset-lg="4">
                 <h1>
-                    Hello {{this.auth.getUserName()}}!
+                    Hello {{userName}}!
                 </h1>
               </ion-col>
            </ion-row>
 
           <ion-row class="space button">
               <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-                  <ion-button class="grad" routerLink="/createroom" expand="block" shape="round" fill="clear" >
+                  <ion-button class="grad" (click)="onClick()" expand="block" shape="round" fill="clear" >
                      <p>Create Room </p>  <ion-icon name="add-outline"></ion-icon>
                   </ion-button>
               </ion-col>
