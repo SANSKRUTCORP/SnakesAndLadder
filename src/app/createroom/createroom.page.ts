@@ -30,7 +30,7 @@ export class CreateroomPage implements OnInit {
           this.leader = user;
         }
         else{
-          this.names[i - 1] = user;
+          this.names[i - 2] = user;
         }
       }
       console.log('leader...', this.leader);
