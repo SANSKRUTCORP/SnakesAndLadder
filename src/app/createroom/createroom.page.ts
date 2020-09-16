@@ -1,57 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { HttpClient } from '@angular/common/http';
+import { AuthserviceService } from '../services/authservices.service';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-createroom',
   templateUrl: './createroom.page.html',
   styleUrls: ['./createroom.page.scss'],
 })
+
 export class CreateroomPage implements OnInit {
 
-  roomToken:number; //Hardcoded for now
+  roomToken: any;
   names = [];
-  leader = '';
+  leader: string;
 
-  constructor( private db : AngularFireDatabase, private http : HttpClient ) {}
-  
+  constructor( private db: AngularFireDatabase, private auth: AuthserviceService, private route: ActivatedRoute, private router: Router) {}
+
 
   listenPlayers(){
-    var ref = this.db.database.ref('/rooms/room_'+this.roomToken+'/players')
-    ref.on("value", (snapshot)=>{
+    this.roomToken = this.route.snapshot.queryParamMap.get('room');
+    const ref = this.db.database.ref('/rooms/room_' + this.roomToken + '/players');
+
+    ref.on('value', (snapshot) => {
       // this.roomToken = this.getRoomToken()
-      console.log("this is...",this.names)
-      for(var i=1;i<=4;i++){
-        var user = snapshot.child('player_'+i+'/name').val();
-        if(i==1){
-          this.leader=user;
+      for(let i = 1; i <= 4; i++){
+        const user = snapshot.child('player_' + i + '/name').val();
+        if(i === 1){
+          this.leader = user;
         }
         else{
-          this.names[i-1] = user;
+          this.names[i - 2] = user;
         }
       }
-      console.log('live fetch :',this.names);
-    })
+      console.log('leader...', this.leader);
+      console.log('live fetch :', this.names);
+    });
+
   }
-  
-  getRoomToken() : any{
-    this.http.get<any>('http://localhost:3000/createroom').subscribe((res)=>{
-      console.log("response is : ",res['room_token']);
-      return res['room_token']
-    },(error)=>{
-      console.log("Error on req : ",error);
-      return null;
-    })
+
+  onClick(){
+    this.router.navigate(['/board'], {
+      queryParams: {room : this.roomToken}
+    });
   }
 
 
   ngOnInit() {
-    // this.listenPlayers();
-    this.getRoomToken();
+    this.listenPlayers();
+    this.auth.isUserSignedIn().then(res => {
+      if (res){
+        console.log('Signed in! ...with ', res.uid);
+      } else{
+        console.log('Not signed in!');
+      }
+    });
+
   }
 }
-
-
-
-//total wins & loses
-//total games played

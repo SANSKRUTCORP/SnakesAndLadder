@@ -17,10 +17,10 @@ import { TokenInterceptor } from '../services/auth.interceptor';
     HttpClientModule,
     FormsModule,
     IonicModule,
-    CreateroomPageRoutingModule, 
+    CreateroomPageRoutingModule,
   ],
   declarations: [CreateroomPage],
-  providers:[
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass : TokenInterceptor,

@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { RoomsPageRoutingModule } from './rooms-routing.module';
 
 import { RoomsPage } from './rooms.page';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../services/auth.interceptor';
 
 
 
@@ -16,8 +18,16 @@ import { RoomsPage } from './rooms.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpClientModule,
     RoomsPageRoutingModule
   ],
   declarations: [RoomsPage],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass : TokenInterceptor,
+      multi : true
+    }
+  ]
 })
 export class RoomsPageModule {}

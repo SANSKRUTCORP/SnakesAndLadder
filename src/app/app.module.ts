@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { AuthserviceService } from './services/authservices.service';
 import { AuthGuardService } from './services/auth-gaurd.service';
 import { AllComponent } from './board/all/all.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,10 +22,11 @@ import { AllComponent } from './board/all/all.component';
   declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent ],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase), 
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
    ],
 
