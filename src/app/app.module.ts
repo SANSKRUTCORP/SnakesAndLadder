@@ -12,8 +12,10 @@ import { JoinRoomComponent } from './rooms/join-room/join-room.component';
 import { WinComponent } from './board/win/win.component';
 import { environment } from '../environments/environment';
 import { AuthserviceService } from './services/authservices.service';
-import { AuthGuardService } from './services/auth-gaurd.service';
+// import { AuthGuardService } from './services/auth-gaurd.service';
 import { AllComponent } from './board/all/all.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,14 +27,17 @@ import { AllComponent } from './board/all/all.component';
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase), 
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule,
+    HttpClientModule,
    ],
 
   providers: [
     StatusBar,
     SplashScreen,
     AuthserviceService,
-    AuthGuardService,
+    HttpClientModule,
+    // AuthGuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

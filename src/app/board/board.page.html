@@ -63,32 +63,72 @@
       
       </ion-col>
     <!-- </div> -->
-
+    <!-- (click)="rollDiceChance()" -->
        <ion-col class="padding">
       <ion-row>
-        <ion-button (click)="rollDiceChance()"  >
+        <ion-button   *ngIf="play==true"
+                      (click)="rollDiceChance()" 
+                      (click)="diceAudio()"
+                     
+                      [disabled]="memberChance==2||memberChance==3||memberChance==4"
+                     >
           {{diceNumber}}
-        </ion-button>
+        </ion-button>  
+        <p style="color: aliceblue;">for {{myName[0]}}</p>
+      </ion-row>
+      <ion-row>
+        <ion-button    *ngIf="play==true" 
+                       (click)="rollDiceChance()" 
+                      (click)="diceAudio()"
+                      [disabled]="memberChance==1||memberChance==3||memberChance==4">
+          {{diceNumber}}
+        </ion-button>  
+        <p style="color: aliceblue;">for {{myName[1]}}</p>
+      </ion-row>
+      <ion-row>
+        <ion-button    *ngIf="play==true"
+                      (click)="rollDiceChance()" 
+                      (click)="diceAudio()"
+                      [disabled]="memberChance==2||memberChance==1||memberChance==4">
+          {{diceNumber}}
+        </ion-button>  
+        <p style="color: aliceblue;">for {{myName[2]}}</p>
+      </ion-row>
+      <ion-row>
+        <ion-button    *ngIf="play==true"
+                       (click)="rollDiceChance()"  
+                      (click)="diceAudio()"
+                      [disabled]="memberChance==2||memberChance==3||memberChance==1">
+          {{diceNumber}}
+        </ion-button>  
+        <p style="color: aliceblue;"> for {{myName[3]}}</p>
+      </ion-row>
+      <ion-row>
+        <p style="color: aliceblue;">{{timeLeft}} Seconds Left....</p>
+      </ion-row>
+      <ion-row *ngIf="timeLeft==0">
+        <p style="color: aliceblue;">TIME UP!</p>
       </ion-row>
 
       <ion-row class="padding">
         <img src="../../assets/g1.png" style="height: 15px; width: 15px;"> 
         <!-- Player 1 -->
+        <p style="color: aliceblue;">{{myName[0]}}</p>
       </ion-row>
 
       <ion-row class="padding">
         <img src="../../assets/r1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+        <p style="color: aliceblue;">{{myName[1]}}</p>
       </ion-row>
 
       <ion-row class="padding">
         <img src="../../assets/b1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+        <p style="color: aliceblue;">{{myName[2]}}</p>
       </ion-row>
 
       <ion-row class="padding">
         <img src="../../assets/y1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+        <p style="color: aliceblue;">{{myName[3]}}</p>
       </ion-row>
     </ion-col>   
 
