@@ -122,7 +122,7 @@ rollDiceChance(){
  
 
 }
-//loading
+//it shows the loading when you start the game.
 async presentLoading() {
   this.playAudio()
   const loading = await this.loadingController.create({
@@ -131,11 +131,11 @@ async presentLoading() {
     message: 'your game will start in few seconds',
     duration: 14000
   });
+  await loading.present();
 
-  // await loading.present();
-
-  // console.log('Loading dismissed!');
+  console.log('Loading dismissed!');
 }
+
 playAudio(){
   let audio = new Audio('../assets/starter.mpeg'); //audio play when we start the game
   audio.play();
@@ -342,9 +342,10 @@ playerPosition(){
 
  
 
-
+// here if you want only dice value which we get from backend then
+//  replace this.rollDiceChance() from this.boardService.diceRoll().
   boardvals(){
-    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.diceRoll(),
+    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.rollDiceChance(),
                                                         player_1_pos : this.posPlayer1,
                                                         player_2_pos : this.posPlayer2,
                                                         player_3_pos : this.posPlayer3,
@@ -372,6 +373,7 @@ popup() {
     });
     this.WinnerAudio()
   }
+  //remove this popup1() if we have only one winner.
   popup1() {
     const modal = this.modalController
     .create({
