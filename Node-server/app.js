@@ -42,8 +42,29 @@ app.use(express.json());
 //Adding authorization to particular routes
 app.use('/createroom', middlew.auth);
 app.use('/joinroom', middlew.auth);
+app.use('/setUser', middlew.auth);
 
 
+app.post('/setUser', (req, res) => {
+    const uid = req.body.uid;
+    const username = req.body.name;
+    // console.log(uid, username);
+    let ref = firedb.ref('Users');
+    ref.once('value', snapshot => {
+        // console.log(snapshot.val())
+        let data = snapshot.val();
+        if(data==null || !data[uid]){
+            ref.child(uid).set({
+                name : username,
+                gameplay : 0,
+                wins : 0
+            })
+            res.send(true)
+        } else {
+            res.send(false)
+        }
+    })
+})
 
 
 app.get('/createroom', (req, res) => {
@@ -78,6 +99,7 @@ app.get('/createroom', (req, res) => {
                     })
                     .catch(function (err) {
                         console.log(err);
+                        res.send(false);
                     });
 
                 var roomRef1 = firedb.ref('/rooms/room_' + roomToken + '/players');
@@ -97,6 +119,44 @@ app.get('/createroom', (req, res) => {
     }).catch(function (error) {
         console.log(error);
     });
+
+});
+
+app.post('/joinroom', function(req, res){
+
+    var roomToken = req.body.enterid;
+    var username = req.body.entername;
+
+    var ref = firedb.ref('/rooms/room_'+roomToken);
+
+    ref.once('value', function(snapshot){
+
+        var count = snapshot.child('tempCounter');
+        var countVal = count.val();
+
+        var roomRef = firedb.ref('/rooms/room_'+roomToken+'/players');
+        roomRef.once('value', function(data){
+
+            var lenref = Object.keys(data.val()).length;
+
+            if(lenref<4){
+                roomRef.child('player_'+countVal).set({name : username})
+                    .then(function(){
+                            countVal = countVal+1;
+                            ref.update({tempCounter : countVal});
+                            // res.redirect('/createroom/'+roomToken);
+                            res.send(true);
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+            } else{
+                res.send(false);
+            };
+
+        });
+    })
+
 
 });
 
