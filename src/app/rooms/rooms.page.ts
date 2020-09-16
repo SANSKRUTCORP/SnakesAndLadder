@@ -60,6 +60,10 @@ export class RoomsPage implements OnInit {
       if (res){
         this.auth.getUser().then(user => {
           this.userName = user.displayName;
+          this.uid = sessionStorage.getItem('tempid');
+          this.http.post<any>('http://localhost:3000/setUser', {uid : this.uid, name : this.userName}).subscribe(resp => {
+            console.log(resp);
+          });
         }).catch(err => {
           console.log(err);
         });

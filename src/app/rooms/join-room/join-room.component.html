@@ -10,15 +10,15 @@
         <ion-row class="ion-text-center ">
           <ion-col>
             <form>
-              <p><b>ENTER YOUR CODE HERE</b></p>
-              <input type="password">
+              <p><b>ENTER ROOM CODE</b></p>
+              <input #roomid type="number">
             </form>
           </ion-col>  
         </ion-row>
         
         <ion-row class="ion-text-center">
           <ion-col>
-            <ion-button routerLink="/createroom" class="button" fill="round" shape="round" (click)="CloseModal()">
+            <ion-button (click)="onClick(roomid)" class="button" fill="round" shape="round" (click)="CloseModal()">
               OK
             </ion-button>
           </ion-col>       
