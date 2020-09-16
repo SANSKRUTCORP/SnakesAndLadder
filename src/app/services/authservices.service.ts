@@ -69,6 +69,7 @@ export class AuthserviceService {
                           this.loggedInEmail = data.user.email;
                           this.LoggedInName = data.user.displayName;
                           sessionStorage.setItem('tempid', this.loggedInUserId);
+                          this.getToken();
                         })
                         .catch(err => {
                             console.log(err);
