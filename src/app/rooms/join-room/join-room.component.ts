@@ -12,6 +12,7 @@ import { AuthserviceService } from 'src/app/services/authservices.service';
 })
 export class JoinRoomComponent implements OnInit {
   roomNo: any;
+  uid: any;
   constructor(private modalController: ModalController,
               private router: Router,
               private db: AngularFireDatabase,
@@ -22,6 +23,7 @@ export class JoinRoomComponent implements OnInit {
   onClick(item){
     let resp;
     this.roomNo = item.value;
+    this.uid = sessionStorage.getItem('tempid');
     const ref = this.db.database.ref('/rooms');
     ref.once('value').then(snapshot => {
       resp = snapshot.val();
@@ -32,6 +34,7 @@ export class JoinRoomComponent implements OnInit {
           {
             enterid : this.roomNo,
             entername : res.displayName,
+            uid : this.uid
           }).subscribe(response => {
             if (response){
               this.router.navigate(['/createroom'], {
