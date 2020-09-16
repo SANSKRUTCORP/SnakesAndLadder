@@ -4,14 +4,14 @@
            <ion-row class="ion-justify-content-center">
               <ion-col class="ion-align-self-center" size-xs="10" size-sm="7" size-md="9" size-lg="6" size-xl="4" >
                 <h1>
-                    Hello  {{this.auth.getUserName()}}!
+                    Hello {{userName}}!
                 </h1>
               </ion-col>
            </ion-row>
 
           <ion-row class="space button ion-justify-content-center">
               <ion-col class="ion-align-self-center button" size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3">
-                  <ion-button class="grad" routerLink="/createroom" expand="block" shape="round" fill="clear" >
+                  <ion-button class="grad" (click)="onClick()" expand="block" shape="round" fill="clear" >
                      <p>Create Room</p>   <ion-icon name="add-outline"></ion-icon>
                   </ion-button>
               </ion-col>
