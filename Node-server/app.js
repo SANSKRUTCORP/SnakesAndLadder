@@ -7,11 +7,11 @@ const middlew     =  require("express-firebase-middleware");
 const models      =  require("./models");
 
 //Initializing Firebase-admin SDK
-var serviceAccount = require('');
+var serviceAccount = require('./sanskrut-interns-firebase-adminsdk-jm6gx-9dc463e547.json');
 
 var firebaseAdmin = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: ""
+  databaseURL:  "https://sanskrut-interns.firebaseio.com"
 });
 
 var firedb = firebaseAdmin.database();
@@ -80,7 +80,7 @@ app.get('/createroom', (req, res)=>{
 
 
 
-app.post('/board/:id', (req, res)=>{
+app.post('/board', (req, res)=>{
     var player_pos = [  req.body.player_1_pos, 
                         req.body.player_2_pos, 
                         req.body.player_3_pos, 
@@ -114,7 +114,7 @@ app.post('/board/:id', (req, res)=>{
     
 });
 
-app.get('/board/:id', (req, res)=>{
+app.get('/board', (req, res)=>{
     var dice = models.diceRoll()
     res.send({dice_value : dice})  
 })
