@@ -1,49 +1,62 @@
-.pop{
-    padding-top: 42.4%;
-    padding-left: 34%;
-    padding-bottom: 30.9%;
-    align-content: center;
-    background-color: black;
-    border: 3px solid rgb(255,223,0); 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+
+.bg{
+    background-color: rgb(12, 12, 12);
+    height: 100%;
 }
-.space2{
+.grad{
+    font-family: 'Poppins', sans-serif;
+    background: rgb(12, 12, 12);
+    border: 2px solid rgb(255, 252, 252);
+    border-radius: 10%;
     color: white;
-    margin-top: -70%;
 }
-.space1{
-    margin-top: -50%;
-    
+
+p{
+    font-family: 'Indie Flower', cursive;
+    color: white;
+  }
+@media only screen and (min-width:250px) and (max-width:576px){
+    .image{
+        width: 50%;
+        padding-top: 6%;
+    }
 }
-@media only screen and (min-width: 768px){
-    .pop{
-        padding-bottom: 28.7%;
+
+@media only screen and (min-width:576px) and (max-width:900px) {
+    .image{
+        max-width: 63%;
     }
-    .space1{
-        width: 130%;
-        padding-left: 10%;
-        margin-top: -40%;
-    }
-    .space2{
-        padding-left: 20%;
-    }
-    .space3{
-        padding-left: 20%;
-    }   
 }
-@media only screen and (min-width: 992px){
-    .pop{
-        padding-bottom: 27.7%;
+
+@media only screen and (min-width:900px) and (max-width:1200px) {
+    .image{
+        max-width: 60%;
     }
-    .space1{
-        width: 90%;
-        padding-left: 1%;
-        margin-top: -45%;
-    }
-    .space2{
-        margin-left: -30%;
-        padding-top: 10%;
-    }
-    .space3{
-        margin-left: -30%;
-    } 
 }
+
+@media only screen and (min-width:1200px) {
+    .image{
+        max-width: 58%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

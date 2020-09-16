@@ -1,38 +1,30 @@
- <ion-content> 
-  
-   <form class="pop">
-    <ion-grid class="background-img">
-      
-      <ion-row class="space1">
-        <ion-col size-xs="" size-sm="12" size-md="11" size-lg="12" offset-xs="" offset-sm="-6" offset-md="-6" offset-lg="-6">
-        <img src="../assets/first.png">
+<ion-content>
+  <ion-grid class="bg">
+
+    <ion-row class="ion-text-end">
+      <ion-col>
+        <ion-button (click)="CloseModal()" fill="clear" >
+          <h4><b>X</b></h4>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-text-center">
+      <ion-col>
+        <img src="../assets/first.png" class="image">
+      </ion-col>
+
+      <ion-col>
+          <img src="../assets/win.png" class="image">
+      </ion-col>      
+    </ion-row> 
+
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <h1><b>YOU WIN!!</b></h1>
         </ion-col>
+        
       </ion-row>
-      <ion-row class="space2">
-        <ion-col size-xs="" size-sm="2.5" size-md="2.5" size-lg="2.2" offset-xs="" offset-sm="2" offset-md="2" offset-lg="2.2">
-        <img src="../assets/win.png">
-        </ion-col>
-      </ion-row>
-      
-
-      <ion-row class="space3">
-        <ion-col size-xs="" size-sm="" size-md="10" size-lg="100" offset-xs="" offset-sm="7" offset-md="5" offset-lg="6.5">
-      <h1><b>YOU WIN!!</b></h1>
-        </ion-col>
-      </ion-row>  
-       
-         <ion-row class="space4">
-          <ion-col size-xs="" size-sm="" size-md="7.5" size-lg="10" offset-xs="" offset-sm="11" offset-md="10.5" offset-lg="10.5">
-            <ion-button (click)="CloseModal()" class="button" shape="round" size="small" class="grad" fill="clear" >
-              <h4><b>X</b></h4>
-            </ion-button>
-          </ion-col>
-        </ion-row> 
-         
-
-
-
-
-    </ion-grid>
-   </form>
- </ion-content>
+    
+  </ion-grid>
+</ion-content> 

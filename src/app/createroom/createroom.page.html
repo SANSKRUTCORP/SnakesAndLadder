@@ -17,9 +17,14 @@
         </ion-col>
       </ion-row>
       <ion-row class="space1"> 
-       <ion-col size-xs="9" size-sm="6" size-md="9" size-lg="12" offset-xs="0.5" offset-sm="4.5" offset-md="4.5" offset-lg="5.4" >
-         <ion-button class="grad" fill="clear" (click)="send(names)">
-          <p>Start</p> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+       <!-- <ion-col size-xs="9" size-sm="6" size-md="9" size-lg="12" offset-xs="0.5" offset-sm="4.5" offset-md="4.5" offset-lg="5.4" >
+         <ion-button class="grad" fill="clear">
+          <p>Start</p> <ion-icon name="arrow-forward-circle-outline"></ion-icon> -->
+      
+      <ion-row> 
+       <ion-col class="ion-padding-top padding" *ngIf="truth" >
+         <ion-button (click)="onClick()" [disabled]="names[0]==null" class="grad" fill="clear"  (click)="send(names)">
+          <h5>Start</h5> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
          </ion-button>
        </ion-col>
      </ion-row>

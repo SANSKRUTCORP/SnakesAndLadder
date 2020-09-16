@@ -1,69 +1,41 @@
-.pop{
-  padding-top: 30%;
-  padding-left: 34%;
-  padding-bottom: 50.5%;
-  align-content: center;
-  background-color: black;
 
-    overflow: hidden;
-  border: 3px solid rgb(255,223,0); 
-  
-}
-.space1{
-  margin-top: -20%;
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+
+h1{
+  font-family: 'Indie Flower', cursive;
+  color: rgb(250, 249, 249);
 }
 
-.space2{
-  margin-top: -70%;
-  width: 250%;
-  
+h4{
+  color: rgb(250, 249, 249);
 }
-.space3{
-  color: white;
-  margin-top: 5%;
 
+.bg{
+  background-color: rgb(8, 8, 8);
+  height: 100%;
 }
-.space4{
-  margin-top: -100%;
-  width: -10%;
-}
-.grad{
-   
-  color: white;
-}
-@media only screen and (min-width:916px) and (max-width: 950px){
-  .pop{
-    padding-top: 40%;
-   padding-bottom: 40.5%;
-  }
-  .space4{
-    margin-top: -100%;
-  }
-  .space1{
-    margin-top: -40%;
-  }
 
-}
-@media only screen and (min-width:768px) and (max-width: 876px){
-  .pop{
-    padding-top: 35%;
-   padding-bottom: 45.6%;
-  }
-  .space4{
-    margin-top: -97%;
-  }
-  .space1{
-    margin-top: -32%;
+@media only screen and (min-width:576px) and (max-width:700px) {
+  .image{
+      max-width: 48%;
   }
 }
-@media only screen and (max-width: 767px){
-  .pop{
-    padding-bottom: 69%;
-  }
-  .space1{
-    margin-top: -10%;
-  }
-  .space4{
-    margin-top: -110%;
+
+@media only screen and (min-width:700px) and (max-width:900px) {
+  .image{
+      max-width: 38%;
   }
 }
+
+@media only screen and (min-width:900px) and (max-width:1200px) {
+  .image{
+      max-width: 37%;
+  }
+}
+
+@media only screen and (min-width:1200px)  {
+  .image{
+      max-width: 50%;
+  }
+}
+

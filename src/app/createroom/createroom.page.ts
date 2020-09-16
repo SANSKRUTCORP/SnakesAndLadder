@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AuthserviceService } from '../services/authservices.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BoardService } from '../services/board.service';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-createroom',
@@ -12,16 +15,19 @@ import { Router } from '@angular/router';
 
   // styleUrls: ['./createroom.page.scss'],
 })
+
 export class CreateroomPage implements OnInit {
 
-  roomToken:number; //Hardcoded for now
-  names = ["one","two","three","four"];
+  roomToken:any; //Hardcoded for now
+  names = ["one","two","three","four"];//hardecoded for now
   leader = '';
 
   constructor( private db : AngularFireDatabase, 
                private http : HttpClient , 
                private boardService: BoardService,
-               private router: Router ) {
+               public auth: AuthserviceService,
+               private router: Router ,
+               private route:ActivatedRoute) {
 
     // this.boardService = boardService;
     // this.router = router;
@@ -39,17 +45,18 @@ export class CreateroomPage implements OnInit {
     this.router.navigate(['/board']);
   }
   listenPlayers(){
-    var ref = this.db.database.ref('/rooms/room_'+this.roomToken+'/players')
-    ref.on("value", (snapshot)=>{
+    this.roomToken = this.route.snapshot.queryParamMap.get('room');
+    const ref = this.db.database.ref('/rooms/room_' + this.roomToken + '/players');
+
+    ref.on('value', (snapshot) => {
       // this.roomToken = this.getRoomToken()
-      console.log("this is...",this.names)
-      for(var i=1;i<=4;i++){
-        var user = snapshot.child('player_'+i+'/name').val();
-        if(i==1){
-          this.leader=user;
+      for (let i = 1; i <= 4; i++){
+        const user = snapshot.child('player_' + i + '/name').val();
+        if (i === 1){
+          this.leader = user;
         }
         else{
-          this.names[i-1] = user;
+          this.names[i - 2] = user;
         }
       }
       console.log('live fetch :',this.names);
@@ -67,11 +74,41 @@ export class CreateroomPage implements OnInit {
     })
   }
 
+  onClick(){
+    this.http.post<any>('http://localhost:3000/setState', {roomid: this.roomToken}).subscribe(resp => {
+      console.log(resp);
+    });
+  }
 
-  
+  // checkButton(){
+  //   let loggedUser: any;
+  //   this.truth = false;
+  //   this.db.database.ref('rooms/room_' + this.roomToken + '/players').once('value', snapshot => {
+  //     this.leader = snapshot.child('player_1/name').val();
+  //     this.auth.getUser().then(res => {
+  //       loggedUser = res.displayName;
+  //       console.log(loggedUser);
+  //       if (loggedUser === this.leader){
+  //         this.truth = true;
+  //         console.log(this.truth, loggedUser, this.leader);
+  //       }
+  //     });
+  //   });
+  // }
+
+
+
+  // ngOnInit() {
+  //   this.listenPlayers();
+  //   this.checkButton();
+  //   this.db.database.ref('rooms/room_' + this.roomToken).on('value', snapshot => {
+  //     this.state = snapshot.child('tempState').val();
+  //     if(this.state){
+  //       this.router.navigate(['/board'], {
+  //         queryParams: {room : this.roomToken}
+  //       });
+  //     }
+  //   });
+  //   console.log(this.truth);
+  // }
 }
-
-
-
-//total wins & loses
-//total games played

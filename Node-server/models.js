@@ -14,28 +14,6 @@ module.exports  = {
                     console.log("%c dice value is"+" "+this.diceNumber, 'font-weight : bold');
                     return randomNum;
                     
-                } ,
+                }
 
-    newRoomCreate : function(userRecord, roomRef, firedb){
-                        var currentUser = userRecord.displayName;
-                        //Creating a branch in firebase for new rooms
-                        roomRef.child('room_'+roomToken)
-                                .set({roomid:roomToken, tempCounter:2})
-                                .then(function(){
-                                    console.log("roomToken add to db");
-                                    res.send({room_token : roomToken});
-                                })
-                                .catch(function(err){
-                                    console.log(err);
-                                });
-                        
-                        var roomRef1 = firedb.ref('/rooms/room_'+roomToken+'/players');        
-                        roomRef1.child('player_1').set({name : currentUser, position : -1})
-                        .then(function(){
-                            console.log('Player 1 name set')
-                        })
-                        .catch(function(err){
-                            console.log(err);
-                        });
-                    }
 }
