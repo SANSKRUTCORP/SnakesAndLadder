@@ -13,14 +13,25 @@
   padding-top: 10px;
 }
 
-  h1{
+  .fontStyles{
     font-family: 'Indie Flower', cursive;
     color: rgb(235, 159, 97);
     text-align: center;
     text-shadow: 2px 2px 3px rgb(219, 132, 73);
-    font-size: 370%;
+    font-size: 9vh;
     padding-top: 10%;
-    padding-bottom: 10%;
+    padding-bottom: 7%;
+  }
+  .fontStyles1{
+    font-family: 'Indie Flower', cursive;
+    color: rgb(235, 159, 97);
+    text-align: center;
+    text-shadow: 2px 2px 3px rgb(219, 132, 73);
+    font-size: 5vh;
+  }
+
+  .padds{
+    padding-bottom: 5%;
   }
 
   .grad{
@@ -33,7 +44,7 @@
   }
 
  p{
-   font-size: 15px;
+   font-size: 20px;
  }
 
   @media only screen and (min-width:300px) and (max-width:370px){
