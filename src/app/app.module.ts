@@ -23,8 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent ],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase), 
     AngularFireDatabaseModule,
