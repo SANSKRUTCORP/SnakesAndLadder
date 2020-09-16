@@ -43,6 +43,7 @@ app.use(express.json());
 app.use('/createroom', middlew.auth);
 app.use('/joinroom', middlew.auth);
 app.use('/setUser', middlew.auth);
+app.use('/setState', middlew.auth);
 
 
 app.post('/setUser', (req, res) => {
@@ -92,7 +93,7 @@ app.get('/createroom', (req, res) => {
                 var currentUser = userRecord.displayName;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, tempCounter: 2 })
+                    .set({ roomid: roomToken, tempCounter: 2, tempState: false  })
                     .then(function () {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
@@ -202,5 +203,17 @@ app.get('/board/:id', (req, res) => {
     res.send({ dice_value: dice })
 })
 
+
+app.post('/setState', (req, res) => {
+    const roomID = req.body.roomid;
+    console.log(roomID);
+    firedb.ref('rooms/room_'+roomID).update({tempState: true}, (error)=>{
+        if(error){
+            res.send(error);
+        } else {
+            res.send('Write successful');
+        }
+    });
+})
 
 module.exports = app;
