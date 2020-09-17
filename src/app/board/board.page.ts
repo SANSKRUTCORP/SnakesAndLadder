@@ -7,6 +7,12 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 import { AllComponent } from './all/all.component';
+import { BoardService } from '../services/board.service';
+import { LoadingController } from '@ionic/angular';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {CreateroomPage} from '../createroom/createroom.page';
+import {  Observable } from 'rxjs';
+import {interval} from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -15,13 +21,16 @@ import { AllComponent } from './all/all.component';
 })
 export class BoardPage implements OnInit {
    n:number;
+  value: any;
+  playerss: any;
+  myName: any;
+  timeVar: any;
+  interval: NodeJS.Timeout;
+  timeLeft: number=10;
   // posPlayer: number;
-  
-  
-  ;
+  timeUp:string="time Up"
   diceNumber: any;
   members: any;
-  player: any;
   memberChance: any;
   posPlayer1:number=0;
   posPlayer2:number=0;
@@ -38,14 +47,23 @@ export class BoardPage implements OnInit {
   winPos:number;
   newPos:number;
   updatePos:number;
+  public data: any;
+  player: any;
+  i=1
+  mySubscription: any;
+  play=true;
+ 
+  
 
   
-  ngOnInit() {
-    
-  }
-  
-constructor(private http: HttpClient, private modalController: ModalController, public db : AngularFireDatabase) {
-  
+constructor(private http: HttpClient, 
+            private modalController: ModalController,
+             public db : AngularFireDatabase,
+             private boardService:BoardService,
+             public loadingController: LoadingController) {
+
+              
+  this.myName=boardService.getData(); //the data of players we get from create room page
 
    this.arr=[]
     for(let el = 0; el <10; el++) {
@@ -60,61 +78,77 @@ constructor(private http: HttpClient, private modalController: ModalController, 
           }
         }   
     }
+    
+
    
 }
 
-rollDice(){                                                  
-  this.http.get<any>('http://localhost:3000/board').subscribe((res)=>{
-      console.log("response is : ",res);
-      return res['dice_val']
-    },(error)=>{
-      console.log("Error on req : ",error);
-      return null;
-    })
-}  
 
-
-checkForSnakeLadder(required_pos){
-  var ref = this.db.database.ref('/SnakesAndLadders')
-  ref.once('value', (snapshot)=>{
-      var myvals = snapshot.val();
-      if(required_pos in myvals){
-          this.updatePos = myvals[required_pos]
-          console.log("new pos : ",required_pos)
-      } else{
-          console.log('Not found')
-      }
-  })
-  return this.updatePos;
+ngOnInit() {
+  console.log(this.myName)
+  this.playersChances();
+  this.presentLoading()
+  
 }
+//this is used to run the for loop of players
+playersChances(){
+  for(this.playerss=this.i;this.playerss<=4;this.playerss++) {
+    this.memberChance =  this.i; 
+    console.log(this.myName[this.i-1]+" "+"turn"); 
+    
+    break;  
+ }
+ if(this.i<4){
+  this.i =this.i+1; 
 
-
-
-
- i=1;
+ }
+  else{
+    this.i=1;   
+  } 
+}
 rollDiceChance(){  
   /*on every click of dice this function gives one by one chance 
-  to all player to roll it*/    
-                                              
-  var player: number;                                                                             
-  for(player = this.i;player<=4;player++) {
-     this.memberChance =  this.i; 
-     console.log("player"+" "+this.memberChance+" "+"turn"); 
-     this.rollDice();
-     this.playerPosition();
-        
-     break;  
-  }
-  if(this.i<5){
-    this.i =this.i+1; 
-  }
-  else{
-    this.i=1;   /*bcoz we apply the condition player<=4 so when ￼
-    Harsh Soni
-                 dice roll fifth time then again i should initilise with 1*/
-  } 
+  to all player to roll it*/  
+  this.boardService.diceRoll().subscribe(resp =>{
+    console.log("dice value",resp);
+    this.diceNumber=resp;
+    this.playerPosition();
+    this.playersChances();
+    
+},(error)=>{
+    console.log("Error on req : ",error);
+     return null;
+});
  
+
 }
+//it shows the loading when you start the game.
+async presentLoading() {
+  this.playAudio()
+  const loading = await this.loadingController.create({
+    cssClass: 'my-custom-class',
+  
+    message: 'your game will start in few seconds',
+    duration: 14000
+  });
+  await loading.present();
+
+  console.log('Loading dismissed!');
+}
+
+playAudio(){
+  let audio = new Audio('../assets/starter.mpeg'); //audio play when we start the game
+  audio.play();
+}
+WinnerAudio(){
+  let audio = new Audio('../assets/winner.mp3.wav'); //audio play after wining of player.
+  audio.play();
+}
+diceAudio(){
+  let audio = new Audio('../assets/dice.mp3.wav'); //audio play on dice roll
+  audio.play();
+}
+
 
 
 Ladder(m:number){
@@ -216,25 +250,29 @@ snake(s:number){
   }
   return this.snakeposition
 }
-                                                                     
+                                                   
+playerChance(playerNumber: any){
+
+}
 
 playerPosition(){  
   // this function changes player position according to the dicenumber .
   if(this.memberChance==1){
-    this.posPlayer1=this.posPlayer1+this.diceNumber;
-    // this.win()
+    this.posPlayer1=this.posPlayer1+this.diceNumber; 
+    // this.win(this.posPlayer1);
     this.Ladder(this.posPlayer1)
       if(this.posPlayer1==this.v){
-        this.posPlayer1=this.ladderposition
-        console.log("player 1 new position is"+" "+this.posPlayer1);
+        this.posPlayer1=this.ladderposition;
+        console.log(this.myName[0]+" "+ "new position is"+" "+this.posPlayer1);
       }
       if(this.posPlayer1>=100){
         this.posPlayer1=100
+        this.play=false;
+        this.popup();
        console.log("YOU WIN and your position is"+" "+this.posPlayer1);
-       
       }
       else{
-        console.log("player 1 new position is"+" "+this.posPlayer1);
+        console.log( this.myName[0]+" "+"new position is"+" "+this.posPlayer1);
       } 
   }
 
@@ -244,15 +282,17 @@ playerPosition(){
     this.Ladder(this.posPlayer2)
       if(this.posPlayer2==this.v){
          this.posPlayer2=this.ladderposition
-         console.log("player 2 new position is"+" "+this.posPlayer2);
+         console.log(this.myName[1]+" "+ "new position is"+" "+this.posPlayer2);
         }
         if(this.posPlayer2>=100){
           this.posPlayer2=100
+          this.play=false;
+          this.popup();
          console.log("YOU WIN and your position is"+" "+this.posPlayer2);
          
         }
       else{
-         console.log("player 2 new position is"+" "+this.posPlayer2);
+         console.log(this.myName[1]+" "+"new position is"+" "+this.posPlayer2);
         }
   }
 
@@ -262,54 +302,50 @@ playerPosition(){
     this.Ladder(this.posPlayer3)
       if(this.posPlayer3==this.v){
         this.posPlayer3=this.ladderposition
-        console.log("player 2 new position is"+" "+this.posPlayer3);
+        console.log(this.myName[2]+" "+" new position is"+" "+this.posPlayer3);
       }
       if(this.posPlayer3>=100){
         this.posPlayer3=100
+        this.play=false;
+        this.popup();
        console.log("YOU WIN and your position is"+" "+this.posPlayer3);
        
       }
       else{
-        console.log("player 3 new position is"+" "+this.posPlayer3);
+        console.log(this.myName[2]+" "+"new position is"+" "+this.posPlayer3);
     }
   }
 
   if(this.memberChance==4){
     this.posPlayer4=this.posPlayer4+this.diceNumber;
-    // this.win(this.posPlayer4)
+  //  this.win(this.posPlayer1);
     this.Ladder(this.posPlayer4)
       if(this.posPlayer4==this.v){
         this.posPlayer4=this.ladderposition
-        console.log("player 2 new position is"+" "+this.posPlayer4);
+        console.log(this.myName[3]+" "+" new position is"+" "+this.posPlayer4);
       }
       if(this.posPlayer4>=100){
         this.posPlayer4=100
+        this.play=false;
+        this.popup();
        console.log("YOU WIN and your position is"+" "+this.posPlayer4);
        
       }
       else{
-        console.log("player 4 new position is"+" "+this.posPlayer4);
+        console.log(this.myName[3]+" "+"new position is"+" "+this.posPlayer4);
       }
   }
 }
-win(){
-  if(this.posPlayer1>=100){
-    console.log("you win");
-  }
-  // if(this.posPlayer1>100){
-  //   this.
-  //   console.log("sorry can't move ur token")
-   
-  // }
+
   
 
-}
 
  
 
-
+// here if you want only dice value which we get from backend then
+//  replace this.rollDiceChance() from this.boardService.diceRoll().
   boardvals(){
-    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.rollDice(),
+    this.http.post<any>('http://localhost:3000/board', {dice_value   : this.rollDiceChance(),
                                                         player_1_pos : this.posPlayer1,
                                                         player_2_pos : this.posPlayer2,
                                                         player_3_pos : this.posPlayer3,
@@ -320,20 +356,9 @@ win(){
   }
 
  
-  
-  
-// }
-
-//  export class Boardpage {
-
-  // constructor(private modalController: ModalController) {
-// // }
-//  openModal()
-//  {
-//    this.modalController.create({component:WinComponent}).then((winElement: { present: () => void; })=>{winElement.present()});
-// }
 popup() {
     const modal = this.modalController
+   
     .create({
       component: WinComponent,
       cssClass: 'my-custom-modal-css',
@@ -346,7 +371,9 @@ popup() {
         popElement.onDidDismiss().then(resp => {
         });
     });
+    this.WinnerAudio()
   }
+  //remove this popup1() if we have only one winner.
   popup1() {
     const modal = this.modalController
     .create({
@@ -361,6 +388,7 @@ popup() {
         popElement.onDidDismiss().then(resp => {
         });
     });
+    this.WinnerAudio()
   }
 //   Calltoggle(){
     

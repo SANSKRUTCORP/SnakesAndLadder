@@ -16,11 +16,11 @@ import { environment } from '../../environments/environment';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase), 
+    AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule,
   ],
   declarations: [HomePage],
   providers: [AuthserviceService]
-  
+
 })
 export class HomePageModule {}
