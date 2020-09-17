@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthserviceService } from '../services/authservices.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class CreateroomPage implements OnInit {
               private http: HttpClient,
               public auth: AuthserviceService,
               public boardService: BoardService,
+              public zone: NgZone,
               private route: ActivatedRoute,
               private router: Router) {}
 
@@ -36,22 +37,25 @@ export class CreateroomPage implements OnInit {
 
 
   listenPlayers(){
+    this.zone = new NgZone({});
     this.roomToken = this.route.snapshot.queryParamMap.get('room');
     const ref = this.db.database.ref('/rooms/room_' + this.roomToken + '/players');
 
     ref.on('value', (snapshot) => {
       // this.roomToken = this.getRoomToken()
-      for (let i = 1; i <= 4; i++){
-        const user = snapshot.child('player_' + i + '/name').val();
-        if (i === 1){
-          this.leader = user;
+      this.zone.run(() => {
+        for (let i = 1; i <= 4; i++){
+          const user = snapshot.child('player_' + i + '/name').val();
+          if (i === 1){
+            this.leader = user;
+          }
+          else{
+            this.names[i - 2] = user;
+          }
         }
-        else{
-          this.names[i - 2] = user;
-        }
-      }
-      console.log('leader...', this.leader);
-      console.log('live fetch :', this.names);
+        console.log('leader...', this.leader);
+        console.log('live fetch :', this.names);
+      });
     });
 
   }
