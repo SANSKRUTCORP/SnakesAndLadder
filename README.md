@@ -6,3 +6,11 @@
 * Change directory to Project Directory using ```cd SnakesAndLadders```
 * Now run ```npm i```
 * And then run ```ionic serve``` . If error appears, type : ```Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted``` over your Windows Powershell/CMD and then retry.
+
+
+## For backend
+in Node-server directory: 
+1. ```npm i```
+2.```npm i firebase-admin```
+3. ```npm i express-firebase-middleware```
+4. ```npm i nodemon -g```
