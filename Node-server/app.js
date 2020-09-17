@@ -42,8 +42,31 @@ app.use(express.json());
 //Adding authorization to particular routes
 app.use('/createroom', middlew.auth);
 app.use('/joinroom', middlew.auth);
+app.use('/setUser', middlew.auth);
+app.use('/setState', middlew.auth);
+app.use('/setGameStats', middlew.auth);
 
 
+app.post('/setUser', (req, res) => {
+    const uid = req.body.uid;
+    const username = req.body.name;
+    // console.log(uid, username);
+    let ref = firedb.ref('Users');
+    ref.once('value', snapshot => {
+        // console.log(snapshot.val())
+        let data = snapshot.val();
+        if(data==null || !data[uid]){
+            ref.child(uid).set({
+                name : username,
+                gameplay : 0,
+                wins : 0
+            })
+            res.send(true)
+        } else {
+            res.send(false)
+        }
+    })
+})
 
 
 app.get('/createroom', (req, res) => {
@@ -69,19 +92,21 @@ app.get('/createroom', (req, res) => {
                 //New player with roomToken set in db with this function
                 // models.newRoomCreate(userRecord, roomRef, firedb, roomToken);
                 var currentUser = userRecord.displayName;
+                var userID = userRecord.uid;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, tempCounter: 2 })
+                    .set({ roomid: roomToken, tempCounter: 2, tempState: false  })
                     .then(function () {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
                     })
                     .catch(function (err) {
                         console.log(err);
+                        res.send(false);
                     });
 
                 var roomRef1 = firedb.ref('/rooms/room_' + roomToken + '/players');
-                roomRef1.child('player_1').set({ name: currentUser, position: -1 })
+                roomRef1.child('player_1').set({ name: currentUser, position: -1, playerUID: userID})
                     .then(function () {
                         console.log('Player 1 name set')
                     })
@@ -97,6 +122,46 @@ app.get('/createroom', (req, res) => {
     }).catch(function (error) {
         console.log(error);
     });
+
+});
+
+app.post('/joinroom', function(req, res){
+
+    var roomToken = req.body.enterid;
+    var username = req.body.entername;
+    let userID = req.body.uid;
+
+    var ref = firedb.ref('/rooms/room_'+roomToken);
+
+    ref.once('value', function(snapshot){
+
+        var count = snapshot.child('tempCounter');
+        var countVal = count.val();
+
+        var roomRef = firedb.ref('/rooms/room_'+roomToken+'/players');
+        roomRef.once('value', function(data){
+
+            var lenref = Object.keys(data.val()).length;
+            
+
+            if(lenref<4){
+                roomRef.child('player_'+countVal).set({name : username, position: -1, playerUID: userID})
+                    .then(function(){
+                            countVal = countVal+1;
+                            ref.update({tempCounter : countVal});
+                            // res.redirect('/createroom/'+roomToken);
+                            res.send(true);
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+            } else{
+                res.send(false);
+            };
+
+        });
+    })
+
 
 });
 
@@ -130,7 +195,7 @@ app.post('/board/:id', (req, res) => {
         if (error) {
             res.send({ err: error });
         } else {
-            res.send({ noerr: "writing successful" });
+            res.send({ noerr: "write successful" });
         }
     });
 
@@ -140,6 +205,59 @@ app.post('/board/:id', (req, res) => {
 app.get('/board/:id', (req, res) => {
     var dice = models.diceRoll()
     res.send({ dice_value: dice })
+})
+
+
+app.post('/setState', (req, res) => {
+    const roomID = req.body.roomid;
+    console.log(roomID);
+    firedb.ref('rooms/room_'+roomID).update({tempState: true}, (error)=>{
+        if(error){
+            res.send(error);
+        } else {
+            res.send('Write successful');
+        }
+    });
+})
+
+
+app.post('/setGameStats', (req, res) => {
+    const playerNo = req.body.playerNo;
+    const roomID = req.body.roomid;
+    let winSnap;
+    let gplaySnap;
+    let playersid;
+    const ref = firedb.ref('rooms/room_'+roomID+'/players');
+
+    ref.once('value', snapshot => {
+        var lenref = Object.keys(snapshot.val()).length;
+        // res.send({length:lenref})
+        for(var i=1; i<=lenref; i++){          
+            
+            playersid = snapshot.child('player_'+i+'/playerUID').val();
+            if (i==playerNo){
+                let ref1 = firedb.ref('Users/'+playersid);
+                ref1.once('value', snapshot=>{
+                    winSnap = snapshot.child('wins').val();
+                    winSnap++;
+                    ref1.update({wins: winSnap});
+                })   
+            }
+            const ref2 = firedb.ref('/Users/'+playersid);
+            ref2.once('value', snapshot1=>{
+                gplaySnap = snapshot1.child('gameplays').val();
+                gplaySnap++;
+                ref2.update({gameplay: gplaySnap});
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+        
+    }).then(()=>{
+        res.send(true)
+    }).catch(err=>{
+        console.log(err);
+    });
 })
 
 

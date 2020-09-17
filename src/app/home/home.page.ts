@@ -23,14 +23,6 @@ export class HomePage {
     toggle();
   }
 
-  ngOnInit(): void {
-    this.auth.isUserSignedIn().then(res => {
-      if (res){
-        console.log('Signed in! ...with ', res.uid);
-      } else{
-        console.log('not signed in!');
-      }
-    });
-    // this.auth.getToken().subscribe(res=>console.log(res))
-  }
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnInit(): void {}
 }

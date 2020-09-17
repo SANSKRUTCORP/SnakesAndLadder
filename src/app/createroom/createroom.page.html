@@ -1,28 +1,25 @@
-
-
 <ion-content>
-    <ion-grid class="background-img">  
-      <ion-row class="space ion-justify-content-center">
-        <ion-col class="styling ion-align-self-center" size="8" >
-          <div>
-            <h1>Room created by {{leader}}</h1>
-            <h1>Room number : {{roomToken}}</h1>
-            <h1>Joined Players</h1>
-            <ion-row *ngFor="let name of names">
-              <ion-icon *ngIf="name!=null" name="caret-forward-outline"></ion-icon>
-              <div>{{name}}</div>
-            </ion-row>
-          </div> 
-        </ion-col>
-      </ion-row>
-      
-      <ion-row> 
-       <ion-col class="ion-padding-top padding" >
-         <ion-button (click)="onClick()" [disabled]="names[0]==null" class="grad" fill="clear" >
-          <h5>Start</h5> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-         </ion-button>
-       </ion-col>
-     </ion-row>
+  <ion-grid class="background-img">  
+    <ion-row class="space ion-justify-content-center">
+      <ion-col class="styling ion-align-self-center" size="8" >
+        <div>
+          <h1>Room created by {{leader}}</h1>
+          <h1>Room number : {{roomToken}}</h1>
+          <h1>Joined Players</h1>
+          <ion-row *ngFor="let name of names">
+            <ion-icon *ngIf="name!=null" name="caret-forward-outline"></ion-icon>
+            <div>{{name}}</div>
+          </ion-row>
+        </div> 
+      </ion-col>
+    </ion-row>
+    
+    <ion-row> 
+     <ion-col class="ion-padding-top  padding" *ngIf="truth" >
+       <ion-button (click)="onClick()" [disabled]="names[0]==null" class="grad" fill="clear" >
+        <h5>Start</h5> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+       </ion-button>
+     </ion-col>
+   </ion-row>
   </ion-grid>   
 </ion-content>    
-  
