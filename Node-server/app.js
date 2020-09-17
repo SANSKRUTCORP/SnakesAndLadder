@@ -202,7 +202,7 @@ app.post('/board/:id', (req, res) => {
 
 });
 
-app.get('/board/:id', (req, res) => {
+app.get('/board', (req, res) => {
     var dice = models.diceRoll()
     res.send({ dice_value: dice })
 })
