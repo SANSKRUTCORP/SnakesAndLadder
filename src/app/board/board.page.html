@@ -1,9 +1,9 @@
 <ion-grid class="background-img" > 
 
-  <div class="board" id="blur">
+   <div class="board" id="blur">
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup()" class="grad" expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
+          <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
               Winner<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
       </ion-col>
@@ -11,46 +11,43 @@
     </div>
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup1()" class="grad" expand="block" shape="round"  fill="clear" >
+          <ion-button (click)="popup1()"  expand="block" shape="round"  fill="clear" >
               popup<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
-      </ion-col>
+      </ion-col> 
     </ion-row>
 
-  <ion-row>
-    <!-- <div style="background-image: url('../../assets/SNAKE\ AND\ LADDER.png'); ">  -->
-       <!-- <ion-col class="box" size-xs="10" size-sm="9" size-md="8" size-lg="7" size-xl="8" >  -->
-      
-        <ion-col class="box-padding" size-xs="12" size-sm="9" size-md="9" size-lg="8" size-xl="8"> 
-                               
+  <ion-row class="ion-text-center">
+    <ion-col class="box-padding ion-align-self-center"  size-xs="12" size-sm="12" size-md="9" size-lg="9" size-xl="8"> 
+      <div class="box" > 
         <ion-row *ngFor='let el of arr;'>
          
-          <div *ngFor='let ele of el;' class="block">
+          <div *ngFor='let ele of el;' class="block"> 
                                                
                                                
-           <b> {{ele}}</b> 
+          <h7 *ngIf=" ele!=100">{{ele}}</h7>
            <!-- we have green color for player 1
                         red color for player 2
                         blue color for player3
                         yellow color for player4 -->
                 
                <div *ngIf="ele==posPlayer1" >
-                <img src="../../assets/g1.png" style=" width: 35%;height:35%;margin-left:35%;">
+                <img src="../../assets/g1.png" class="players">
               </div>
               <div *ngIf="ele==posPlayer2" >
-                <img src="../../assets/r1.png"   style="width: 35%;height:35%; margin-left:35%;">
+                <img src="../../assets/r1.png" class="players">
               </div>
               <div *ngIf="ele==posPlayer3" >
-                <img src="../../assets/b1.png" style="width: 35%;height:35%; margin-left:35%;">
+                <img src="../../assets/b1.png" class="players">
               </div>
               <div *ngIf=" ele==posPlayer4" >
-                <img src="../../assets/y1.png"  style="width: 35%;height:35%; margin-left:35%;">
+                <img src="../../assets/y1.png" class="players" >
               </div>
-              <div *ngIf=" ele==100" >
-                <img src="https://newyorkparkingticket.com/wp-content/uploads/2009/09/NYPT-WIN_how-to-beat-a-NYC-parking-ticket.png"  style="width: 70%;height:70%; margin-left:5%;">
+              <div *ngIf=" ele==100">
+                <img src="../../assets/star-win.png" class="img-size">
               </div>
               <div *ngIf=" ele==1" >
-                <img src="http://www.clker.com/cliparts/C/n/U/D/t/D/transparent-arrow-hi.png"  style="width: 100%;height:100%; ">
+                <img src="../../assets/arrow.png"  class="img-size">
               </div> 
   
               <!-- <div *ngIf="ele==6 ">
@@ -60,37 +57,36 @@
            </div>
         
         </ion-row>
-      
+      </div>
       </ion-col>
-    <!-- </div> -->
 
-       <ion-col class="padding">
+     <ion-col class="padding">
       <ion-row>
-        <ion-button (click)="rollDiceChance()"  >
+        <ion-button (click)="rollDiceChance()" class="grad" fill="clear" expand="block" shape="round">
           {{diceNumber}}
         </ion-button>
       </ion-row>
 
-      <ion-row class="padding">
-        <img src="../../assets/g1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+      <ion-row >
+        <img src="../../assets/g1.png" class="players-size"> 
+       
       </ion-row>
 
-      <ion-row class="padding">
-        <img src="../../assets/r1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+      <ion-row >
+        <img src="../../assets/r1.png" class="players-size"> 
+        
       </ion-row>
 
-      <ion-row class="padding">
-        <img src="../../assets/b1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+      <ion-row >
+        <img src="../../assets/b1.png" class="players-size"> 
+       
       </ion-row>
 
-      <ion-row class="padding">
-        <img src="../../assets/y1.png" style="height: 15px; width: 15px;"> 
-        <!-- Player 1 -->
+      <ion-row >
+        <img src="../../assets/y1.png" class="players-size"> 
+        
       </ion-row>
-    </ion-col>   
+    </ion-col>    
 
    </ion-row>
   
