@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { JoinRoomComponent } from './join-room/join-room.component';
 import { AuthserviceService } from '../services/authservices.service';
@@ -21,6 +21,7 @@ export class RoomsPage implements OnInit {
   constructor(private modalController: ModalController,
               public auth: AuthserviceService,
               private router: Router,
+              public zone: NgZone,
               private db: AngularFireDatabase,
               private http: HttpClient) {}
 
@@ -77,13 +78,17 @@ export class RoomsPage implements OnInit {
   }
 
   getStats(){
+    this.zone = new NgZone({});
     this.uid = sessionStorage.getItem('tempid');
     this.db.database.ref('Users/' + this.uid).on('value', snapshot => {
-      this.wins = snapshot.child('wins').val();
-      this.gplay = snapshot.child('gameplay').val();
-      console.log(this.wins, this.gplay);
+      this.zone.run(() => {
+        this.wins = snapshot.child('wins').val();
+        this.gplay = snapshot.child('gameplay').val();
+        console.log(this.wins, this.gplay);
+      })
     });
   }
+
 
 
   getRoomToken(): any{
