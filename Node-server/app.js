@@ -125,6 +125,8 @@ app.get('/createroom', (req, res) => {
 
 });
 
+
+
 app.post('/joinroom', function(req, res){
 
     var roomToken = req.body.enterid;
@@ -169,35 +171,23 @@ app.post('/joinroom', function(req, res){
 
 
 app.post('/board/:id', (req, res) => {
-    var player_pos = [req.body.player_1_pos,
-    req.body.player_2_pos,
-    req.body.player_3_pos,
-    req.body.player_4_pos];
-
-    var dice = req.body.dice_value;
+    var playerNo = req.body.memberChance;
+    var newPos = req.body.position;
     //id is the roomToken here
 
     firedb.ref('SnL').once('value', snapshot => {
         var snakesLadders = snapshot.val();
-        for(var i=0;i<player_pos.length;i++){
-            console.log(player_pos[i])
-            if (player_pos[i]!=undefined){
-                if(player_pos[i] in snakesLadders){
-                    player_pos[i] = snakesLadders[player_pos[i]];
-                    console.log("new pos : ",player_pos[i])
-                } else{
-                    console.log('Not found')
-                }
-            }
+        if(newPos in snakesLadders){
+            newPos = snakesLadders[newPos];
+            console.log("new pos : ",newPos)
+        } else{
+            console.log('Not found')
         }
 
         var roomToken = req.params.id;
         var ref = firedb.ref('/rooms/room_' + roomToken + '/players');
-        for (var i = 1; i <= 4; i++) {
-            if (player_pos[i - 1] != null) {
-                ref.child('player_' + i).update({ position: player_pos[i - 1] })
-            };
-        };
+        ref.child('player_' + playerNo).update({ position: newPos});
+        
     }).then(()=>{
         res.send(true)
     }).catch(error=>{
