@@ -176,33 +176,38 @@ app.post('/board/:id', (req, res) => {
 
     var dice = req.body.dice_value;
     //id is the roomToken here
-    var roomToken = req.params.id;
-    var ref = firedb.ref('/rooms/room_' + roomToken + '/players');
-    for (var i = 1; i <= 4; i++) {
-        if (player_pos[i - 1] != null) {
-            ref.child('player_' + i)
-                .update({ position: player_pos[i - 1] }, function (error) {
-                    if (error) {
-                        res.send({ err: error });
-                    } else {
-                        res.send({ noerr: "writing successful" });
-                    }
-                });
-        };
-    };
-    // console.log(dice);
-    ref.update({ dice_value: dice }, function (error) {
-        if (error) {
-            res.send({ err: error });
-        } else {
-            res.send({ noerr: "write successful" });
+
+    firedb.ref('SnL').once('value', snapshot => {
+        var snakesLadders = snapshot.val();
+        for(var i=0;i<player_pos.length;i++){
+            console.log(player_pos[i])
+            if (player_pos[i]!=undefined){
+                if(player_pos[i] in snakesLadders){
+                    player_pos[i] = snakesLadders[player_pos[i]];
+                    console.log("new pos : ",player_pos[i])
+                } else{
+                    console.log('Not found')
+                }
+            }
         }
-    });
+
+        var roomToken = req.params.id;
+        var ref = firedb.ref('/rooms/room_' + roomToken + '/players');
+        for (var i = 1; i <= 4; i++) {
+            if (player_pos[i - 1] != null) {
+                ref.child('player_' + i).update({ position: player_pos[i - 1] })
+            };
+        };
+    }).then(()=>{
+        res.send(true)
+    }).catch(error=>{
+        console.log(error)
+    })
 
 
 });
 
-app.get('/board/:id', (req, res) => {
+app.get('/board', (req, res) => {
     var dice = models.diceRoll()
     res.send({ dice_value: dice })
 })
