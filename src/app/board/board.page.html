@@ -1,4 +1,4 @@
-<ion-grid class="background-img" > 
+<ion-grid class="background-img"> 
 
    <div class="board" id="blur">
     <ion-row class="space">
@@ -25,7 +25,7 @@
           <div *ngFor='let ele of el;' class="block"> 
                                                
                                                
-          <h7 *ngIf=" ele!=100">{{ele}}</h7>
+          <h7 *ngIf="ele!=100" >{{ele}}</h7>
            <!-- we have green color for player 1
                         red color for player 2
                         blue color for player3
@@ -60,11 +60,13 @@
       </div>
       </ion-col>
     <!-- </div> -->
-    <!-- (click)="rollDiceChance()" -->
+    <!-- (click)="rollDiceChance()" 
+    (click)="playerPosition(posPlayer1)"-->
        <ion-col class="padding">
       <ion-row>
         <ion-button   *ngIf="play==true"
                       (click)="rollDiceChance()" 
+                      (click)="playerPosition(posPlayer1)"
                       (click)="diceAudio()"
                      
                       [disabled]="memberChance==2||memberChance==3||memberChance==4"
@@ -76,6 +78,7 @@
       <ion-row>
         <ion-button    *ngIf="play==true" 
                        (click)="rollDiceChance()" 
+                       (click)="playerPosition(posPlayer2)"
                       (click)="diceAudio()"
                       [disabled]="memberChance==1||memberChance==3||memberChance==4">
           {{diceNumber}}
@@ -85,6 +88,7 @@
       <ion-row>
         <ion-button    *ngIf="play==true"
                       (click)="rollDiceChance()" 
+                      (click)="playerPosition(posPlayer3)"
                       (click)="diceAudio()"
                       [disabled]="memberChance==2||memberChance==1||memberChance==4">
           {{diceNumber}}
@@ -93,8 +97,9 @@
       </ion-row>
       <ion-row>
         <ion-button    *ngIf="play==true"
-                       (click)="rollDiceChance()"  
-                      (click)="diceAudio()"
+                       (click)="rollDiceChance()" 
+                       (click)="playerPosition(posPlayer4)" 
+                      (click)="diceAudio()" 
                       [disabled]="memberChance==2||memberChance==3||memberChance==1">
           {{diceNumber}}
         </ion-button>  
