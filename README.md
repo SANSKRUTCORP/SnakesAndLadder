@@ -19,5 +19,5 @@ In Windows, you have to run this command in your powershell ```Set-ExecutionPoli
 * And then run ```ionic serve``` .
 
 ### For Node.js (backend) :
-* in Node-server directory, run the command : ```npm install```. Following command will install all the dependencies from ```package.json``` file.
+* In Node-server directory, run the command : ```npm install```. Following command will install all the dependencies from ```package.json``` file.
 * Now in same directory, run ```nodemon server.js```.
