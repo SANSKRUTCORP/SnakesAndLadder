@@ -1,22 +1,5 @@
 <ion-grid class="background-img"> 
 
-   <!-- <div class="board" id="blur">
-    <ion-row class="space">
-      <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
-              Winner<ion-icon name="enter-outline"></ion-icon>
-          </ion-button>
-      </ion-col>
-    </ion-row>
-    </div>
-    <ion-row class="space">
-      <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup1()"  expand="block" shape="round"  fill="clear" >
-              popup<ion-icon name="enter-outline"></ion-icon>
-          </ion-button>
-      </ion-col> 
-    </ion-row> -->
-
   <ion-row class="ion-text-center">
     <ion-col class="box-padding ion-align-self-center"  > 
       <div class="box" > 
@@ -31,17 +14,17 @@
                         blue color for player3
                         yellow color for player4 -->
                 
-              <div *ngIf="ele==posPlayer1" >
-                <img src="../../assets/g1.png" class="players">
+              <div *ngIf="ele==positions[0]" >
+                <img src="../../assets/tok1.png" class="players">
               </div>
-              <div *ngIf="ele==posPlayer2" >
-                <img src="../../assets/r1.png" class="players">
+              <div *ngIf="ele==positions[1]" >
+                <img src="../../assets/tok2.png" class="players">
               </div>
-              <div *ngIf="ele==posPlayer3" >
-                <img src="../../assets/b1.png" class="players">
+              <div *ngIf="ele==positions[2]" >
+                <img src="../../assets/tok3.png" class="players">
               </div>
-              <div *ngIf=" ele==posPlayer4" >
-                <img src="../../assets/y1.png" class="players" >
+              <div *ngIf=" ele==positions[3]" >
+                <img src="../../assets/tok4.png" class="players" >
               </div>
               <div *ngIf=" ele==100">
                 <img src="../../assets/star-win.png">
@@ -55,8 +38,6 @@
         </ion-row>
       </div>
     </ion-col>
-    <!-- </div> -->
-    <!-- (click)="rollDiceChance()" -->
     <ion-col class="padding">
     
         <div *ngIf="diceNumber==undefined" class="dice">
@@ -87,83 +68,55 @@
           <img src="../../assets/6.png" class="dice">
         </div>
 
-      <ion-row>
+      
+
+        <ion-row *ngFor="let name of names; index as i" >
+          <img src="../../assets/tok{{i+1}}.png" class="img-size"> 
+            <ion-button  fill="clear" class="grad"  *ngIf="play==true && names.length - (i) != 0" 
+                          (click)="rollDiceChance()" 
+                          (click)="diceAudio()"
+                          [disabled]="memberChance!=i+1">
+              Click here to roll dice for {{name}}
+            </ion-button>  
+        </ion-row>
+      <!-- <ion-row>
         <img src="../../assets/g1.png" class="img-size"> 
-        <ion-button fill="clear" class="grad"  *ngIf="play==true"
-        (click)="rollDiceChance()"
-        (click)="playerPosition(posPlayer1)" 
-        (click)="diceAudio()"
-       
-        [disabled]="memberChance==2||memberChance==3||memberChance==4">
-      <!-- {{diceNumber}} -->
-     Click here to roll dice for {{myName[0]}}
+        <ion-button fill="clear" class="grad"  *ngIf="play==true && this.names.length - 1 != 0"
+                      (click)="rollDiceChance()"
+                      (click)="diceAudio()"
+                      [disabled]="memberChance==2||memberChance==3||memberChance==4">
+          Click here to roll dice for {{myName[0]}}
         </ion-button>
-        <!-- <p style="color: aliceblue;">for {{myName[0]}}</p> -->
       </ion-row>
 
       <ion-row>
       <img src="../../assets/b1.png" class="img-size"> 
-        <ion-button  fill="clear" class="grad"  *ngIf="play==true" 
-                       (click)="rollDiceChance()" 
-                       (click)="playerPosition(posPlayer2)"
+        <ion-button  fill="clear" class="grad"  *ngIf="play==true && this.names.length - 2 != 0" 
+                      (click)="rollDiceChance()" 
                       (click)="diceAudio()"
                       [disabled]="memberChance==1||memberChance==3||memberChance==4">
-          <!-- {{diceNumber}} -->
           Click here to roll dice for {{myName[1]}}
         </ion-button>  
-        <!-- <p style="color: aliceblue;">for {{myName[1]}}</p> -->
       </ion-row>
 
       <ion-row>
        <img src="../../assets/r1.png" class="img-size"> 
-        <ion-button  fill="clear" class="grad" *ngIf="play==true"
+        <ion-button  fill="clear" class="grad" *ngIf="play==true && this.names.length - 3 != 0"
                       (click)="rollDiceChance()" 
-                      (click)="playerPosition(posPlayer3)"
                       (click)="diceAudio()"
                       [disabled]="memberChance==2||memberChance==1||memberChance==4">
-          <!-- {{diceNumber}} -->
           Click here to roll dice  for {{myName[2]}}
         </ion-button>  
-        <!-- <p style="color: aliceblue;">for {{myName[2]}}</p> -->
       </ion-row>
     <ion-row>
         <img src="../../assets/y1.png" class="img-size"> 
-        <ion-button  fill="clear" class="grad" *ngIf="play==true"
+        <ion-button  fill="clear" class="grad" *ngIf="play==true && this.names.length - 4 != 0"
                       (click)="rollDiceChance()" 
-                      (click)="playerPosition(posPlayer4)" 
                       (click)="diceAudio()"
                       [disabled]="memberChance==2||memberChance==3||memberChance==1">
-          <!-- {{diceNumber}} -->
           Click here to roll dice for {{myName[3]}}
         </ion-button>  
-        <!-- <p style="color: aliceblue;"> for {{myName[3]}}</p> -->
-      </ion-row>
-
-      <!-- <ion-row>
-        <p style="color: aliceblue;">{{timeLeft}} Seconds Left....</p>
-      </ion-row>
-      <ion-row *ngIf="timeLeft==0">
-        <p style="color: aliceblue;">TIME UP!</p>
-      </ion-row> -->
-
-      <!-- <ion-row class="padding">
         
-        <p style="color: aliceblue;">{{myName[0]}}</p>
-      </ion-row> -->
-
-      <!-- <ion-row class="padding">
-        
-        <p style="color: aliceblue;">{{myName[1]}}</p>
-      </ion-row> -->
-
-      <!-- <ion-row class="padding">
-       
-        <p style="color: aliceblue;">{{myName[2]}}</p>
-      </ion-row> -->
-
-      <!-- <ion-row class="padding">
-       
-        <p style="color: aliceblue;">{{myName[3]}}</p>
       </ion-row> -->
     </ion-col>    
 
