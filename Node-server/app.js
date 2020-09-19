@@ -95,7 +95,7 @@ app.get('/createroom', (req, res) => {
                 var userID = userRecord.uid;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, tempCounter: 2, tempState: false  })
+                    .set({ roomid: roomToken, tempCounter: 2, tempState: false, memberChance: 1})
                     .then(function () {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
@@ -106,7 +106,7 @@ app.get('/createroom', (req, res) => {
                     });
 
                 var roomRef1 = firedb.ref('/rooms/room_' + roomToken + '/players');
-                roomRef1.child('player_1').set({ name: currentUser, position: -1, playerUID: userID})
+                roomRef1.child('player_1').set({ name: currentUser, position: 0, playerUID: userID})
                     .then(function () {
                         console.log('Player 1 name set')
                     })
@@ -147,7 +147,7 @@ app.post('/joinroom', function(req, res){
             
 
             if(lenref<4){
-                roomRef.child('player_'+countVal).set({name : username, position: -1, playerUID: userID})
+                roomRef.child('player_'+countVal).set({name : username, position: 0, playerUID: userID})
                     .then(function(){
                             countVal = countVal+1;
                             ref.update({tempCounter : countVal});
@@ -187,7 +187,17 @@ app.post('/board/:id', (req, res) => {
         var roomToken = req.params.id;
         var ref = firedb.ref('/rooms/room_' + roomToken + '/players');
         ref.child('player_' + playerNo).update({ position: newPos});
-        
+        ref.once('value', data => {
+            var lenref = Object.keys(data.val()).length;
+            ref = firedb.ref('/rooms/room_' + roomToken);
+            if (playerNo < lenref){
+                playerNo++;
+            } else {
+                playerNo = 1;
+            }
+            ref.update({memberChance: playerNo});
+        })
+
     }).then(()=>{
         res.send(true)
     }).catch(error=>{
@@ -219,6 +229,7 @@ app.post('/setState', (req, res) => {
 app.post('/setGameStats', (req, res) => {
     const playerNo = req.body.playerNo;
     const roomID = req.body.roomid;
+    console.log(playerNo, roomID);
     let winSnap;
     let gplaySnap;
     let playersid;
