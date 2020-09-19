@@ -251,11 +251,9 @@ app.post('/setGameStats', (req, res) => {
             }
             const ref2 = firedb.ref('/Users/'+playersid);
             ref2.once('value', snapshot1=>{
-                gplaySnap = snapshot1.child('gameplays').val();
+                gplaySnap = snapshot1.child('gameplay').val();
                 gplaySnap++;
                 ref2.update({gameplay: gplaySnap});
-            }).catch(err=>{
-                console.log(err)
             })
         }
         
@@ -263,6 +261,13 @@ app.post('/setGameStats', (req, res) => {
         res.send(true)
     }).catch(err=>{
         console.log(err);
+    });
+})
+
+app.post('/roomDelete', (req, res) => {
+    var roomid = req.body.roomNo;
+    firedb.ref('rooms/room_'+roomid).remove().then(_ => {
+        res.send(true);
     });
 })
 
