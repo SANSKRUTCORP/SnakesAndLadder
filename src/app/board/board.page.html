@@ -14,16 +14,16 @@
                         blue color for player3
                         yellow color for player4 -->
                 
-              <div *ngIf="ele==positions[0]" >
+              <div *ngIf="ele==posBoard[0]" >
                 <img src="../../assets/tok1.png" class="players">
               </div>
-              <div *ngIf="ele==positions[1]" >
+              <div *ngIf="ele==posBoard[1]" >
                 <img src="../../assets/tok2.png" class="players">
               </div>
-              <div *ngIf="ele==positions[2]" >
+              <div *ngIf="ele==posBoard[2]" >
                 <img src="../../assets/tok3.png" class="players">
               </div>
-              <div *ngIf=" ele==positions[3]" >
+              <div *ngIf="ele==posBoard[3]" >
                 <img src="../../assets/tok4.png" class="players" >
               </div>
               <div *ngIf=" ele==100">
@@ -72,10 +72,10 @@
 
         <ion-row *ngFor="let name of names; index as i" >
           <img src="../../assets/tok{{i+1}}.png" class="img-size"> 
-            <ion-button  fill="clear" class="grad"  *ngIf="play==true && names.length - (i) != 0" 
+            <ion-button   fill="clear" class="grad"  *ngIf="play==true && names.length - (i) != 0" 
                           (click)="rollDiceChance()" 
                           (click)="diceAudio()"
-                          [disabled]="memberChance!=i+1">
+                          [disabled]="name != loggedUser || memberChance!=i+1">
               Click here to roll dice for {{name}}
             </ion-button>  
         </ion-row>
