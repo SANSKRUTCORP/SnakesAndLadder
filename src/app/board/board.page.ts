@@ -7,6 +7,7 @@ import { AllComponent } from './all/all.component';
 import { BoardService } from '../services/board.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { AuthserviceService } from '../services/authservices.service';
 
 @Component({
   selector: 'app-board',
@@ -14,7 +15,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./board.page.scss'],
 })
 export class BoardPage implements OnInit {
-  playerss: any;
   diceNumber: any;
   members: any;
   memberChance = 1;
@@ -25,9 +25,12 @@ export class BoardPage implements OnInit {
   roomToken: any;
   names = [];
   positions = [];
+  posBoard = [];
   lengthNames: any;
+  loggedUser: any;
 
 constructor(private http: HttpClient,
+            public auth: AuthserviceService,
             private zone: NgZone,
             private route: ActivatedRoute,
             private modalController: ModalController,
@@ -36,8 +39,8 @@ constructor(private http: HttpClient,
             public loadingController: LoadingController) {
 
               // this.myName = boardService.getData(); //the data of players we get from create room page
-              this.roomToken = this.route.snapshot.queryParamMap.get('room');
-              // this.roomToken = 4132139;
+              // this.roomToken = this.route.snapshot.queryParamMap.get('room');
+              this.roomToken = 1577862;
 
               this.arr = [];
               for (let el = 0; el < 10; el++) {
@@ -54,6 +57,8 @@ constructor(private http: HttpClient,
               }
             }
 
+
+
   readPlayers(){
     const ref = this.db.database.ref('rooms/room_' + this.roomToken + '/players');
     ref.once('value', snapshot => {
@@ -68,7 +73,10 @@ constructor(private http: HttpClient,
 
   ngOnInit() {
     this.readPlayers();
-    this.presentLoading();
+    this.loggedinUser();
+    this.boardPositions();
+    this.memChance();
+    // this.presentLoading();
   }
 
 
@@ -79,6 +87,7 @@ constructor(private http: HttpClient,
       console.log('dice value', resp);
       this.diceNumber = resp;
       this.playerPosition();
+
     }, (error) => {
         console.log('Error on req : ', error);
         return null;
@@ -87,7 +96,7 @@ constructor(private http: HttpClient,
 
 
   playerPosition(){
-    // console.log(this.memberChance)
+    console.log('mem:', this.memberChance);
     const ref = this.db.database.ref('rooms/room_' + this.roomToken + '/players');
     ref.once('value', snapshot => {
 
@@ -98,28 +107,49 @@ constructor(private http: HttpClient,
         }
       });
 
-      this.db.database.ref('rooms/room_' + this.roomToken).on('value', chance => {
-        this.zone.run(() => {
-          this.memberChance = chance.child('memberChance').val();
-        });
-      });
-
     }).then(_ => {
 
       this.positions[this.memberChance - 1] = this.positions[this.memberChance - 1] + this.diceNumber;
         // this.win(this.positions[this.memberChance - 1]) }
-      if (this.positions[this.memberChance - 1] >= 100){
+      if (this.positions[this.memberChance - 1] === 100){
         this.positions[this.memberChance - 1] = 100;
         this.play = false;
         this.popup();
         console.log('YOU WIN and your position is' + ' ' + this.positions[this.memberChance - 1]);
         this.setWinner(this.memberChance, this.roomToken);
-      } else{
+        this.removeRoom(this.roomToken);
+
+      } else  if (this.positions[this.memberChance - 1] > 100){
+        this.positions[this.memberChance - 1] = this.positions[this.memberChance - 1] - this.diceNumber;
+        console.log(this.names[this.memberChance - 1] + ' ' + 'new position is' + ' ' + this.positions[this.memberChance - 1]);
+
+      }  else{
         console.log(this.names[this.memberChance - 1] + ' ' + 'new position is' + ' ' + this.positions[this.memberChance - 1]);
         }
       this.boardvals(this.positions[this.memberChance - 1], this.memberChance);
     });
 
+  }
+
+  boardPositions(){
+    const ref = this.db.database.ref('rooms/room_' + this.roomToken + '/players');
+    ref.on('value', snapshot => {
+
+      this.zone.run(() => {
+        const lenref = Object.keys(snapshot.val()).length;
+        for (let i = 1; i <= lenref; i++){
+          this.posBoard[i - 1] = snapshot.child('player_' + i + '/position').val();
+        }
+      });
+    });
+  }
+
+  memChance(){
+    this.db.database.ref('rooms/room_' + this.roomToken).on('value', chance => {
+      this.zone.run(() => {
+        this.memberChance = chance.child('memberChance').val();
+      });
+    });
   }
 
 
@@ -137,6 +167,10 @@ constructor(private http: HttpClient,
     this.http.post<any>('http://localhost:3000/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
       console.log(resp);
     });
+  }
+
+  removeRoom(room){
+    this.http.post<any>('http://localhost:3000/roomDelete', {roomNo: room});
   }
 
 
@@ -201,6 +235,14 @@ constructor(private http: HttpClient,
       });
       this.WinnerAudio();
     }
+
+    loggedinUser(){
+      this.auth.getUser().then(user => {
+        this.loggedUser = user.displayName;
+        console.log(user);
+      });
+    }
+
   //   Calltoggle(){
   //     function Calltoggle(){
   //       var blur = document.getElementById('blur');
