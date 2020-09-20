@@ -1,14 +1,14 @@
 <ion-content>
   <ion-grid class="background-img">  
     <ion-row class="space ion-justify-content-center">
-      <ion-col class="styling ion-align-self-center" size="8" >
+      <ion-col class="ion-align-self-center">
         <div>
           <h1>Room created by {{leader}}</h1>
           <h1>Room number : {{roomToken}}</h1>
-          <h1>Joined Players</h1>
-          <ion-row *ngFor="let name of names">
-            <ion-icon *ngIf="name!=null" name="caret-forward-outline"></ion-icon>
-            <div>{{name}}</div>
+          <h1><u>Joined players</u></h1>
+          <ion-row class="ion-justify-content-center" *ngFor="let name of names; index as i">
+            <!-- <ion-icon *ngIf="name!=null" name="caret-forward-outline"></ion-icon> -->
+            <h1>{{i+1}}. {{name}}</h1>
           </ion-row>
         </div> 
       </ion-col>
@@ -17,7 +17,7 @@
     <ion-row> 
      <ion-col class="ion-padding-top  padding" *ngIf="truth" >
        <ion-button (click)="onClick()" [disabled]="names[0]==null" class="grad" fill="clear" >
-        <h5>Start</h5> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+        <h5 class="setbutton">Start</h5> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
        </ion-button>
      </ion-col>
    </ion-row>
