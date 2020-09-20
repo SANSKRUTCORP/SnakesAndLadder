@@ -1,56 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
 
-  .background-img {
-    background: url('/assets/bgNew.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100%;
-    width: 100%;
+.background-img {
+  background: url("/assets/bgNew.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
 }
 
-  h1{
-    font-family: 'Indie Flower', cursive;
-    color: rgb(255, 212, 183);
-    font-weight: 600;
-    font-size: 40px;
-    text-align: center;
-  }
+h1 {
+  font-family: "Indie Flower", cursive;
+  color: rgb(255, 212, 183);
+  font-weight: 600;
+  font-size: 40px;
+  text-align: center;
+}
 
- .padding{
-    padding-left: 47%;
-  }
+.textStyle{
+  font-family: "Indie Flower", cursive;
+  color: rgb(255, 212, 183);
+  font-weight: 600;
+  font-size: 40px;
+  text-align: center;
+}
 
-  .space{
-    padding-top: 10%;
-    }
+.boxStyle{
+  background-color: transparent;
+  border: 0px;
+  width: 140px;
+  margin-left: 15px;
+  font-size: 40px;
+  font-family: "Indie Flower", cursive;
+  color: rgb(255, 212, 183);
+  font-weight: 600;
+}
 
-  .styling{
-    background-color: rgba(196, 255, 249, 0.67);
-    color: rgb(2, 2, 2);
-    text-align: center;
-    padding-top: 20px;
-    border-radius: 30px;
-    border: 5px solid black;
-   }
+.butStyle{
+  --background: transparent !important;
+  --box-shadow: 0;
+  font-size: 30px;
+  color: rgb(255, 212, 183);
+}
 
-  .Names{
-    font-size: 5vh;
-    font-weight: 600;
-  }
+.sizing{
+  height: 30px;
+  padding-top: 5px;
+}
 
- .grad{
-      // background-image: linear-gradient(to right, rgb(42, 122, 48), rgba(7, 58, 13, 0.932)); 
-      background-color: rgb(255, 212, 183);
-      color: black;
-      border-radius: 40px;
-      font-family: 'Poppins', sans-serif;
-      border: 2px solid rgb(14,13,13);
-      box-shadow: 0 8px 16px 0 rgba(144, 221, 154, 0.836), 0 6px 50px 0 rgb(5, 54, 8)
-      
- }
+.padding {
+  padding-left: 47%;
+}
 
-.setbutton{
+.space {
+  padding-top: 10%;
+}
+
+.styling {
+  background-color: rgba(196, 255, 249, 0.67);
+  color: rgb(2, 2, 2);
+  text-align: center;
+  padding-top: 20px;
+  border-radius: 30px;
+  border: 5px solid black;
+}
+
+.Names {
+  font-size: 5vh;
+  font-weight: 600;
+}
+
+.grad {
+  // background-image: linear-gradient(to right, rgb(42, 122, 48), rgba(7, 58, 13, 0.932));
+  background-color: rgb(255, 212, 183);
+  color: black;
+  border-radius: 40px;
+  font-family: "Poppins", sans-serif;
+  border: 2px solid rgb(14, 13, 13);
+  box-shadow: 0 8px 16px 0 rgba(144, 221, 154, 0.836),
+    0 6px 50px 0 rgb(5, 54, 8);
+}
+
+.setbutton {
   margin-bottom: 15px;
 }
 //   .space1
@@ -66,7 +97,7 @@
 //   animation: animate 5s linear infinite;
 //   }
 //   @keyframes animate
-// { 
+// {
 //   0%
 //   {
 //     filter: hue-rotate(0deg);
