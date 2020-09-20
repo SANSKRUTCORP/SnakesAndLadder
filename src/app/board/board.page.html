@@ -1,9 +1,20 @@
+
+   <!-- <div class="board" id="blur"> -->
+    <!-- <ion-row class="space">
+      <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
+          <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
+              Winner<ion-icon name="enter-outline"></ion-icon>
+          </ion-button>
+      </ion-col>
+    </ion-row> -->
+
 <ion-grid class="background-img"> 
 
-  <ion-row class="ion-text-center">
+  <ion-row  class="ion-text-center" >
+
     <ion-col> 
       <div class="box" > 
-        <ion-row *ngFor='let el of arr;'>
+        <ion-row  *ngFor='let el of arr;'>
          
           <div *ngFor='let ele of el;' class="block"> 
                                                
@@ -34,16 +45,13 @@
               </div> 
                
           </div>
-        
         </ion-row>
       </div>
     </ion-col>
-    <ion-col class="padding">
-      
-        <div *ngIf="diceNumber==undefined" class="dice">
-          <img src="../../assets/dice.png">
-        </div> 
 
+    <ion-col class="padding-top"> 
+      <ion-row class="ion-text-center">
+      <ion-col>
         <div *ngIf="diceNumber==1">
           <img src="../../assets/1.png" class="dice">
         </div>
@@ -68,17 +76,35 @@
           <img src="../../assets/6.png" class="dice">
         </div>
 
-      
+        <div *ngIf="diceNumber==undefined" >
+          <img src="../../assets/dice.png" class="dice">
+        </div>
+      </ion-col>
 
-        <ion-row *ngFor="let name of names; index as i" >
-          <img src="../../assets/tok{{i+1}}.png" class="img-size"> 
-            <ion-button   fill="clear" class="grad"  *ngIf="play==true && names.length - (i) != 0" 
+      <ion-col>
+        <div class="padding-top">
+          <ion-button fill="clear" class="grad">
+            Click to roll dice
+          </ion-button>
+        </div>
+      </ion-col> 
+    </ion-row>
+
+        <ion-row class="ion-text-center" *ngFor="let name of names; index as i" >
+          <ion-col>
+            <img src="../../assets/tok{{i+1}}.png" class="img-size"> 
+            <span class="names">
+              {{name}}
+            </span>
+          </ion-col>
+        </ion-row>
+            <!-- <ion-button   fill="clear" class="grad"  *ngIf="play==true && names.length - (i) != 0" 
                           (click)="rollDiceChance()" 
                           (click)="diceAudio()"
                           [disabled]="name != loggedUser || memberChance!=i+1">
               Click here to roll dice for {{name}}
-            </ion-button>  
-        </ion-row>
+            </ion-button>   -->
+       
       <!-- <ion-row>
         <img src="../../assets/g1.png" class="img-size"> 
         <ion-button fill="clear" class="grad"  *ngIf="play==true && this.names.length - 1 != 0"

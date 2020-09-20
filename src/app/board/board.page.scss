@@ -1,9 +1,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 
  .img-size{
    height: 15px; 
    width: 15px;
+   margin: auto;
+ }
+ .names{
+   font-family: 'Indie Flower', cursive;
+   color: white;
  }
 
  .players{
@@ -32,7 +38,7 @@
     background-image: url('../../assets/SNAKE AND LADDER.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgb(248, 248, 248);
+    background-color: #ebff9c;
  }
 
  .block{
@@ -42,41 +48,88 @@
 
  .grad{
    color: white;
-   font-family: 'Indie Flower', cursive;
+   border-radius: 10px;
+   font-family: 'Poppins', sans-serif;
+   background-image: linear-gradient(to right, #b19337, #f9d258);
  }
 
- @media only screen and (min-width:1500px) {
+ .padding-top{
+    padding-top: 5%;
+ }
+
+ @media only screen and (min-width:1800px) {
    .box{
-      width: 750px;
-      height: 750px;
+      width: 800px;
+      height: 800px;
    }
    .block{
-      width: 75px;
-      height: 75px;
+      width: 80px;
+      height: 80px;
    }
    .dice{
-      height: 100px;
-      width: 100px;
+      height: 120px;
+      width: 120px;
    }
    .font{
-      font-size: 12px;
+      font-size: 15px;
       float:right;
       }
       .img-size{
          height: 37px; 
          width: 37px;
        }
-}
+       .names{
+          font-size: 37px;
+         //  padding-left: 15px;
+       }
+       .grad{
+          font-size: 20px;
+          height: 52px;
+          }
+
+       }
+
+ @media only screen and (min-width:1500px) and (max-width: 1800px) {
+   .box{
+      width: 770px;
+      height: 770px;
+   }
+   .block{
+      width: 77px;
+      height: 77px;
+   }
+   .dice{
+      height: 100px;
+      width: 100px;
+   }
+   .font{
+      font-size: 10px;
+      float:right;
+      }
+      .img-size{
+         height: 37px; 
+         width: 37px;
+       }
+       .names{
+          font-size: 37px;
+         //  padding-left: 15px;
+       }
+       .grad{
+          font-size: 20px;
+          height: 52px;
+          }
+
+       }
 
  
  @media only screen and (min-width:1200px) and (max-width:1500px) {
    .box{
-      width: 570px;
-      height: 570px;
+      width: 770px;
+      height: 770px;
    }
    .block{
-      width: 57px;
-      height: 57px;
+      width: 77px;
+      height: 77px;
    }
   
    .dice{
@@ -91,17 +144,25 @@
          height: 32px; 
          width: 32px;
        }
+       .names{
+         font-size: 33px;
+         // padding-left: 15px;
+      }
+      .grad{
+         font-size: 20px;
+         height: 52px;
+         }
   
 }
 
  @media only screen and (min-width:992px) and (max-width:1200px){
     .box{
-      width: 530px;
-      height: 530px;
+      width: 500px;
+      height: 500px;
     }
     .block{
-       width: 53px;
-       height: 53px;
+       width: 50px;
+       height: 50px;
     }
    
    .dice{
@@ -116,6 +177,14 @@
          height: 28px; 
          width: 28px;
        }
+       .names{
+         font-size: 30px;
+         // padding-left: 15px;
+      }
+      .grad{
+         font-size: 18px;
+         height: 45px;
+         }
  }
 
  @media only screen and (min-width:768px) and (max-width:992px){
@@ -141,21 +210,29 @@
          height: 20px; 
          width: 20px;
        }
+       .names{
+         font-size: 26px;
+         // padding-left: 5px;
+      }
 
 }
 
 @media only screen and (min-width:576px) and (max-width:768px){
    .box{
-      width: 290px;
-      height: 290px;
+      width: 340px;
+      height: 340px;
    }
    .block{
-      width: 29px;
-      height: 29px;
+      width: 34px;
+      height: 34px;
    }
    .dice{
       height: 50px;
       width: 50px;
+   }
+   .grad{
+      font-size: 11px;
+      height: 25px;
    }
 
    .font{
@@ -166,34 +243,46 @@
          height: 15px; 
          width: 15px;
        }
+       .names{
+         font-size: 25px;
+         // padding-left: 3px;
+      }
   
 }
 
 @media only screen and (min-width:400px) and (max-width:576px){
    .box{
-      width: 310px;
-      height: 290px;
+      width: 350px;
+      height: 330px;
    }
    .block{
-      width: 31px;
-      height: 29px;
+      width: 35px;
+      height: 33px;
    }
    .dice{
       height: 30px;
-      width: 30px;
+      width: 34px;
+   }
+   .padding-top{
+      padding-top: 1%;
    }
    .img-size{
       height: 13px; 
       width: 13px;
     }
     .grad{
-       height: 16px;
+       font-size: 13px;
+       height: 25px;
     }
 
    .font{
       font-size: 5px;
       float: right;
     }
+    .names{
+      font-size: 22px;
+      // padding-left: 3px;
+   }
      
 }
 
@@ -207,15 +296,23 @@
       height: 23px;
    }
    .dice{
-      height: 20px;
-      width: 20px;
+      height: 30px;
+      width: 30px;
+   }
+   .padding-top{
+      padding-top: 0%;
    }
    .font{
       font-size: 5px;
       float: right;
     }
     .grad{
-      height: 12px;
+       font-size: 12px;
+      height: 18px;
+   }
+   .names{
+      font-size: 20px;
+      // padding-left: 2px;
    }
      
 }
