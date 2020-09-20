@@ -51,8 +51,8 @@
 
 @media only screen and (min-width: 1200px){
   .logo-g{
-    height: 154%;
-    width: 17%;
+    height: 98%;
+    width: 29%;
   } 
 
   .image{
@@ -104,9 +104,9 @@
     max-width: 102%;
   }
 
-  .grad{
-    width: 108%;
-  }
+  // .grad{
+  //   width: 108%;
+  // }
 }
 
 @media only screen and (min-width: 300px) and (max-width:400px) {
@@ -119,11 +119,11 @@
      max-width: 104%;
    }
 
-   .grad{
-     width: 101%;
-   }
+  //  .grad{
+  //    width: 101%;
+  //  }
 
-   h5{
+   .font{
      font-size: 13px;
    }
    
@@ -135,7 +135,7 @@
      padding-top: 37%;
      padding-bottom: 15%;
    }
-   h5{
+   .font{
      font-size: 9px;
    }
 
