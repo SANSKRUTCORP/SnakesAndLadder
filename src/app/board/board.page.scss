@@ -1,37 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
 
-//  p{
-//     color: rgb(7, 7, 7);
-//     font-family: 'Indie Flower', cursive;
-//  }
-
- font{
-    font-size: 10px;
-    float: right;
- }
-
  .img-size{
    height: 15px; 
    width: 15px;
  }
 
-//  .box-padding{
-//     padding-top:5% ;
-//     padding-left: 5%;
-//     padding-right: 5%;
-//  }
  .players{
     height: 35%;
     width: 35%;
     margin-left: 35%;
  }
-
-//  .dice{
-//     height: 92%;
-//     width: 48%;
-//  }
-
 
  .players-size{
    width: 24px;
@@ -49,11 +28,6 @@
     overflow-y: auto; 
  }
 
-//  .padding{
-//    padding-top: 2%;
-//    padding-left: 5% ;
-// }
-
  .box{
     background-image: url('../../assets/SNAKE AND LADDER.png');
     background-repeat: no-repeat;
@@ -70,8 +44,32 @@
    color: white;
    font-family: 'Indie Flower', cursive;
  }
+
+ @media only screen and (min-width:1500px) {
+   .box{
+      width: 750px;
+      height: 750px;
+   }
+   .block{
+      width: 75px;
+      height: 75px;
+   }
+   .dice{
+      height: 100px;
+      width: 100px;
+   }
+   .font{
+      font-size: 12px;
+      float:right;
+      }
+      .img-size{
+         height: 37px; 
+         width: 37px;
+       }
+}
+
  
- @media only screen and (min-width:1200px) {
+ @media only screen and (min-width:1200px) and (max-width:1500px) {
    .box{
       width: 570px;
       height: 570px;
@@ -80,45 +78,45 @@
       width: 57px;
       height: 57px;
    }
-   .box-padding{
-      padding-top: 3%;
-      padding-left: 3% ;
-   }
+  
    .dice{
-      width: 30%;
+      height: 80px;
+      width: 80px;
    }
-   font{
+   .font{
       font-size: 12px;
       float:right;
       }
+      .img-size{
+         height: 32px; 
+         width: 32px;
+       }
   
 }
 
  @media only screen and (min-width:992px) and (max-width:1200px){
     .box{
-      width: 450px;
-      height: 450px;
+      width: 530px;
+      height: 530px;
     }
     .block{
-       width: 45px;
-       height: 45px;
+       width: 53px;
+       height: 53px;
     }
    
-    .box-padding{
-      padding-top: 3%;
-      padding-left: 3% ;
-    }
    .dice{
-      height: 50px;
-      width: 50px;
+      height: 75px;
+      width: 75px;
    }
-   font{
+   .font{
       font-size: 9px;
       float:right;
       }
+      .img-size{
+         height: 28px; 
+         width: 28px;
+       }
  }
-
-
 
  @media only screen and (min-width:768px) and (max-width:992px){
    .box{
@@ -130,19 +128,19 @@
       width: 45px;
       height: 45px;
    }
-   
-   .box-padding{
-      padding-top: 3%;
-      padding-left: 3% ;
+ 
+ .dice{
+      height: 60px;
+      width: 60px;
    }
-   .dice{
-      height: 50px;
-      width: 50px;
-   }
-   font{
+   .font{
       font-size: 8px;
       float:right;
       }
+      .img-size{
+         height: 20px; 
+         width: 20px;
+       }
 
 }
 
@@ -155,10 +153,6 @@
       width: 29px;
       height: 29px;
    }
-   .box-padding{
-      padding-top: 4%;
-      padding-left: 4% ;
-   }
    .dice{
       height: 50px;
       width: 50px;
@@ -168,88 +162,62 @@
       font-size: 8px;
       float:right;
       }
+      .img-size{
+         height: 15px; 
+         width: 15px;
+       }
   
 }
 
-@media only screen  and (min-width:400px) and (max-width:576px){
+@media only screen and (min-width:400px) and (max-width:576px){
    .box{
-      width: 260px;
-      height: 260px;
+      width: 310px;
+      height: 290px;
    }
    .block{
-      width: 26px;
-      height: 26px;
+      width: 31px;
+      height: 29px;
    }
-   // .box-padding{
-   //    padding-right: 2%;
-   //    padding-left: 2% ;
-   // }
    .dice{
-      height: 36px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
    }
+   .img-size{
+      height: 13px; 
+      width: 13px;
+    }
+    .grad{
+       height: 16px;
+    }
 
    .font{
       font-size: 5px;
       float: right;
     }
-  
+     
+}
 
- @media only screen and (min-width:250px) and (max-width:400px){
-   .block{
-      width: 20px;
-      height: 20px;
-   }
+@media only screen and  (min-width:250px) and (max-width:400px) {
    .box{
-      width: 200px;
-      height: 200px;
+      width: 230px;
+      height: 230px;
+   }
+   .block{
+      width: 23px;
+      height: 23px;
+   }
+   .dice{
+      height: 20px;
+      width: 20px;
    }
    .font{
       font-size: 5px;
+      float: right;
     }
-   // .box-padding{
-   //    padding-top: 3%;
-   //    padding-left: 3;
-   // }
-
-   .dice{
-      height: 50px;
-      width: 50px;
+    .grad{
+      height: 12px;
    }
-   font{
-      font-size: 9px;
-      }
-   
+     
 }
 
-// @media only screen and (min-width:250px) and (max-width:300px){
-//    .block{
-//       width: 30px;
-//       height: 30px;
-//    }
-//    .box{
-//       width: 300px;
-//       height: 300px;
-//    }
 
-//    .font{
-//      font-size: 13px;
-//    }
-   // .box-padding{
-   //    padding-top: 5%;
-   //    padding-left: 7%;
-   //    padding-right: 9%;
-   // }
-
-//    .dice{
-//       height: 50px;
-//       width: 50px;
-//    }
-
-//    font{
-//    font-size: 7px;
-//    float: right;
-//    }
-   
-//  }
-}
