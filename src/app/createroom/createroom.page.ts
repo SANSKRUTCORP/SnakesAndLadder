@@ -29,11 +29,11 @@ export class CreateroomPage implements OnInit {
 
 
 
-  send(str: any){
-    // console.log(str);
-    this.boardService.saveData(str);
-    // this.router.navigate(['/board']);
-  }
+  // send(str: any){
+  //   // console.log(str);
+  //   this.boardService.saveData(str);
+  //   // this.router.navigate(['/board']);
+  // }
 
 
   listenPlayers(){
