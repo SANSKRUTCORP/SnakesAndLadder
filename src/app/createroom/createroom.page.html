@@ -3,12 +3,17 @@
     <ion-row class="space ion-justify-content-center">
       <ion-col class="ion-align-self-center">
         <div>
-          <h1>Room created by {{leader}}</h1>
-          <h1>Room number : {{roomToken}}</h1>
+          <h1>Room Creator : <img class="sizing" src="../../assets/tok1.png"> {{leader}}</h1>
+          <ion-row class="ion-justify-content-center">
+            <span class="textStyle">Room number : </span>
+            <input class="boxStyle" type="text" readonly [(ngModel)]="roomToken">
+            <ion-button class="butStyle" cdkCopyToClipboard="{{roomToken}}" matTooltip="Copy to clipboard">
+              <ion-icon name="copy-outline"></ion-icon>
+            </ion-button>
+          </ion-row>
           <h1><u>Joined players</u></h1>
           <ion-row class="ion-justify-content-center" *ngFor="let name of names; index as i">
-            <!-- <ion-icon *ngIf="name!=null" name="caret-forward-outline"></ion-icon> -->
-            <h1>{{i+1}}. {{name}}</h1>
+            <h1><img *ngIf="name!=null" class="sizing" src="../../assets/tok{{i+2}}.png"> {{name}}</h1>
           </ion-row>
         </div> 
       </ion-col>
