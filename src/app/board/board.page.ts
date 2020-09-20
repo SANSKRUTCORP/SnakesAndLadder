@@ -39,8 +39,8 @@ constructor(private http: HttpClient,
             public loadingController: LoadingController) {
 
               // this.myName = boardService.getData(); //the data of players we get from create room page
-              // this.roomToken = this.route.snapshot.queryParamMap.get('room');
-              this.roomToken = 1577862;
+              this.roomToken = this.route.snapshot.queryParamMap.get('room');
+              // this.roomToken = 1577862;
 
               this.arr = [];
               for (let el = 0; el < 10; el++) {
@@ -96,7 +96,6 @@ constructor(private http: HttpClient,
 
 
   playerPosition(){
-    console.log('mem:', this.memberChance);
     const ref = this.db.database.ref('rooms/room_' + this.roomToken + '/players');
     ref.once('value', snapshot => {
 
@@ -170,7 +169,9 @@ constructor(private http: HttpClient,
   }
 
   removeRoom(room){
-    this.http.post<any>('http://localhost:3000/roomDelete', {roomNo: room});
+    this.http.post<any>('http://localhost:3000/roomDelete', {roomNo: room}).subscribe(resp => {
+      console.log(resp);
+    });
   }
 
 
