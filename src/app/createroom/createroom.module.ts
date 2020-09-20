@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 
 import { IonicModule } from '@ionic/angular';
 
@@ -17,6 +17,7 @@ import { TokenInterceptor } from '../services/auth.interceptor';
     HttpClientModule,
     FormsModule,
     IonicModule,
+    ClipboardModule,
     CreateroomPageRoutingModule,
   ],
   declarations: [CreateroomPage],
