@@ -8,6 +8,7 @@ import { BoardPageRoutingModule } from './board-routing.module';
 import { TokenInterceptor } from '../services/auth.interceptor';
 import { BoardPage } from './board.page';
 import {RouterModule} from '@angular/router';
+import { BoardService } from './board.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {RouterModule} from '@angular/router';
       provide: HTTP_INTERCEPTORS,
       useClass : TokenInterceptor,
       multi : true
-    }
+    },
+    BoardService
   ]
 })
 export class BoardPageModule {}

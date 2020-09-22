@@ -15,7 +15,8 @@ import { AuthserviceService } from './services/authservices.service';
 import { AuthGuardService } from './services/auth-gaurd.service';
 import { AllComponent } from './board/all/all.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/auth.interceptor';
 
 
 
@@ -33,6 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
    ],
 
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass : TokenInterceptor,
+      multi : true
+    },
     StatusBar,
     SplashScreen,
     AuthserviceService,

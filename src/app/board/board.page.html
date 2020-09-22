@@ -14,7 +14,7 @@
 
     <ion-col> 
       <div class="box" > 
-        <ion-row  *ngFor='let el of arr;'>
+        <ion-row  *ngFor='let el of bService.arr;'>
          
           <div *ngFor='let ele of el;' class="block"> 
                                                
@@ -25,16 +25,16 @@
                         blue color for player3
                         yellow color for player4 -->
                 
-              <div *ngIf="ele==posBoard[0]" >
+              <div *ngIf="ele==bService.posBoard[0]" >
                 <img src="../../assets/tok1.png" class="players">
               </div>
-              <div *ngIf="ele==posBoard[1]" >
+              <div *ngIf="ele==bService.posBoard[1]" >
                 <img src="../../assets/tok2.png" class="players">
               </div>
-              <div *ngIf="ele==posBoard[2]" >
+              <div *ngIf="ele==bService.posBoard[2]" >
                 <img src="../../assets/tok3.png" class="players">
               </div>
-              <div *ngIf="ele==posBoard[3]" >
+              <div *ngIf="ele==bService.posBoard[3]" >
                 <img src="../../assets/tok4.png" class="players" >
               </div>
               <div *ngIf=" ele==100">
@@ -52,31 +52,31 @@
     <ion-col class="padding-top"> 
       <ion-row class="ion-text-center">
       <ion-col>
-        <div *ngIf="diceNumber==1">
+        <div *ngIf="bService.diceNumber==1">
           <img src="../../assets/1.png" class="dice">
         </div>
 
-        <div *ngIf="diceNumber==2">
+        <div *ngIf="bService.diceNumber==2">
           <img src="../../assets/2.png" class="dice">
         </div>
 
-        <div *ngIf="diceNumber==3">
+        <div *ngIf="bService.diceNumber==3">
           <img src="../../assets/3.png" class="dice">
         </div>
 
-        <div *ngIf="diceNumber==4">
+        <div *ngIf="bService.diceNumber==4">
           <img src="../../assets/4.png" class="dice">
         </div>
 
-        <div *ngIf="diceNumber==5">
+        <div *ngIf="bService.diceNumber==5">
           <img src="../../assets/5.png" class="dice">
         </div>
 
-        <div *ngIf="diceNumber==6">
+        <div *ngIf="bService.diceNumber==6">
           <img src="../../assets/6.png" class="dice">
         </div>
 
-        <div *ngIf="diceNumber==undefined" >
+        <div *ngIf="bService.diceNumber==undefined" >
           <img src="../../assets/dice.png" class="dice">
         </div>
       </ion-col>
@@ -90,7 +90,7 @@
       </ion-col> 
     </ion-row>
 
-        <ion-row class="ion-text-center" *ngFor="let name of names; index as i" >
+        <ion-row class="ion-text-center" *ngFor="let name of ['Ishika','Kitty','Harsh']; index as i" >
           <ion-col>
             <img src="../../assets/tok{{i+1}}.png" class="img-size"> 
             <span class="names">
