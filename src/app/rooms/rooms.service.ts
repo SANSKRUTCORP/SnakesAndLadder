@@ -48,7 +48,7 @@ export class RoomsService {
           this.userName = user.displayName;
           this.email = user.email;
           this.uid = sessionStorage.getItem('tempid');
-          debugger;
+          // debugger;
           this.http.post<any>('http://localhost:3000/apis/setUser',
           {uid : this.uid, name : this.userName, email: this.email}).subscribe(resp => {
             console.log(resp);
