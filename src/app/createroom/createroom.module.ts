@@ -10,6 +10,7 @@ import { CreateroomPageRoutingModule } from './createroom-routing.module';
 
 import { CreateroomPage } from './createroom.page';
 import { TokenInterceptor } from '../services/auth.interceptor';
+import { CreateroomService } from './createroom.service';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { TokenInterceptor } from '../services/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass : TokenInterceptor,
       multi : true
-    }
+    },
+    CreateroomService
   ]
 })
 export class CreateroomPageModule {}

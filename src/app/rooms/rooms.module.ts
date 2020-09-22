@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { RoomsPageRoutingModule } from './rooms-routing.module';
-
 import { RoomsPage } from './rooms.page';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../services/auth.interceptor';
+import { RoomsService } from './rooms.service';
 
 
 
@@ -18,6 +16,7 @@ import { TokenInterceptor } from '../services/auth.interceptor';
     CommonModule,
     FormsModule,
     IonicModule,
+    // HttpClient,
     HttpClientModule,
     RoomsPageRoutingModule
   ],
@@ -27,7 +26,8 @@ import { TokenInterceptor } from '../services/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass : TokenInterceptor,
       multi : true
-    }
+    },
+    RoomsService
   ]
 })
 export class RoomsPageModule {}
