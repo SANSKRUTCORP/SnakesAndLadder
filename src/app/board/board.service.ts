@@ -31,7 +31,6 @@ export class BoardService {
               private zone: NgZone,
               private route: ActivatedRoute,
               public db: AngularFireDatabase,
-              private boardService: BoardService,
               private modalController: ModalController,
               public loadingController: LoadingController) {
 
@@ -113,31 +112,34 @@ export class BoardService {
 
       this.zone.run(() => {
         const lenref = Object.keys(snapshot.val()).length;
-        for (let i = 1; i <= lenref; i++){
+        console.log(lenref, snapshot.val(), this.names.length);
+        for (let i = 1; i <= this.names.length; i++){
           this.positions[i - 1] = snapshot.child('player_' + i + '/position').val();
         }
       });
 
     }).then(_ => {
       const mem = this.memberChance;
-      this.positions[mem] = this.positions[mem] + this.diceNumber;
-        // this.win(this.positions[mem]) }
-      if (this.positions[mem] === 100){
-        this.positions[mem] = 100;
+      console.log(this.positions, this.positions[mem - 1]);
+      this.positions[mem - 1] = this.positions[mem - 1] + this.diceNumber.dice_value;
+        // this.win(this.positions[mem - 1]) }
+      if (this.positions[mem - 1] === 100){
+        this.positions[mem - 1] = 100;
         this.play = false;
         this.popup();
-        console.log('YOU WIN and your position is' + ' ' + this.positions[mem]);
+        console.log('YOU WIN and your position is' + ' ' + this.positions[mem - 1]);
         this.setWinner(this.memberChance, this.roomToken);
         this.removeRoom(this.roomToken);
+        return;
 
-      } else  if (this.positions[mem] > 100){
-        this.positions[mem] = this.positions[mem] - this.diceNumber;
-        console.log(this.names[mem] + ' ' + 'new position is' + ' ' + this.positions[mem]);
+      } else  if (this.positions[mem - 1] > 100){
+        this.positions[mem - 1] = this.positions[mem - 1] - this.diceNumber.dice_value;
+        console.log(this.names[mem - 1] + ' ' + 'new position is' + ' ' + this.positions[mem - 1]);
 
       }  else{
-        console.log(this.names[mem] + ' ' + 'new position is' + ' ' + this.positions[mem]);
+        console.log(this.names[mem - 1] + ' ' + 'new position is' + ' ' + this.positions[mem - 1]);
         }
-      this.boardvals(this.positions[mem], this.memberChance);
+      this.boardvals(this.positions[mem - 1], this.memberChance);
     });
 
   }

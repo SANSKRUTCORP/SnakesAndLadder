@@ -52,11 +52,11 @@
     <ion-col class="padding-top"> 
       <ion-row class="ion-text-center">
       <ion-col>
-        <div *ngIf="bService.diceNumber==1">
-          <img src="../../assets/1.png" class="dice">
+        <div *ngIf="bService.diceNumber!=undefined">
+          <img src="../../assets/{{bService.diceNumber.dice_value}}.png" class="dice">
         </div>
 
-        <div *ngIf="bService.diceNumber==2">
+        <!-- <div *ngIf="bService.diceNumber==2">
           <img src="../../assets/2.png" class="dice">
         </div>
 
@@ -74,7 +74,7 @@
 
         <div *ngIf="bService.diceNumber==6">
           <img src="../../assets/6.png" class="dice">
-        </div>
+        </div> -->
 
         <div *ngIf="bService.diceNumber==undefined" >
           <img src="../../assets/dice.png" class="dice">
@@ -83,14 +83,19 @@
 
       <ion-col>
         <div class="padding-top">
-          <ion-button fill="clear" class="grad">
-            Click to roll dice
+          <ion-button fill="clear"
+                      [disabled]="bService.names[bService.memberChance-1] != bService.loggedUser"
+                      (click)="bService.rollDiceChance()" 
+                      (click)="bService.diceAudio()"
+                      class="grad"
+                      *ngIf="bService.play==true && bService.names.length - (bService.memberChance-1) != 0">
+            {{bService.names[bService.memberChance-1]}}'s Roll!
           </ion-button>
         </div>
       </ion-col> 
     </ion-row>
 
-        <ion-row class="ion-text-center" *ngFor="let name of ['Ishika','Kitty','Harsh']; index as i" >
+        <ion-row class="ion-text-center" *ngFor="let name of bService.names; index as i" >
           <ion-col>
             <img src="../../assets/tok{{i+1}}.png" class="img-size"> 
             <span class="names">
