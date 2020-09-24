@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{ModalController} from '@ionic/angular';
+import { BoardService } from '../board.service';
 
 @Component({
   selector: 'app-win',
@@ -8,7 +9,7 @@ import{ModalController} from '@ionic/angular';
 })
 export class WinComponent implements OnInit {
 
-  constructor(private modalController:ModalController) { }
+  constructor(private modalController:ModalController, public bService: BoardService) { }
 
   ngOnInit() {
   }
