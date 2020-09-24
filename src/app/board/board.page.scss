@@ -8,9 +8,9 @@
    margin: auto;
  }
 
- ion-content{
-    align-content: center;
- }
+//  ion-content{
+//     align-content: center;
+//  }
  .names{
    font-family: 'Indie Flower', cursive;
    color: white;
@@ -43,7 +43,7 @@
     overflow-y: auto; 
  }
 
- .box{
+ .board-image{
     background-image: url('../../assets/SNAKE AND LADDER.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -67,7 +67,7 @@
  }
 
  @media only screen and (min-width:1800px) {
-   .box{
+   .board-image{
       width: 800px;
       height: 800px;
    }
@@ -99,7 +99,7 @@
        }
 
  @media only screen and (min-width:1500px) and (max-width: 1800px) {
-   .box{
+   .board-image{
       width: 770px;
       height: 770px;
    }
@@ -132,7 +132,7 @@
 
  
  @media only screen and (min-width:1200px) and (max-width:1500px) {
-   .box{
+   .board-image{
       width: 770px;
       height: 770px;
    }
@@ -165,7 +165,7 @@
 }
 
  @media only screen and (min-width:992px) and (max-width:1200px){
-    .box{
+    .board-image{
       width: 580px;
       height: 580px;
     }
@@ -197,7 +197,7 @@
  }
 
  @media only screen and (min-width:768px) and (max-width:992px){
-   .box{
+   .board-image{
       width: 450px;
       height: 450px;
    }
@@ -227,7 +227,7 @@
 }
 
 @media only screen and (min-width:576px) and (max-width:768px){
-   .box{
+   .board-image{
       width: 340px;
       height: 340px;
    }
@@ -260,7 +260,7 @@
 }
 
 @media only screen and (min-width:400px) and (max-width:576px){
-   .box{
+   .board-image{
       width: 330px;
       height: 330px;
    }
@@ -302,7 +302,7 @@
 }
 
 @media only screen and  (min-width:250px) and (max-width:400px) {
-   .box{
+   .board-image{
       width: 230px;
       height: 230px;
    }
