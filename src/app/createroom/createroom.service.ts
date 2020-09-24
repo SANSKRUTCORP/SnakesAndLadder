@@ -46,7 +46,7 @@ export class CreateroomService {
   }
 
   onClick(){
-    this.http.post<any>('http://localhost:3000/apis/setState', {roomid: this.roomToken}).subscribe(resp => {
+    this.http.post<any>('/apis/setState', {roomid: this.roomToken}).subscribe(resp => {
       console.log(resp);
     });
   }

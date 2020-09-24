@@ -49,7 +49,7 @@ export class RoomsService {
           this.email = user.email;
           this.uid = sessionStorage.getItem('tempid');
           // debugger;
-          this.http.post<any>('http://localhost:3000/apis/setUser',
+          this.http.post<any>('/apis/setUser',
           {uid : this.uid, name : this.userName, email: this.email}).subscribe(resp => {
             console.log(resp);
           });
@@ -76,7 +76,7 @@ export class RoomsService {
 
 
   getRoomToken(): any{
-    return this.http.get<any>('http://localhost:3000/apis/createroom');
+    return this.http.get<any>('/apis/createroom');
   }
 
 }
