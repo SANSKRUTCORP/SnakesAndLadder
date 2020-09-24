@@ -8,11 +8,19 @@ import { BoardService } from '../services/board.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { AuthserviceService } from '../services/authservices.service';
+// import { state, style, trigger } from '@angular/animation';
 
 @Component({
+  
   selector: 'app-board',
   templateUrl: './board.page.html',
   styleUrls: ['./board.page.scss'],
+  // animations: [
+  //   trigger('divState', [
+  //     state('normal', style({transform:'tanslateX(0px)'})),
+  //     state('normal', style({transform:'tanslateX(100px)'})),
+  //   ])
+  // ]
 })
 export class BoardPage implements OnInit {
   diceNumber: any;
@@ -28,6 +36,7 @@ export class BoardPage implements OnInit {
   posBoard = [];
   lengthNames: any;
   loggedUser: any;
+  // state='normal';
 
 constructor(private http: HttpClient,
             public auth: AuthserviceService,
@@ -79,6 +88,10 @@ constructor(private http: HttpClient,
     // this.presentLoading();
   }
 
+  // onAnimate(){
+
+  //   this.state=='normal'?this.state='highlight':this.state='normal';
+  // }
 
   rollDiceChance(){
     /*on every click of dice this function gives one by one chance
