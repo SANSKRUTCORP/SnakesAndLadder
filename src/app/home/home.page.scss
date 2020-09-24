@@ -1,19 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 
-.background-img{
+.background-image{
   background: url('/assets/wooden-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   height: 100%;
   width: 100%;
 }
 
-.logo-g{
-  height: 121%; 
-  width: 30%;
-}
-
-.grad{
+.button{
   background-image: linear-gradient(to right, rgba(199, 137, 108, 0.959), rgb(110, 61, 21)); 
   color: darken($color: #0f0f0f, $amount: 0); 
   border-radius: 30px;
@@ -21,7 +18,6 @@
   border: 2px solid black;
   box-shadow: 0 4px 8px 0 rgb(223, 166, 166), 0 6px 20px 0 rgb(212, 134, 69);
 }
-
 
 .image { 
   max-width: 80%;
@@ -48,102 +44,16 @@
   animation-name: bounce; 
 }
 
-
-@media only screen and (min-width: 1200px){
-  .logo-g{
-    height: 98%;
-    width: 29%;
-  } 
-
-  .image{
-    max-width:65%
-  }
-
-  .logo-padding{
-    padding-top: 5%;
-    padding-bottom: 3%;
-  }
-
-}
-
-@media only screen and (min-width: 900px) and (max-width:1200px) {
-
-  .logo-padding{
-    padding-top: 3%;
-    padding-bottom: 3%;
-  }
-  
-}
-
-@media only screen and (min-width: 576px) and (max-width:992px) {
-
-  .logo-padding{
-    padding-top: 5%;
-    padding-bottom: 5%;
-  }
-  
-}
-
-@media only screen and (min-width: 460px) and (max-width:576px) {
-
-  .logo-padding{
-    padding-top: 11%;
-    padding-bottom: 7%;
-  }
-  
-}
-
-@media only screen and (min-width: 400px) and (max-width:460px) {
-
-  .logo-padding{
-    padding-top: 20%;
-    padding-bottom: 10%;
-  }
-
-  .image{
-    max-width: 102%;
-  }
-
-  // .grad{
-  //   width: 108%;
-  // }
-}
-
 @media only screen and (min-width: 300px) and (max-width:400px) {
-   .logo-padding{
-     padding-top: 20%;
-     padding-bottom: 10%;
-   }
-
-   .image{
-     max-width: 104%;
-   }
-
-  //  .grad{
-  //    width: 101%;
-  //  }
-
    .font{
      font-size: 13px;
    }
-   
  }
 
  @media only screen and (max-width:300px) {
-  
-   .logo-padding{
-     padding-top: 37%;
-     padding-bottom: 15%;
-   }
    .font{
      font-size: 9px;
-   }
-
-   .logo-g{
-     height: 84%;
-     width: 52%;
-   } 
-   
+   }  
  }
 
 

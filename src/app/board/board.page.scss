@@ -7,6 +7,10 @@
    width: 15px;
    margin: auto;
  }
+
+ ion-content{
+    align-content: center;
+ }
  .names{
    font-family: 'Indie Flower', cursive;
    color: white;
@@ -16,6 +20,11 @@
     height: 35%;
     width: 35%;
     margin-left: 35%;
+ }
+ .padding{
+   margin: auto;
+   position: relative;
+
  }
 
  .players-size{
@@ -38,7 +47,7 @@
     background-image: url('../../assets/SNAKE AND LADDER.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #ebff9c;
+    background-color: #fcfe8c;
  }
 
  .block{
@@ -47,10 +56,10 @@
  }
 
  .grad{
-   color: white;
+   color: black;
    border-radius: 10px;
    font-family: 'Poppins', sans-serif;
-   background-image: linear-gradient(to right, #b19337, #f9d258);
+   background-image: linear-gradient(to right, #f0ba59,#f9d258);
  }
 
  .padding-top{
@@ -103,7 +112,7 @@
       width: 100px;
    }
    .font{
-      font-size: 10px;
+      font-size: 25px;
       float:right;
       }
       .img-size{
@@ -115,7 +124,7 @@
          //  padding-left: 15px;
        }
        .grad{
-          font-size: 20px;
+          font-size: 22px;
           height: 52px;
           }
 
@@ -137,7 +146,7 @@
       width: 80px;
    }
    .font{
-      font-size: 12px;
+      font-size: 20px;
       float:right;
       }
       .img-size{
@@ -157,12 +166,12 @@
 
  @media only screen and (min-width:992px) and (max-width:1200px){
     .box{
-      width: 500px;
-      height: 500px;
+      width: 580px;
+      height: 580px;
     }
     .block{
-       width: 50px;
-       height: 50px;
+       width: 58px;
+       height: 58px;
     }
    
    .dice{
@@ -170,7 +179,7 @@
       width: 75px;
    }
    .font{
-      font-size: 9px;
+      font-size: 18px;
       float:right;
       }
       .img-size{
@@ -203,7 +212,7 @@
       width: 60px;
    }
    .font{
-      font-size: 8px;
+      font-size: 12px;
       float:right;
       }
       .img-size{
@@ -252,16 +261,22 @@
 
 @media only screen and (min-width:400px) and (max-width:576px){
    .box{
-      width: 350px;
+      width: 330px;
       height: 330px;
    }
    .block{
-      width: 35px;
+      width: 33px;
       height: 33px;
    }
+  .padding{
+   // position: absolute;
+   // top: 50%;
+   // left: 50%;
+   // transform: translate(-50%, -50%);
+  }
    .dice{
-      height: 30px;
-      width: 34px;
+      height: 38px;
+      width: 38px;
    }
    .padding-top{
       padding-top: 1%;
@@ -271,16 +286,16 @@
       width: 13px;
     }
     .grad{
-       font-size: 13px;
-       height: 25px;
+       font-size: 16px;
+       height: 22px;
     }
 
    .font{
-      font-size: 5px;
+      font-size: 8px;
       float: right;
     }
     .names{
-      font-size: 22px;
+      font-size: 13px;
       // padding-left: 3px;
    }
      

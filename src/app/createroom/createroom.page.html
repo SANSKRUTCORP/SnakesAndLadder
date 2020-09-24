@@ -2,27 +2,34 @@
 
   <ion-grid class="background-img"> 
 
-    <ion-row class="space ion-justify-content-center">
-
+    <ion-row class="space ion-text-center">
+    
       <ion-col class="ion-align-self-center">
-        <div>
-          <h1>Room Creator : <img class="sizing" src="../../assets/tok1.png"> {{this.crService.leader}}</h1>
-          <ion-row class="ion-justify-content-center">
-            
-            <span class="textStyle">Room number : </span>
-            <input class="boxStyle" type="text" readonly [(ngModel)]="this.crService.roomToken">
-            <ion-button class="butStyle" cdkCopyToClipboard="{{crService.roomToken}}" matTooltip="Copy to clipboard">
-              <ion-icon name="copy-outline"></ion-icon>
-            </ion-button>
 
-          </ion-row>
-          <h1><u>Joined players</u></h1>
-          <ion-row class="ion-justify-content-center" *ngFor="let name of this.crService.names; index as i">
-            <h1><img *ngIf="name!=null" class="sizing" src="../../assets/tok{{i+2}}.png"> {{name}}</h1>
-          </ion-row>
-        </div> 
-      </ion-col>
-    </ion-row>
+        <ion-row class="ion-text-center">
+           <span class="font">Room Creator : <img class="sizing" src="../../assets/tok1.png"> {{this.crService.leader}}</span>
+        </ion-row>
+
+        <ion-row>
+          <span class="textStyle">Room number : </span>
+          <input class="boxStyle" type="text" readonly [(ngModel)]="this.crService.roomToken">
+          <ion-button class="butStyle" cdkCopyToClipboard="{{crService.roomToken}}" matTooltip="Copy to clipboard">
+            <ion-icon name="copy-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
+
+        <ion-row>
+          <span class="font"><u>Joined players</u></span>
+        </ion-row>
+
+          <ion-row class="ion-text-center" *ngFor="let name of this.crService.names; index as i">
+            <span class="font"><img *ngIf="name!=null" class="sizing" src="../../assets/tok{{i+2}}.png"> {{name}}</span>
+        </ion-row> 
+
+       </ion-col> 
+       
+   </ion-row>
+        
     
     <ion-row> 
      <ion-col class="ion-padding-top  padding" *ngIf="this.crService.truth" >
@@ -31,5 +38,6 @@
        </ion-button>
      </ion-col>
    </ion-row>
+
   </ion-grid>   
 </ion-content>    
