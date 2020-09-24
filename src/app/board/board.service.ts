@@ -23,6 +23,7 @@ export class BoardService {
   names = [];
   positions = [];
   posBoard = [];
+  winner: any;
   lengthNames: any;
   loggedUser: any;
 
@@ -62,7 +63,7 @@ export class BoardService {
 
 
   boardvals(currentPlayerPos, whichPlayer){
-    this.http.post<any>(`http://localhost:3000/apis/board/${this.roomToken}`,
+    this.http.post<any>(`/apis/board/${this.roomToken}`,
     {memberChance : whichPlayer, position : currentPlayerPos})
     .subscribe(resp => {
       console.log(resp);
@@ -71,14 +72,14 @@ export class BoardService {
 
 
   setWinner(member, room){
-    this.http.post<any>('http://localhost:3000/apis/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
+    this.http.post<any>('/apis/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
       console.log(resp);
     });
   }
 
 
   removeRoom(room){
-    this.http.post<any>('http://localhost:3000/apis/roomDelete', {roomNo: room}).subscribe(resp => {
+    this.http.post<any>('/apis/roomDelete', {roomNo: room}).subscribe(resp => {
       console.log(resp);
     });
   }
@@ -91,6 +92,13 @@ export class BoardService {
         const lenref = Object.keys(snapshot.val()).length;
         for (let i = 1; i <= lenref; i++){
           this.posBoard[i - 1] = snapshot.child('player_' + i + '/position').val();
+          if (this.posBoard[i - 1] === 100){
+            this.play = false;
+            this.winner = this.names[i - 1];
+            this.popup();
+            console.log('popup');
+            console.log(this.names[i - 1] + ' WINS and your position is' + ' ' + this.positions[i - 1]);
+          }
         }
       });
     });
@@ -122,24 +130,24 @@ export class BoardService {
       const mem = this.memberChance;
       console.log(this.positions, this.positions[mem - 1]);
       this.positions[mem - 1] = this.positions[mem - 1] + this.diceNumber.dice_value;
-        // this.win(this.positions[mem - 1]) }
-      if (this.positions[mem - 1] === 100){
-        this.positions[mem - 1] = 100;
-        this.play = false;
-        this.popup();
-        console.log('YOU WIN and your position is' + ' ' + this.positions[mem - 1]);
-        this.setWinner(this.memberChance, this.roomToken);
-        this.removeRoom(this.roomToken);
-        return;
 
-      } else  if (this.positions[mem - 1] > 100){
+      if (this.positions[mem - 1] === 100){
+
+          this.setWinner(this.memberChance, this.roomToken);
+          // this.removeRoom(this.roomToken);
+
+      } else if (this.positions[mem - 1] > 100){
+
         this.positions[mem - 1] = this.positions[mem - 1] - this.diceNumber.dice_value;
         console.log(this.names[mem - 1] + ' ' + 'new position is' + ' ' + this.positions[mem - 1]);
 
       }  else{
+
         console.log(this.names[mem - 1] + ' ' + 'new position is' + ' ' + this.positions[mem - 1]);
         }
+
       this.boardvals(this.positions[mem - 1], this.memberChance);
+      
     });
 
   }
@@ -148,7 +156,7 @@ export class BoardService {
   rollDiceChance(){
     /*on every click of dice this function gives one by one chance
     to all player to roll it*/
-    this.http.get('http://localhost:3000/apis/board').subscribe(resp => {
+    this.http.get('/apis/board').subscribe(resp => {
       console.log('dice value', resp);
       this.diceNumber = resp;
       this.playerPosition();
