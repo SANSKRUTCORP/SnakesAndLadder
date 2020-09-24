@@ -16,6 +16,7 @@ import { AuthGuardService } from './services/auth-gaurd.service';
 import { AllComponent } from './board/all/all.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent ],
   entryComponents: [],
   imports: [
+    // BrowserAnimationsModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,

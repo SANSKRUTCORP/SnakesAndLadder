@@ -1,20 +1,21 @@
+<ion-content>
 
-   <!-- <div class="board" id="blur"> -->
-    <!-- <ion-row class="space">
+   
+   <div class="board" id="blur"> 
+     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
           <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
               Winner<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
       </ion-col>
-    </ion-row> -->
+    </ion-row> 
 
 <ion-grid class="background-img"> 
 
-  <ion-row  class="ion-text-center" >
-
-    <ion-col> 
-      <div class="box" > 
-        <ion-row  *ngFor='let el of arr;'>
+  <ion-row>
+    <ion-col>
+      <div class="box"> 
+        <ion-row  class="ion-text-center" *ngFor='let el of arr;'>
          
           <div *ngFor='let ele of el;' class="block"> 
                                                
@@ -50,8 +51,10 @@
     </ion-col>
 
     <ion-col class="padding-top"> 
-      <ion-row class="ion-text-center">
+      <ion-row class="justify-content-center align-items-center"  >
       <ion-col>
+        <!-- <div [@divState]="state" style="height: 10%; width: 10%;">
+        </div> -->
         <div *ngIf="diceNumber==1">
           <img src="../../assets/1.png" class="dice">
         </div>
@@ -83,7 +86,7 @@
 
       <ion-col>
         <div class="padding-top">
-          <ion-button fill="clear" class="grad">
+          <ion-button fill="clear" (click)='onAnimate()' class="grad">
             Click to roll dice
           </ion-button>
         </div>
@@ -148,3 +151,4 @@
 
    </ion-row>
 </ion-grid>  
+</ion-content>
