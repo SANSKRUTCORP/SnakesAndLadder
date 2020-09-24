@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/auth.interceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -46,7 +47,8 @@ import { TokenInterceptor } from './services/auth.interceptor';
     AuthserviceService,
     HttpClientModule,
     AuthGuardService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    // { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
