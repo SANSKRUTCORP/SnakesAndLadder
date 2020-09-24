@@ -4,14 +4,22 @@
 
 .background-img{
   background: url('/assets/wooden-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   height: 100%;
   width: 100%;
 }
 
-.space{
-  padding-top: 10px;
-}
+// .background{
+//   background-color: coral;
+//   margin-left: 20%;
+//   margin-top: 10%;
+//   margin-right: 20%;
+//   height: 50%;
+//   width: 50%;
+  
+// }
 
   .fontStyles{
     font-family: 'Indie Flower', cursive;
@@ -30,34 +38,23 @@
     font-size: 5vh;
   }
 
-  .padds{
-    padding-bottom: 5%;
-  }
-
   .grad{
     background-image: linear-gradient(to right, rgba(150, 88, 60, 0.959), rgb(235, 181, 137)); 
     color: darken($color: #0c0c0b, $amount: 0);
     font-family: 'Poppins', sans-serif;
     border-radius: 40px; 
     border: 2px solid black; 
-    box-shadow: 0 4px 8px 0 rgb(223, 166, 166), 0 6px 20px 0 rgb(212, 134, 69);
   }
 
- p{
-   font-size: 20px;
- }
-
   @media only screen and (min-width:300px) and (max-width:370px){
-   
-    p{
+    .grad{
       font-size:10px ;
     }
    }
 
    @media only screen and (min-width:250px) and (max-width:300px){
-  
-    p{
-      font-size: 6px;
+    .grad{
+      font-size: 8px;
     }
    }
 

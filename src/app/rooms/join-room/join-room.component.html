@@ -2,25 +2,25 @@
   <ion-grid class="bg" >
      
 
-    <ion-row class="ion-text-center">
+    <ion-row class="ion-text-center ion-justify-content-center">
 
       <ion-col  size-xs="12" size-sm="6" size-xl="8">
         <img src="../assets/snake.png" class="image">
       </ion-col>
       
       <ion-col>
-        <ion-row class="ion-text-center ">
+        <ion-row class="ion-text-center ion-justify-content-center">
           <ion-col>
             <form>
               <p><b>ENTER ROOM CODE</b></p>
-              <input #roomid type="number">
+              <input class="input" #roomid type="number">
             </form>
           </ion-col>  
         </ion-row>
         
         <ion-row class="ion-text-center">
           <ion-col>
-            <ion-button (click)="onClick(roomid)" class="button" fill="round" shape="round" (click)="CloseModal()">
+            <ion-button (click)="onClick(roomid)" class="grad" fill="clear" shape="round" (click)="CloseModal()">
               OK
             </ion-button>
           </ion-col>       

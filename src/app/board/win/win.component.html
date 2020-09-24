@@ -1,29 +1,44 @@
 <ion-content>
   <ion-grid class="bg">
 
-    <ion-row class="ion-text-end">
+    <ion-row class="ion-text-center">
       <ion-col>
-        <ion-button (click)="CloseModal()" fill="clear" >
-          <h4><b>X</b></h4>
-        </ion-button>
+        <span class="font">Game Summary</span>
       </ion-col>
+      <!-- <ion-col>
+        <ion-button (click)="CloseModal()" fill="clear" > 
+           <span class="grad"> x </span>
+        </ion-button>
+      </ion-col> -->
+    
     </ion-row>
+ 
+    <!-- <ion-row class="ion-text-center">
+     
+    </ion-row>  -->
 
     <ion-row class="ion-text-center">
       <ion-col>
-        <img src="../assets/first.png" class="image">
-      </ion-col>
-
-      <ion-col>
           <img src="../assets/win.png" class="image">
-      </ion-col>      
+      </ion-col>  
+      
+      <ion-col>
+        <!-- <img src="../assets/first.png" class="image"> -->
+        <span class="font">You Win!!</span>
+      </ion-col>
     </ion-row> 
 
-      <ion-row class="ion-text-center">
+      <!-- <ion-row class="ion-text-center">
         <ion-col>
-          <h1><b>YOU WIN!!</b></h1>
+         
         </ion-col>
         
+      </ion-row> -->
+      
+      <ion-row>
+        <ion-button class="grad" fill="clear">
+          Redirect to home page
+        </ion-button>
       </ion-row>
     
   </ion-grid>

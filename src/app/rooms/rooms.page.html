@@ -1,79 +1,82 @@
-    <ion-content>
-        <ion-grid class="background-img">
-           <!-- <div class="background"> -->
-           <!-- <ion-row class="ion-text-center">
+<ion-content>
+    <ion-grid class="background-img">
+       
+         <ion-row class="ion-text-center">
               <ion-col>
                     <div>
                         <span class="fontStyles">
-                            Hello {{userName}}!
+                            Hello {{this.rmService.userName}}!
                         </span>
                     </div>
                     
                     <div>
                         <span class="fontStyles1">
-                            Total Gameplays : {{gplay}}
+                            Total Gameplays : {{this.rmService.gplay}}
                         </span>
                     </div>
                    
                     <div>
                         <span class="fontStyles1">
-                            Total Wins : {{wins}}
+                            Total Wins : {{this.rmService.wins}}
                         </span>
                     </div>
                           
               </ion-col>
-           </ion-row> -->
-
-           <ion-row class="ion-justify-content-center">
-              <ion-col size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2">
-                  <ion-button class="grad" (click)="onClick()" expand="block" shape="round" fill="clear" >
-                     <span class="font">Create Room</span> <ion-icon name="add-outline"></ion-icon>
-           
-           <ion-row class="ion-justify-content-center">
-              <ion-col class="ion-align-self-center" size-xs="10" size-sm="7" size-md="9" size-lg="6" size-xl="4" >
-                <h1 class="fontStyles">
-                    Hello {{this.rmService.userName}}!
-                </h1>
-                <div class="padds">
-                    <h4 class="fontStyles1">Total Gameplays : {{this.rmService.gplay}}</h4>
-                <h4 class="fontStyles1">Total Wins : {{this.rmService.wins}}</h4>
-                </div>
-              </ion-col>
            </ion-row>
 
-          <ion-row class="space button ion-justify-content-center">
-              <ion-col class="ion-align-self-center button" size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3">
-                  <ion-button class="grad" (click)="this.rmService.onClick()" expand="block" shape="round" fill="clear" >
-                     <p>Create Room</p>   <ion-icon name="add-outline"></ion-icon>
-                  </ion-button>
-              </ion-col>
-           </ion-row>
+        <!-- <ion-row class="ion-justify-content-center">
+            <ion-col size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2"> -->
+                <!-- <ion-button class="grad" (click)="onClick()" expand="block" shape="round" fill="clear">
+                    <span class="font">Create Room</span>
+                    <ion-icon name="add-outline"></ion-icon>
+                </ion-button> -->
+                <!-- <ion-row class="ion-justify-content-center">
+                    <ion-col class="ion-align-self-center" size-xs="10" size-sm="7" size-md="9" size-lg="6" size-xl="4">
+                        <h1 class="fontStyles">
+                            Hello {{this.rmService.userName}}!
+                        </h1>
+                        <div class="padds">
+                            <h4 class="fontStyles1">Total Gameplays : {{this.rmService.gplay}}</h4>
+                            <h4 class="fontStyles1">Total Wins : {{this.rmService.wins}}</h4>
+                        </div>
+                    </ion-col>
+                </ion-row> -->
 
-          <ion-row class="ion-justify-content-center">
-            <ion-col size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2">
-                <ion-button (click)="popup()" class="grad" expand="block" shape="round" fill="clear" >
-                    <span class="font">Join Room</span> <ion-icon name="enter-outline"></ion-icon>
-                </ion-button>
-            </ion-col>
-          </ion-row>
+                <ion-row class="space button ion-justify-content-center">
+                    <ion-col class="ion-align-self-center" size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2">
+                        <ion-button class="grad" (click)="this.rmService.onClick()" expand="block" shape="round" fill="clear">
+                            <p>Create Room</p>
+                            <ion-icon name="add-outline"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
 
-          <!-- <ion-row class="ion-justify-content-center">
-            <ion-col size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2">
-                <ion-button (click)="signOut()" routerLink="/home" class="grad" expand="block" shape="round" fill="clear" >
-                   <span class="font">Sign Out<ion-icon name="refresh-outline"></ion-icon></span> -->
-          <ion-row class="space button ion-justify-content-center">
-            <ion-col  class="ion-align-self-center" size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3">
-                <ion-button (click)="this.rmService.signOut()" routerLink="/home" class="grad" expand="block" shape="round"  fill="clear" >
-                   <p>Sign Out<ion-icon name="refresh-outline"></ion-icon></p>
-                </ion-button>
-            </ion-col>
-          </ion-row>
-        <!-- </div>  -->
-       </ion-grid>
-  </ion-content>
+                 <ion-row class="ion-justify-content-center">
+                    <ion-col size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2">
+                        <ion-button (click)="popup()" class="grad" expand="block" shape="round" fill="clear">
+                            <span class="font">Join Room</span>
+                            <ion-icon name="enter-outline"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row> 
 
-
-  
- 
- 
-
+                <!-- <ion-row class="ion-justify-content-center">
+                   <ion-col size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3" size-xl="2">
+                     <ion-button (click)="signOut()" routerLink="/home" class="grad" expand="block" shape="round" fill="clear" >
+                        <span class="font">Sign Out<ion-icon name="refresh-outline"></ion-icon></span>
+                    </ion-button> -->
+                    
+                <ion-row class="space button ion-justify-content-center">
+                    <ion-col class="ion-align-self-center" size-xs="6.7" size-sm="4.5" size-md="3.5" size-lg="3">
+                        <ion-button (click)="this.rmService.signOut()" routerLink="/home" class="grad" expand="block"
+                            shape="round" fill="clear">
+                            <span>Sign Out<ion-icon name="refresh-outline"></ion-icon>
+                            </span>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+                <!-- </div>  -->
+                </ion-col>
+                </ion-row>
+    </ion-grid>
+</ion-content>

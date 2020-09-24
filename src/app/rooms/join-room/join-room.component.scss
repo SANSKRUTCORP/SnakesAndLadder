@@ -3,20 +3,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
 
 .bg{
-    background-color: rgb(12, 12, 12);
+    background-color:#fbdb93;
     height: 100%;
+    border: 10px solid #723009;
 }
 .grad{
     font-family: 'Poppins', sans-serif;
-    background: rgb(12, 12, 12);
-    border: 2px solid rgb(255, 252, 252);
+    border: 3px solid #4b2205;
     border-radius: 10%;
-    color: white;
+    color: #89510c;
+    background-color: #e48738
+    ;
 }
 
 p{
     font-family: 'Indie Flower', cursive;
-    color: white;
+    color: #50340c;
+  }
+  .input{
+      background-color: #e48738;
+      color: white;
+      border: 2px solid #281002;
   }
 @media only screen and (min-width:250px) and (max-width:576px){
     .image{
