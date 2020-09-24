@@ -30,7 +30,7 @@ export class JoinRoomComponent implements OnInit {
       if (resp['room_' + this.roomNo]){
 
         this.auth.getUser().then(res => {
-          this.http.post<any>('http://localhost:3000/joinroom',
+          this.http.post<any>('http://localhost:3000/apis/joinroom',
           {
             enterid : this.roomNo,
             entername : res.displayName,

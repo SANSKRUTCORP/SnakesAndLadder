@@ -7,7 +7,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { HttpClient } from '@angular/common/http';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -69,7 +68,11 @@ export class AuthserviceService {
                           this.loggedInEmail = data.user.email;
                           this.LoggedInName = data.user.displayName;
                           sessionStorage.setItem('tempid', this.loggedInUserId);
-                          this.getToken();
+                          this.afAuth.idToken.subscribe(resp => {
+                            this.userToken = resp;
+                            sessionStorage.setItem('keyid', this.userToken);
+                          })
+                          // debugger;
                         })
                         .catch(err => {
                             console.log(err);
@@ -78,11 +81,7 @@ export class AuthserviceService {
 
   }
 
-  getToken(){
-    this.afAuth.idToken.subscribe(res => {
-      sessionStorage.setItem('keyid', res);
-    });
-  }
+
 
   getUser(){
     return this.afAuth.currentUser;

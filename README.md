@@ -14,9 +14,10 @@
 * If on Windows, open Powershell and run ```npm install @ionic/cli native-run cordova-res```. This will install ionic within the scope (not globally. If you wish to do so, add ```-g``` flag in the above command and run it as ```sudo``` in Linux and in Windows use Amdin mode in Powerrshell).
 * Clone the project in desired directory by running ```git clone https://github.com/SANSKRUTCORP/SnakesAndLadders.git```.
 * Change directory to Project Directory using ```cd SnakesAndLadders```.
-* Now run ```npm i```
-* And then run ```ionic serve``` .
+* Now run ```npm i```.
 
 ### For Node.js (backend) :
-* In Node-server directory, run the command : ```npm install```. Following command will install all the dependencies from ```package.json``` file.
-* Now in same directory, run ```nodemon server.js```.
+* In ```Node-server``` directory, run the command : ```npm install```. Following command will install all the dependencies from ```package.json``` file.
+
+### Running the server : 
+* Now at the parent directory, run the command : ```npm run server``` (the following command will run ```ionic serve``` and ```nodemon server.js``` concurrently).

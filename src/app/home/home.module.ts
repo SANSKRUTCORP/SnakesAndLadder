@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { AuthserviceService } from '../services/authservices.service';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../../environments/environment';
+import { HomeService } from './home.service';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { environment } from '../../environments/environment';
     HttpClientModule,
   ],
   declarations: [HomePage],
-  providers: [AuthserviceService]
+  providers: [AuthserviceService, HomeService]
 
 })
 export class HomePageModule {}
