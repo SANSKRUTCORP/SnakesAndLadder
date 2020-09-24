@@ -17,7 +17,7 @@ var firebaseAdmin = admin.initializeApp({
 var firedb = firebaseAdmin.database();
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'views')));
+// app.use(express.static(path.join(__dirname, 'views')));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-
+app.use(express.static('../www'));
 
 //Adding authorization to particular routes
 app.use('/apis/createroom', middlew.auth);
@@ -134,6 +134,7 @@ app.post('/apis/joinroom', function(req, res){
     var roomToken = req.body.enterid;
     var username = req.body.entername;
     let userID = req.body.uid;
+    var flag=0;
 
     var ref = firedb.ref('/rooms/room_'+roomToken);
 
@@ -149,18 +150,32 @@ app.post('/apis/joinroom', function(req, res){
             
 
             if(lenref<4){
+
+                for(var i=1; i<=lenref; i++){
+                    var checkUID = data.child('player_'+i+'/playerUID').val();
+                    console.log(checkUID);
+                    if(checkUID==userID){
+                        console.log('same match!');
+                        flag=1;
+                    }
+                    if(flag==1){
+                        return res.send(true)
+                    }
+                    
+                }
+
                 roomRef.child('player_'+countVal).set({name : username, position: 0, playerUID: userID})
                     .then(function(){
                             countVal = countVal+1;
                             ref.update({tempCounter : countVal});
                             // res.redirect('/createroom/'+roomToken);
-                            res.send(true);
+                            return res.send(true);
                     })
                     .catch(function(err){
                         console.log(err);
                     });
             } else{
-                res.send(false);
+                return res.send(false);
             };
 
         });
@@ -236,27 +251,33 @@ app.post('/apis/setGameStats', (req, res) => {
     let gplaySnap;
     let playersid;
     const ref = firedb.ref('rooms/room_'+roomID+'/players');
-
+    
     ref.once('value', snapshot => {
-        var lenref = Object.keys(snapshot.val()).length;
-        // res.send({length:lenref})
-        for(var i=1; i<=lenref; i++){          
-            
-            playersid = snapshot.child('player_'+i+'/playerUID').val();
-            if (i==playerNo){
-                let ref1 = firedb.ref('Users/'+playersid);
-                ref1.once('value', snapshot=>{
-                    winSnap = snapshot.child('wins').val();
-                    winSnap++;
-                    ref1.update({wins: winSnap});
-                })   
+        if(snapshot!=null || snapshot!=undefined){
+
+            var lenref = Object.keys(snapshot.val()).length;
+            // res.send({length:lenref})
+            for(var i=1; i<=lenref; i++){          
+                
+                playersid = snapshot.child('player_'+i+'/playerUID').val();
+                if (i==playerNo){
+                    let ref1 = firedb.ref('Users/'+playersid);
+                    ref1.once('value', snapshot=>{
+                        winSnap = snapshot.child('wins').val();
+                        winSnap++;
+                        ref1.update({wins: winSnap});
+                    })   
+                }
+                const ref2 = firedb.ref('/Users/'+playersid);
+                ref2.once('value', snapshot1=>{
+                    gplaySnap = snapshot1.child('gameplay').val();
+                    gplaySnap++;
+                    ref2.update({gameplay: gplaySnap});
+                })
+
+                // firedb.ref('rooms/room_'+roomID).remove();
+                
             }
-            const ref2 = firedb.ref('/Users/'+playersid);
-            ref2.once('value', snapshot1=>{
-                gplaySnap = snapshot1.child('gameplay').val();
-                gplaySnap++;
-                ref2.update({gameplay: gplaySnap});
-            })
         }
         
     }).then(()=>{
