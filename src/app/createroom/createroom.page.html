@@ -1,28 +1,36 @@
 <ion-content>
-  <ion-grid class="background-img">  
+
+  <ion-grid class="background-img"> 
+
     <ion-row class="space ion-justify-content-center">
+
       <ion-col class="ion-align-self-center">
         <div>
-          <h1>Room Creator : <img class="sizing" src="../../assets/tok1.png"> {{leader}}</h1>
+          <span class="textStyle">Room Creator : <img class="sizing" src="../../assets/tok1.png"> {{leader}}</span>
           <ion-row class="ion-justify-content-center">
+            
             <span class="textStyle">Room number : </span>
+            
             <input class="boxStyle" type="text" readonly [(ngModel)]="roomToken">
+           
             <ion-button class="butStyle" cdkCopyToClipboard="{{roomToken}}" matTooltip="Copy to clipboard">
               <ion-icon name="copy-outline"></ion-icon>
             </ion-button>
+
           </ion-row>
-          <h1><u>Joined players</u></h1>
+          <span class="textStyle" ><u>Joined players</u></span>
+
           <ion-row class="ion-justify-content-center" *ngFor="let name of names; index as i">
-            <h1><img *ngIf="name!=null" class="sizing" src="../../assets/tok{{i+2}}.png"> {{name}}</h1>
+            <span><img *ngIf="name!=null" class="sizing" src="../../assets/tok{{i+2}}.png"> {{name}}</span>
           </ion-row>
         </div> 
       </ion-col>
     </ion-row>
     
-    <ion-row> 
-     <ion-col class="ion-padding-top  padding" *ngIf="truth" >
+    <ion-row class="ion-text-center"> 
+     <ion-col *ngIf="truth" >
        <ion-button (click)="onClick()" [disabled]="names[0]==null" class="grad" fill="clear" >
-        <h5 class="setbutton">Start</h5> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+        <span >Start</span> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
        </ion-button>
      </ion-col>
    </ion-row>
