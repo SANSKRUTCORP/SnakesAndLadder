@@ -40,16 +40,17 @@ app.use(express.json());
 
 
 //Adding authorization to particular routes
-app.use('/createroom', middlew.auth);
-app.use('/joinroom', middlew.auth);
-app.use('/setUser', middlew.auth);
-app.use('/setState', middlew.auth);
-app.use('/setGameStats', middlew.auth);
+app.use('/apis/createroom', middlew.auth);
+app.use('/apis/joinroom', middlew.auth);
+app.use('/apis/setUser', middlew.auth);
+app.use('/apis/setState', middlew.auth);
+app.use('/apis/setGameStats', middlew.auth);
 
 
-app.post('/setUser', (req, res) => {
+app.post('/apis/setUser', (req, res) => {
     const uid = req.body.uid;
     const username = req.body.name;
+    const emailid = req.body.email;
     // console.log(uid, username);
     let ref = firedb.ref('Users');
     ref.once('value', snapshot => {
@@ -58,6 +59,7 @@ app.post('/setUser', (req, res) => {
         if(data==null || !data[uid]){
             ref.child(uid).set({
                 name : username,
+                email : emailid,
                 gameplay : 0,
                 wins : 0
             })
@@ -69,7 +71,7 @@ app.post('/setUser', (req, res) => {
 })
 
 
-app.get('/createroom', (req, res) => {
+app.get('/apis/createroom', (req, res) => {
 
     //Generating a random 7-digit number as game-room token
     var roomToken = models.randRoom()
@@ -127,7 +129,7 @@ app.get('/createroom', (req, res) => {
 
 
 
-app.post('/joinroom', function(req, res){
+app.post('/apis/joinroom', function(req, res){
 
     var roomToken = req.body.enterid;
     var username = req.body.entername;
@@ -170,7 +172,7 @@ app.post('/joinroom', function(req, res){
 
 
 
-app.post('/board/:id', (req, res) => {
+app.post('/apis/board/:id', (req, res) => {
     var playerNo = req.body.memberChance;
     var newPos = req.body.position;
     //id is the roomToken here
@@ -207,13 +209,13 @@ app.post('/board/:id', (req, res) => {
 
 });
 
-app.get('/board', (req, res) => {
+app.get('/apis/board', (req, res) => {
     var dice = models.diceRoll()
     res.send({ dice_value: dice })
 })
 
 
-app.post('/setState', (req, res) => {
+app.post('/apis/setState', (req, res) => {
     const roomID = req.body.roomid;
     console.log(roomID);
     firedb.ref('rooms/room_'+roomID).update({tempState: true}, (error)=>{
@@ -226,7 +228,7 @@ app.post('/setState', (req, res) => {
 })
 
 
-app.post('/setGameStats', (req, res) => {
+app.post('/apis/setGameStats', (req, res) => {
     const playerNo = req.body.playerNo;
     const roomID = req.body.roomid;
     console.log(playerNo, roomID);
@@ -264,7 +266,7 @@ app.post('/setGameStats', (req, res) => {
     });
 })
 
-app.post('/roomDelete', (req, res) => {
+app.post('/apis/roomDelete', (req, res) => {
     var roomid = req.body.roomNo;
     firedb.ref('rooms/room_'+roomid).remove().then(_ => {
         res.send(true);
