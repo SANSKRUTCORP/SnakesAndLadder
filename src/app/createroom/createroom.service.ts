@@ -8,22 +8,21 @@ import { AuthserviceService } from '../services/authservices.service';
   providedIn: 'root'
 })
 export class CreateroomService {
-  roomToken: string;
   leader: any;
   names = [];
   truth: boolean;
   state: any;
+  roomToken: any;
 
   constructor(private db: AngularFireDatabase,
               private http: HttpClient,
               public auth: AuthserviceService,
               public zone: NgZone,
-              private route: ActivatedRoute,
               private router: Router) { }
 
-  listenPlayers(){
+  listenPlayers(roomtok){
+    this.roomToken = roomtok;
     this.zone = new NgZone({});
-    this.roomToken = this.route.snapshot.queryParamMap.get('room');
     const ref = this.db.database.ref('/rooms/room_' + this.roomToken + '/players');
 
     ref.on('value', (snapshot) => {

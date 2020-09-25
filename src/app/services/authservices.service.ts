@@ -44,8 +44,8 @@ export class AuthserviceService {
 
         this.afAuth.signOut();
         console.log('signed out!');
-        sessionStorage.setItem('keyid', '');
-        sessionStorage.setItem('tempid', '');
+        localStorage.setItem('keyid', '');
+        localStorage.setItem('tempid', '');
         // this.isUserSignedIn().then(res=>{
         //   console.log(res)
         // })
@@ -59,7 +59,7 @@ export class AuthserviceService {
   }
 
   GoogleSignIn() {
-    return this.afAuth.setPersistence('session').then(_ => {
+    return this.afAuth.setPersistence('local').then(_ => {
       const provider = new firebase.auth.GoogleAuthProvider();
       // console.log('provider:',provider)
       return this.afAuth.signInWithPopup(provider)
@@ -67,10 +67,10 @@ export class AuthserviceService {
                           this.loggedInUserId  = data.user.uid;
                           this.loggedInEmail = data.user.email;
                           this.LoggedInName = data.user.displayName;
-                          sessionStorage.setItem('tempid', this.loggedInUserId);
+                          localStorage.setItem('tempid', this.loggedInUserId);
                           this.afAuth.idToken.subscribe(resp => {
                             this.userToken = resp;
-                            sessionStorage.setItem('keyid', this.userToken);
+                            localStorage.setItem('keyid', this.userToken);
                           })
                           // debugger;
                         })

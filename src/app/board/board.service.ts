@@ -23,20 +23,19 @@ export class BoardService {
   names = [];
   positions = [];
   posBoard = [];
-  winner: any;
+  winner: string;
   lengthNames: any;
   loggedUser: any;
+  liveDice: any;
 
   constructor(private http: HttpClient,
               public auth: AuthserviceService,
               private zone: NgZone,
-              private route: ActivatedRoute,
               public db: AngularFireDatabase,
               private modalController: ModalController,
               public loadingController: LoadingController) {
 
       // this.myName = boardService.getData(); //the data of players we get from create room page
-      this.roomToken = this.route.snapshot.queryParamMap.get('room');
       // this.roomToken = 1577862;
 
       this.arr = [];
@@ -54,6 +53,16 @@ export class BoardService {
       }
     }
 
+
+  liveDiceListen(){
+    this.db.database.ref('rooms/room_' + this.roomToken).on('value', snapshot => {
+      this.zone.run(() => {
+        this.liveDice = snapshot.child('dice').val();
+      });
+    });
+  }
+
+
   loggedinUser(){
     this.auth.getUser().then(user => {
       this.loggedUser = user.displayName;
@@ -62,9 +71,9 @@ export class BoardService {
   }
 
 
-  boardvals(currentPlayerPos, whichPlayer){
+  boardvals(currentPlayerPos, whichPlayer, diceVal){
     this.http.post<any>(`/apis/board/${this.roomToken}`,
-    {memberChance : whichPlayer, position : currentPlayerPos})
+    {memberChance : whichPlayer, position : currentPlayerPos, dice: diceVal})
     .subscribe(resp => {
       console.log(resp);
     });
@@ -146,8 +155,7 @@ export class BoardService {
         console.log(this.names[mem - 1] + ' ' + 'new position is' + ' ' + this.positions[mem - 1]);
         }
 
-      this.boardvals(this.positions[mem - 1], this.memberChance);
-      
+      this.boardvals(this.positions[mem - 1], this.memberChance, this.diceNumber.dice_value);
     });
 
   }
@@ -159,6 +167,7 @@ export class BoardService {
     this.http.get('/apis/board').subscribe(resp => {
       console.log('dice value', resp);
       this.diceNumber = resp;
+      this.diceAudio();
       this.playerPosition();
 
     }, (error) => {
@@ -168,7 +177,8 @@ export class BoardService {
   }
 
 
-  readPlayers(){
+  readPlayers(roomTok){
+    this.roomToken = roomTok;
     const ref = this.db.database.ref('rooms/room_' + this.roomToken + '/players');
     ref.once('value', snapshot => {
       this.zone.run(() => {

@@ -54,7 +54,7 @@
       <ion-row class="justify-content-center align-items-center"  >
       <ion-col>
         <div *ngIf="bService.diceNumber!=undefined">
-          <img src="../../assets/{{bService.diceNumber.dice_value}}.png" class="dice">
+          <img src="../../assets/{{bService.liveDice}}.png" class="dice">
         </div>
 
       <!-- <div [@divState]="state" style="height: 10%; width: 10%;">
@@ -71,7 +71,6 @@
           <ion-button fill="clear"
                       [disabled]="bService.names[bService.memberChance-1] != bService.loggedUser"
                       (click)="bService.rollDiceChance()" 
-                      (click)="bService.diceAudio()"
                       class="grad"
                       *ngIf="bService.play==true && bService.names.length - (bService.memberChance-1) != 0">
             {{bService.names[bService.memberChance-1]}}'s Roll!

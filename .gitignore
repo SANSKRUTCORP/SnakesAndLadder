@@ -32,5 +32,5 @@ npm-debug.log*
 /Node-server/node_modules/
 /Node-server/views/
 /Node-server/sanskrut-interns-firebase-adminsdk-jm6gx-9fd5529431.json
-
+/Node-server/www
 /Node-server/sanskrut-interns-firebase-adminsdk-jm6gx-128ac628dc.json
