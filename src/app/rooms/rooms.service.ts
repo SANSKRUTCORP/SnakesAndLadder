@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Router } from '@angular/router';
 import { AuthserviceService } from '../services/authservices.service';
 
 @Injectable({
@@ -16,7 +15,6 @@ export class RoomsService {
   roomID: any;
 
   constructor(public auth: AuthserviceService,
-              private router: Router,
               public zone: NgZone,
               public db: AngularFireDatabase,
               public http: HttpClient) { }
@@ -31,15 +29,6 @@ export class RoomsService {
     }
   }
 
-  onClick(){
-    this.getRoomToken().subscribe(res => {
-      this.roomID = res.room_token;
-      this.router.navigate(['/createroom'], {
-        queryParams: {room : this.roomID}
-      });
-
-    });
-  }
 
   displayName(){
     this.auth.isUserSignedIn().then(res => {
@@ -47,7 +36,7 @@ export class RoomsService {
         this.auth.getUser().then(user => {
           this.userName = user.displayName;
           this.email = user.email;
-          this.uid = sessionStorage.getItem('tempid');
+          this.uid = localStorage.getItem('tempid');
           // debugger;
           this.http.post<any>('/apis/setUser',
           {uid : this.uid, name : this.userName, email: this.email}).subscribe(resp => {
@@ -63,7 +52,7 @@ export class RoomsService {
 
   getStats(){
     this.zone = new NgZone({});
-    this.uid = sessionStorage.getItem('tempid');
+    this.uid = localStorage.getItem('tempid');
     this.db.database.ref('Users/' + this.uid).on('value', snapshot => {
       this.zone.run(() => {
         this.wins = snapshot.child('wins').val();

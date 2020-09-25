@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    this.id = sessionStorage.getItem('keyid');
+    this.id = localStorage.getItem('keyid');
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.id}`

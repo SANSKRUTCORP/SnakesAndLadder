@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 // import { ActivatedRoute } from '@angular/router';
 
 // import { state, style, trigger } from '@angular/animation';
@@ -17,17 +18,20 @@ import { BoardService } from './board.service';
   // ]
 })
 export class BoardPage implements OnInit {
+  roomT: any;
 
-constructor(public bService: BoardService) { }
+constructor(public bService: BoardService, private route: ActivatedRoute) { }
 
 
 
   ngOnInit() {
-    this.bService.readPlayers();
+    this.roomT = this.route.snapshot.queryParamMap.get('room');
+    this.bService.readPlayers(this.roomT);
     this.bService.loggedinUser();
+    this.bService.liveDiceListen();
     this.bService.boardPositions();
     this.bService.memChance();
-    // this.presentLoading();
+    this.bService.presentLoading();
   }
 
   //   Calltoggle(){

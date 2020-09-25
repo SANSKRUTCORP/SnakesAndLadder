@@ -23,7 +23,7 @@ export class JoinRoomComponent implements OnInit {
   onClick(item){
     let resp;
     this.roomNo = item.value;
-    this.uid = sessionStorage.getItem('tempid');
+    this.uid = localStorage.getItem('tempid');
     const ref = this.db.database.ref('/rooms');
     ref.once('value').then(snapshot => {
       resp = snapshot.val();

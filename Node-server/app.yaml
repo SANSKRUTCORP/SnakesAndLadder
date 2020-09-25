@@ -1,0 +1,35 @@
+runtime: nodejs12 # or nodejs10
+# env: flex
+
+handlers:
+  - url: /apis/(.*)
+    script: auto
+
+  - url: /
+    static_files: www/index.html
+    upload: www/index.html
+
+  - url: /
+    static_dir: www
+
+  # - url: /(.*)
+  #   static_dir: www
+    
+
+  # - url: /assets
+  #   secure: always
+  #   static_dir: www/assets
+  #   http_headers:
+  #     Access-Control-Allow-Origin: '*'
+
+  # - url: /svg
+  #   secure: always
+  #   static_dir: www/svg
+  #   http_headers:
+  #     Access-Control-Allow-Origin: '*'
+
+  # - url: (.*)
+  #   static_files: www/index.html
+  #   upload: www/index.html
+  #   http_headers:
+  #     Access-Control-Allow-Origin: '*'

@@ -37,7 +37,12 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(express.static('../www'));
+app.use(express.static(path.join(__dirname, 'www')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, "www/index.html"));
+})
+
 
 //Adding authorization to particular routes
 app.use('/apis/createroom', middlew.auth);
@@ -97,7 +102,7 @@ app.get('/apis/createroom', (req, res) => {
                 var userID = userRecord.uid;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, tempCounter: 2, tempState: false, memberChance: 1})
+                    .set({ roomid: roomToken, tempCounter: 2, tempState: false, memberChance: 1, dice: 0})
                     .then(function () {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
@@ -190,7 +195,11 @@ app.post('/apis/joinroom', function(req, res){
 app.post('/apis/board/:id', (req, res) => {
     var playerNo = req.body.memberChance;
     var newPos = req.body.position;
+    var myDice = req.body.dice;
+    var roomToken = req.params.id;
     //id is the roomToken here
+    console.log(myDice);
+    firedb.ref('rooms/room_'+roomToken).update({dice: myDice});
 
     firedb.ref('SnL').once('value', snapshot => {
         var snakesLadders = snapshot.val();
@@ -201,7 +210,6 @@ app.post('/apis/board/:id', (req, res) => {
             console.log('Not found')
         }
 
-        var roomToken = req.params.id;
         var ref = firedb.ref('/rooms/room_' + roomToken + '/players');
         ref.child('player_' + playerNo).update({ position: newPos});
         ref.once('value', data => {
@@ -226,6 +234,7 @@ app.post('/apis/board/:id', (req, res) => {
 
 app.get('/apis/board', (req, res) => {
     var dice = models.diceRoll()
+    
     res.send({ dice_value: dice })
 })
 
