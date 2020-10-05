@@ -6,17 +6,20 @@
     background-color:#fbdb93;
     height: 100%;
     border: 10px solid #723009;
+    justify-content: center;
+    align-items: center;
+    display: grid;
 }
 .grad{
     font-family: 'Poppins', sans-serif;
     border: 3px solid #4b2205;
     border-radius: 10%;
-    color: #89510c;
+    color: #180e02;
     background-color: #e48738
     ;
 }
 
-p{
+.font{
     font-family: 'Indie Flower', cursive;
     color: #50340c;
   }
@@ -28,7 +31,7 @@ p{
 @media only screen and (min-width:250px) and (max-width:576px){
     .image{
         width: 50%;
-        padding-top: 6%;
+        // padding-top: 6%;
     }
 }
 

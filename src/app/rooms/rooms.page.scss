@@ -9,7 +9,24 @@
   background-size: cover;
   height: 100%;
   width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: grid;
 }
+
+.background-box{
+  background-color: #ffc27b;
+  border: 5px solid #b25e08;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+}
+
+// .alignment{
+//   justify-content: center;
+//   align-items: center;
+//   display: grid;
+// }
 
 // .background{
 //   background-color: coral;
@@ -23,23 +40,24 @@
 
   .fontStyles{
     font-family: 'Indie Flower', cursive;
-    color: rgb(235, 159, 97);
+    color: #8b4c19;
     text-align: center;
     text-shadow: 2px 2px 3px rgb(219, 132, 73);
-    font-size: 9vh;
-    padding-top: 10%;
-    padding-bottom: 7%;
+    font-size: 50px;
+    // padding-left: 54px;
+    // padding-right: 54px;
   }
+
   .fontStyles1{
     font-family: 'Indie Flower', cursive;
-    color: rgb(235, 159, 97);
+    color: #9e673a;
     text-align: center;
     text-shadow: 2px 2px 3px rgb(219, 132, 73);
-    font-size: 5vh;
+    font-size: 20px;
   }
 
   .grad{
-    background-image: linear-gradient(to right, rgba(150, 88, 60, 0.959), rgb(235, 181, 137)); 
+    background-image: linear-gradient(to right, rgb(252, 186, 103), #e8954e);
     color: darken($color: #0c0c0b, $amount: 0);
     font-family: 'Poppins', sans-serif;
     border-radius: 40px; 
@@ -50,11 +68,23 @@
     .grad{
       font-size:10px ;
     }
+    .fontStyles{
+      font-size: 37px;
+    }
+    .fontStyles1{
+      font-size: 23px;
+    }
    }
 
    @media only screen and (min-width:250px) and (max-width:300px){
     .grad{
       font-size: 8px;
+    }
+    .fontStyles{
+      font-size: 34px;
+    }
+    .fontStyles1{
+      font-size: 20px;
     }
    }
 
