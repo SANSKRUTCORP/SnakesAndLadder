@@ -4,7 +4,7 @@
 ### Getting your Credentials :
 * Go to your firebase console.
 * In project settings, go to ```General``` tab and scroll below to find your firebase configs code snippet.
-* Paste this snippet in firebase object in your ```environment.ts``` file, which is present at ```src/environments```.
+* Paste this snippet from firebase object in your ```src/environments/config.ts``` file, prepend with ```export const firebaseConfig =```.
 * Now again go to project settings in firebase console, now head to ```sevice accounts``` tab and click on ```Generate your key``` button.
 * Move this key/.json file in ```Node-server``` directory.
 * In ```Node-server``` directory, open ```app.js``` and on line 10, require that .json file and save this.

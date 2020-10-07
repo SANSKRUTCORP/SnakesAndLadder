@@ -7,7 +7,7 @@ const middlew = require("express-firebase-middleware");
 const models = require("./models");
 
 //Initializing Firebase-admin SDK
-var serviceAccount = require('./sanskrut-interns-firebase-adminsdk-jm6gx-128ac628dc.json');
+var serviceAccount = require('./sanskrut-interns-firebase-adminsdk.json');
 
 var firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
