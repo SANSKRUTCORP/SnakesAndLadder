@@ -6,6 +6,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { AuthserviceService } from '../services/authservices.service';
 import { AllComponent } from './all/all.component';
 import { WinComponent } from './win/win.component';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class BoardService {
   liveDice: any;
 
   constructor(private http: HttpClient,
+              private utils: UtilsService,
               public auth: AuthserviceService,
               private zone: NgZone,
               public db: AngularFireDatabase,
@@ -72,7 +74,7 @@ export class BoardService {
 
 
   boardvals(currentPlayerPos, whichPlayer, diceVal){
-    this.http.post<any>(`/apis/board/${this.roomToken}`,
+    this.http.post<any>(this.utils.GetServerHost() + `/apis/board/${this.roomToken}`,
     {memberChance : whichPlayer, position : currentPlayerPos, dice: diceVal})
     .subscribe(resp => {
       console.log(resp);
@@ -81,14 +83,14 @@ export class BoardService {
 
 
   setWinner(member, room){
-    this.http.post<any>('/apis/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
+    this.http.post<any>(this.utils.GetServerHost() + '/apis/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
       console.log(resp);
     });
   }
 
 
   removeRoom(room){
-    this.http.post<any>('/apis/roomDelete', {roomNo: room}).subscribe(resp => {
+    this.http.post<any>(this.utils.GetServerHost() + '/apis/roomDelete', {roomNo: room}).subscribe(resp => {
       console.log(resp);
     });
   }
@@ -164,7 +166,7 @@ export class BoardService {
   rollDiceChance(){
     /*on every click of dice this function gives one by one chance
     to all player to roll it*/
-    this.http.get('/apis/board').subscribe(resp => {
+    this.http.get(this.utils.GetServerHost() + '/apis/board').subscribe(resp => {
       console.log('dice value', resp);
       this.diceNumber = resp;
       this.diceAudio();
