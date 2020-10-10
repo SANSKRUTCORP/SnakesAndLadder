@@ -36,3 +36,5 @@ npm-debug.log*
 /Node-server/sanskrut-interns-firebase-adminsdk-jm6gx-128ac628dc.json
 /Node-server/sanskrut-interns-firebase-adminsdk-jm6gx-12feca01b2.json
 .git.bfg-report
+Node-server/sanskrut-interns-firebase-adminsdk.json
+src/environments/config.ts

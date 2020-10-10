@@ -50,6 +50,12 @@
     background-color: #fcfe8c;
  }
 
+ .board-alignment{
+   align-items: center;
+   justify-content: center;
+   display: grid;
+ }
+
  .block{
     background-color: rgba(248, 244, 244, 0);
     border: 1px solid rgba(14, 13, 13, 0.342); 
@@ -314,9 +320,7 @@
       height: 30px;
       width: 30px;
    }
-   .padding-top{
-      padding-top: 0%;
-   }
+   
    .font{
       font-size: 5px;
       float: right;

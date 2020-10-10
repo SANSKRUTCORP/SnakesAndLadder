@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthserviceService } from '../services/authservices.service';
+// import { UtilsService } from '../services/utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class RoomsService {
   roomID: any;
 
   constructor(public auth: AuthserviceService,
+              // private utils: UtilsService,
               public zone: NgZone,
               public db: AngularFireDatabase,
               public http: HttpClient) { }
@@ -39,6 +41,7 @@ export class RoomsService {
           this.uid = localStorage.getItem('tempid');
           // debugger;
           this.http.post<any>('/apis/setUser',
+          // this.http.post<any>(this.utils.GetServerHost()+'/apis/setUser',
           {uid : this.uid, name : this.userName, email: this.email}).subscribe(resp => {
             console.log(resp);
           });
@@ -66,6 +69,7 @@ export class RoomsService {
 
   getRoomToken(): any{
     return this.http.get<any>('/apis/createroom');
+    // return this.http.get<any>(this.utils.GetServerHost()+'/apis/createroom');
   }
 
 }

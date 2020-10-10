@@ -1,27 +1,23 @@
 <ion-content>
-
-<!--    
-   <div class="board" id="blur"> 
-     <ion-row class="space">
+  <!-- <div class="board" id="blur"> 
+    <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
           <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
               Winner<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
       </ion-col>
-    </ion-row>  -->
+    </ion-row> 
+  </div> -->
 
 <ion-grid class="background-img"> 
 
-  <ion-row  class="ion-text-center">
-    <ion-col> 
-      <div class="board-image"> 
-        <ion-row  *ngFor='let el of bService.arr;'>
-         
-          <div *ngFor='let ele of el;' class="block"> 
-                                               
-                                               
-          <span class="font" *ngIf=" ele!=100 && ele!=1">{{ele}}</span>
-           <!-- we have green color for player 1
+     <ion-row  class="ion-text-center">
+         <ion-col class="board-alignment"> 
+            <div class="board-image ion-justify-content-center"> 
+              <ion-row class="ion-text-center" *ngFor='let el of bService.arr;'>
+                <ion-col *ngFor='let ele of el;' class="block"> 
+                        <span class="font" *ngIf=" ele!=100 && ele!=1">{{ele}}</span>
+             <!-- we have green color for player 1
                         red color for player 2
                         blue color for player3
                         yellow color for player4 -->
@@ -45,26 +41,23 @@
                 <img src="../../assets/arrow.png" >
               </div> 
                
-          </div>
+            </ion-col>
         </ion-row>
       </div>
     </ion-col>
-
+    <!-- <div [@divState]="state" style="height: 10%; width: 10%;">
+    </div> -->
     <ion-col class="padding-top"> 
-      <ion-row class="justify-content-center align-items-center"  >
-      <ion-col>
-        <div *ngIf="bService.diceNumber!=undefined">
-          <img src="../../assets/{{bService.liveDice}}.png" class="dice">
-        </div>
-
-      <!-- <div [@divState]="state" style="height: 10%; width: 10%;">
-        </div> -->
-       
-
-        <div *ngIf="bService.diceNumber==undefined" >
-          <img src="../../assets/dice.png" class="dice">
-        </div>
-      </ion-col>
+      <ion-row class="justify-content-center align-items-center">
+        <ion-col>
+          <div *ngIf="bService.diceNumber!=undefined">
+            <img src="../../assets/{{bService.liveDice}}.png" class="dice">
+          </div>
+  
+          <div *ngIf="bService.diceNumber==undefined" >
+            <img src="../../assets/dice.png" class="dice">
+          </div>
+        </ion-col>
 
       <ion-col>
         <div class="padding-top">

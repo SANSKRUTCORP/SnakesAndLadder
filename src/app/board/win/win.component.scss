@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 
 // h1{
 //   font-family: 'Indie Flower', cursive;
@@ -9,10 +10,14 @@
 .bg{
   background-color:#fbdb93;
   height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .grad{
   color: black;
+  font-family: 'Poppins', sans-serif;
 }
 
 .font{
