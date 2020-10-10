@@ -7,7 +7,7 @@ const middlew = require("express-firebase-middleware");
 const models = require("./models");
 
 //Initializing Firebase-admin SDK
-var serviceAccount = require('./sanskrut-interns-firebase-adminsdk-jm6gx-128ac628dc.json');
+var serviceAccount = require('./sanskrut-interns-firebase-adminsdk-jm6gx-12feca01b2.json');
 
 var firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -37,11 +37,11 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'www')));
+// app.use(express.static('../www'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "www/index.html"));
-})
+// app.get('/', (req, res) => {
+//     res.sendFile('../www/index.html');
+// })
 
 
 //Adding authorization to particular routes
