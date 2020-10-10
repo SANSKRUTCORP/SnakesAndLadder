@@ -5,12 +5,12 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ionic serve -- --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "concurrently \"ionic serve\" \"Node-server/node_modules/.bin/nodemon Node-server/server.js\""
+    "server": "concurrently \"npm run start\" \"Node-server/node_modules/.bin/nodemon Node-server/server.js\""
   },
   "private": true,
   "dependencies": {

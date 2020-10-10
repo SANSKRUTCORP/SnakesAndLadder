@@ -5,12 +5,13 @@ handlers:
   - url: /apis/(.*)
     script: auto
 
-  - url: /
-    static_files: www/index.html
-    upload: www/index.html
 
   - url: /
     static_dir: www
+
+  - url: (.*)
+    static_files: www/index.html
+    upload: www/index.html
 
   # - url: /(.*)
   #   static_dir: www

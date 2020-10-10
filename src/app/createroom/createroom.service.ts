@@ -3,7 +3,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthserviceService } from '../services/authservices.service';
-import { UtilsService } from 'src/app/services/utils.service';
+// import { UtilsService } from 'src/app/services/utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class CreateroomService {
   roomToken: any;
 
   constructor(private db: AngularFireDatabase,
-              private utils: UtilsService,
+              // private utils: UtilsService,
               private http: HttpClient,
               public auth: AuthserviceService,
               public zone: NgZone,
@@ -47,7 +47,8 @@ export class CreateroomService {
   }
 
   onClick(){
-    this.http.post<any>(this.utils.GetServerHost() + '/apis/setState', {roomid: this.roomToken}).subscribe(resp => {
+    this.http.post<any>('/apis/setState', {roomid: this.roomToken}).subscribe(resp => {
+    // this.http.post<any>(this.utils.GetServerHost() + '/apis/setState', {roomid: this.roomToken}).subscribe(resp => {
       console.log(resp);
     });
   }
