@@ -1,0 +1,23 @@
+<ion-grid  >
+  <ion-row style="height: 100%;  overflow-y: scroll;" >
+    <ion-col size-lg="3" size-md="3" size-sm="12" size-xs="12">
+      <!-- player 1 -->
+    </ion-col>
+    <ion-col size-lg="6" size-md="3" size-sm="12" size-xs="12">
+      <ion-row style="padding: 5%;" class="ion-justify-content-center" >
+          <!-- <img style="width: 10%;height: 10%;" src="../../assets/clock.png" alt=""> -->
+          <span ><b>{{timeLeft}} second left </b></span>
+      </ion-row>
+      <ion-row class="memory-game" class="ion-justify-content-center" style="height: 80%;">
+         <div class="memory-class"  (click)="flipAudio()" *ngFor="let card of cards;index as i">
+              <img class="back-face" [src]="card.back-Image" alt="">     
+              <img class="front-face" [src]="card.frontImage" alt=""> 
+        </div> 
+      </ion-row>
+       
+    </ion-col>
+    <ion-col size-lg="3"  size-md="3" size-sm="12" size-xs="12">
+      <!-- player 2 -->
+    </ion-col>
+  </ion-row>
+</ion-grid>

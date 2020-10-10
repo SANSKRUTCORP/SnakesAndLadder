@@ -208,8 +208,6 @@ export class BoardService {
       duration: 14000
     });
     await loading.present();
-
-    console.log('Loading dismissed!');
   }
 
   playAudio(){

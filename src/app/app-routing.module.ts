@@ -27,6 +27,12 @@ const routes: Routes = [
     loadChildren: () => import('./board/board.module').then( m => m.BoardPageModule),
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'memory-board',
+    loadChildren: () => import('./memory-board/memory-board.module').then( m => m.MemoryBoardPageModule),
+    
+  },
+
  
 
 
