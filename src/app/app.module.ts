@@ -47,8 +47,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AuthserviceService,
     HttpClientModule,
     AuthGuardService,
-    // { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-    { provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
