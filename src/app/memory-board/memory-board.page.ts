@@ -8,16 +8,21 @@ import {memoryCards} from './memory-board.model';
 })
 export class MemoryBoardPage implements OnInit {
   timeLeft: number = 60;
-  currentIndex:any;
-  temporaryValue:any;
+  currentIndex: any;
+  temporaryValue: any;
   // arr:any=[1,1,2,2,3,3,4,4,5,5,6,6]
-  randomIndex:any;
-  name:any;
-  value_1:any;
+  randomIndex: any;
+  name: any;
+  valueAss1: string;
   interval;
-  buttonValue:any;
+  click: any = 1;
+  buttonValue: any;
+  val: number;
+  valueAss2: string;
+  pair: number = 0;
+
   // first argument is for back-image and second argument is for front-image
-  cards:memoryCards[]=[
+  cards: memoryCards[] = [ 
     new memoryCards('https://tse3.mm.bing.net/th?id=OIP.fPwNkLmKV_nFUe13_oz1iQHaE8&pid=Api&P=0&w=234&h=157',
                     'https://tse1.mm.bing.net/th?id=OIP.nzqcNBda6adpBXavP_8rawHaHa&pid=Api&P=0&w=300&h=300'),
     new memoryCards('https://tse3.mm.bing.net/th?id=OIP.fPwNkLmKV_nFUe13_oz1iQHaE8&pid=Api&P=0&w=234&h=157',
@@ -81,15 +86,9 @@ export class MemoryBoardPage implements OnInit {
   ];
 constructor( public loadingController: LoadingController){}
 
-toggle(button) {
-  this.buttonValue = button.id;
-  console.log(this.buttonValue)
-}
 
-  
-shuffle(array:any) {
-  this.currentIndex = array.length, this.temporaryValue, this.randomIndex;
- 
+shuffle(array: any) {
+  this.currentIndex = array.length, this.temporaryValue , this.randomIndex;
   // While there remain elements to shuffle...
   while (0 !== this.currentIndex) {
 
@@ -102,24 +101,54 @@ shuffle(array:any) {
     array[this.currentIndex] = array[this.randomIndex];
     array[this.randomIndex] = this.temporaryValue;
   }
-  this.name=array;
+  this.name = array;
   console.log(this.name);
 
 }
+// clickNumber(value){
+//   if(this.click==2){
+//   }
+//}
+// click 1 of the member
+click_1(val: number,value1: string){
+  console.log('Click chance 1 card clicked ' + val + ' . Its value is ' + value1);
+  this.click = 2;
+  this.valueAss1 = value1;
 
-click_1(value1:any){
-  console.log("hello " + value1);
 }
+
+// click 2 of the member
+click_2(val: number, value2: string){
+  console.log( 'Click chance 2 card clicked ' + val + ' . Its value is ' + value2);
+  this.click = 1;
+  this.valueAss2 = value2;
+  this.match();
+}
+
+// matching of cards
+match(){
+    if (this.valueAss1 === this.valueAss2){
+      console.log('Cards are same');
+      this.pair = this.pair + 1;
+      console.log('Pairs ' + this.pair);
+    }
+    else{
+      console.log('Cards are  different');
+      console.log('Pairs ' + this.pair);
+    }
+}
+
+
 
 
 startTimer() {
     this.interval = setInterval(() => {
-      if(this.timeLeft > 0) {
+      if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
         this.timeLeft = 60;
       }
-    },1000)
+    }, 1000);
   }
   pauseTimer() {
     clearInterval(this.interval);
@@ -145,7 +174,7 @@ startTimer() {
   ngOnInit() {
     // this.startLoading()
     // this.startTimer();
-    
-  }
+    this.shuffle(this.cards);
+    }
 
 }
