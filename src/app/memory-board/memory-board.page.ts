@@ -19,7 +19,9 @@ export class MemoryBoardPage implements OnInit {
   buttonValue: any;
   val: number;
   valueAss2: string;
-  pair: number = 0;
+  pairsum: number;
+  pair1: number = 0;
+  pair2: number = 14;
 
   // first argument is for back-image and second argument is for front-image
   cards: memoryCards[] = [ 
@@ -129,13 +131,28 @@ click_2(val: number, value2: string){
 match(){
     if (this.valueAss1 === this.valueAss2){
       console.log('Cards are same');
-      this.pair = this.pair + 1;
-      console.log('Pairs ' + this.pair);
+      this.pair1 = this.pair1 + 1;
+      console.log('Pairs ' + this.pair1);
+      this.winner();
     }
     else{
       console.log('Cards are  different');
-      console.log('Pairs ' + this.pair);
+      console.log('Pairs ' + this.pair1);
     }
+}
+winner(){
+  this.pairsum = this.pair1 + this.pair2;
+  if ( this.pairsum === 15 || this.timeLeft === 0){
+    if ( this.pair1 > this.pair2 ){
+      console.log('Player 1 win the game');
+    }
+    if ( this.pair1 === this.pair2 ){
+      console.log('Draw');
+    }
+    else{
+      console.log('Player 2 win the game');
+    }
+  }
 }
 
 
@@ -173,7 +190,7 @@ startTimer() {
   }
   ngOnInit() {
     // this.startLoading()
-    // this.startTimer();
+    this.startTimer();
     this.shuffle(this.cards);
     }
 
