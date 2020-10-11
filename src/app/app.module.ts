@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/auth.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-// import {memoryCards} from './memory-board/memory-board.model';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -35,6 +35,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AngularFireDatabaseModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule
     // memoryCards,
    ],
 

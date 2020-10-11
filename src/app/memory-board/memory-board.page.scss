@@ -1,13 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Sansita+Swashed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Concert+One&family=Sansita+Swashed:wght@300&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
-  
+  .timer{
+    font-size:130%
+  }
+  .main-row{
+    background-image: url(https://pressstart.vip/images/uploads/assets/cityskyline.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    color: white;
+    font-family: 'Chewy', cursive;
+  }
   body {
     height: 100vh;
     display: flex;
-    background: #060AB2;
+    background:rgb(51, 2, 116);
   
   }
   
@@ -17,34 +29,62 @@
   .memory-game {
     display: flex;
     flex-wrap: wrap;
-
+    perspective: 1000px;
   }
+  // .memory-frame{
+  //   perspective: 1000px;
+  //   width: 300px;
+  //   height: 300px;
+  //   display: flex;
+  //   flex-wrap: wrap;
+  // }
   
   .memory-class {
     width: 14%;
     height: 20%;
     margin: 2px;
+    transition: 0.6s;
     border-radius: 5px;
     position: relative;
     cursor: pointer;
     transform: scale(1);
     box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    transform-style: preserve-3d;
+    
   }
   
   .memory-class:active {
     transform: scale(0.85);
     transition: transform .2s;
   }
-  .memory-class.flip {
-    transform: rotateY(180deg);
+  .memory-class.flipped  {
+		transform: rotateY(180deg);
   }
+ 
   
   .front-face,
   .back-face {
-    width: 100%;
+  width: 100%;
     height: 100%;
     padding: 2px;
+    // backface-visibility: hidden;
     position: absolute;
     border-radius: 5px;
-    background: #1C7CCC;
+    // background:rgb(95, 3, 216);
+    background-color: white;
+    position: absolute;
+	  top: 0;
+	   left: 0;
   }
+  .front-face {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+   }
+  
+   /* back, initially hidden pane */
+   .back-face {
+     transform: rotateY(180deg);
+   }
+
+   
