@@ -9,13 +9,25 @@
           <span ><b>{{timeLeft}} second left </b></span>
       </ion-row>
       <ion-row class="memory-game" class="ion-justify-content-center" style="height: 80%;">
+
          <div class="memory-class"  (click)="flipAudio()" *ngFor="let card of cards;index as i">
-              <img class="back-face" [src]="card.back-Image" alt="">     
-              <img class="front-face" [src]="card.frontImage" alt=""> 
+             <!-- <button  #btn1  id="btn1"  (click)="click_1(this.cards[i])" [disabled]="false" style="height: 100px;width:100px" (click)="toggle(btn1)" > -->
+              <div *ngIf="this.click==1" >
+                <img class="back-face" [src]="card.back-Image" alt=""  >     
+                <img class="front-face" [src]="card.frontImage" alt="" (click)="click_1(i,card.frontImage)"> 
+              </div>    
+              <div *ngIf="this.click==2" >
+                <img class="back-face" [src]="card.back-Image" alt=""  >     
+                <img class="front-face" [src]="card.frontImage" alt="" (click)="click_2(i,card.frontImage)"> 
+              </div>
+              <!-- <img *ngIf="imageUrl" [src]="imageUrl"> -->
+                
+               
         </div> 
       </ion-row>
        
     </ion-col>
+    
     <ion-col size-lg="3"  size-md="3" size-sm="12" size-xs="12">
       <!-- player 2 -->
     </ion-col>
