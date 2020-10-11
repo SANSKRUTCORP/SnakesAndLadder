@@ -1,0 +1,96 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+
+.background-img{
+  background: url('/assets/memory-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+}
+
+.background-box{
+  background-color: #9fc2d9;
+  border: 5px solid #051f60;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+}
+
+// .alignment{
+//   justify-content: center;
+//   align-items: center;
+//   display: grid;
+// }
+
+// .background{
+//   background-color: coral;
+//   margin-left: 20%;
+//   margin-top: 10%;
+//   margin-right: 20%;
+//   height: 50%;
+//   width: 50%;
+  
+// }
+
+  .fontStyles{
+    font-family: 'Indie Flower', cursive;
+    color: #054558;
+    text-align: center;
+    text-shadow: 2px 2px 3px #353bc7;
+    font-size: 50px;
+    // padding-left: 54px;
+    // padding-right: 54px;
+  }
+
+  .fontStyles1{
+    font-family: 'Indie Flower', cursive;
+    color: #054558;
+    text-align: center;
+    text-shadow: 2px 2px 3px #353bc7;
+    font-size: 20px;
+  }
+
+  .grad{
+    background-image: linear-gradient(to right, #4eb7e1, #91f8d7);
+    color: #020423;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 40px; 
+    border: 2px solid #752ebb; 
+  }
+
+  @media only screen and (min-width:300px) and (max-width:370px){
+    .grad{
+      font-size:10px ;
+    }
+    .fontStyles{
+      font-size: 37px;
+    }
+    .fontStyles1{
+      font-size: 23px;
+    }
+   }
+
+   @media only screen and (min-width:250px) and (max-width:300px){
+    .grad{
+      font-size: 8px;
+    }
+    .fontStyles{
+      font-size: 34px;
+    }
+    .fontStyles1{
+      font-size: 20px;
+    }
+   }
+
+  
+
+
+
+
+

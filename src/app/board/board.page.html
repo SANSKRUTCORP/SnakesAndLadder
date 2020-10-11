@@ -23,7 +23,7 @@
                         yellow color for player4 -->
                 
               <div *ngIf="ele==bService.posBoard[0]" >
-                <img src="../../assets/tok1.png" class="players">
+                <img src="../../assets/tok1.png" class="players" >
               </div>
               <div *ngIf="ele==bService.posBoard[1]" >
                 <img src="../../assets/tok2.png" class="players">
@@ -45,8 +45,13 @@
         </ion-row>
       </div>
     </ion-col>
-    <!-- <div [@divState]="state" style="height: 10%; width: 10%;">
+
+
+    <!-- animations -->
+    <!-- <div [@myvisibility]="visiblestate" style="height: 10%; width: 10%;">
     </div> -->
+
+
     <ion-col class="padding-top"> 
       <ion-row class="justify-content-center align-items-center">
         <ion-col>
