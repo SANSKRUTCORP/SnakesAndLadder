@@ -10,7 +10,7 @@ import { AuthserviceService } from '../services/authservices.service';
 export class MemoryCreateroomService {
   roomToken: any;
   leader: any;
-  names: any;
+  player2: any;
   truth: boolean;
   state: any;
 
@@ -36,7 +36,7 @@ export class MemoryCreateroomService {
             this.leader = user;
           }
           else{
-            this.names[i - 2] = user;
+            this.player2 = user;
           }
         }
       });
