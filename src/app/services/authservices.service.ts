@@ -24,7 +24,7 @@ export class AuthserviceService {
       }
       if (res.uid){
         // console.log('User state : ', this.isSignedIn)
-        router.navigateByUrl('/rooms');
+        router.navigateByUrl('/game-option');
       }
       else{
         router.navigateByUrl('/home');
