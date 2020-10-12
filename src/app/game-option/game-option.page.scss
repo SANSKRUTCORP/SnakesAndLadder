@@ -1,0 +1,29 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+
+.background{
+    background: url('/assets/wooden-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.button-style{
+    background-color: rgb(255, 177, 122);
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(32, 19, 53);
+}
+
+// .image-style{
+   
+// }
+
+.alignment{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}

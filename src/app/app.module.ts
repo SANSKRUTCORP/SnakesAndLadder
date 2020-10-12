@@ -19,12 +19,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/auth.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { MemoryJoinRoomComponent } from './memory-rooms/memory-join-room/memory-join-room.component';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
 @NgModule({
-  declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent ],
+  declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent, MemoryJoinRoomComponent ],
   entryComponents: [],
   imports: [
     // BrowserAnimationsModule,
@@ -34,8 +36,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     FormsModule,
+    AngularFireStorageModule,
     HttpClientModule,
-   
     // memoryCards,
    ],
 
