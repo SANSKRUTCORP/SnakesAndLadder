@@ -2,24 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
 
 .background-image{
-  background: url('/assets/wooden-bg.jpg');
+  background: url('/assets/bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 100%;
-  width: 100%;
+ width: 100%;
   // justify-content: center;
   align-items: center;
   display: grid;
 }
 
 .button{
-  background-image: linear-gradient(to right, rgba(199, 137, 108, 0.959), rgb(110, 61, 21)); 
-  color: darken($color: #0f0f0f, $amount: 0); 
+  background-image: linear-gradient(to right, rgba(113, 4, 163, 0.959), rgb(65, 7, 77)); 
+  color: darken($color: #dd5cd7, $amount: 0); 
   border-radius: 30px;
   font-family: 'Poppins', sans-serif;
   border: 2px solid black;
-  box-shadow: 0 4px 8px 0 rgb(223, 166, 166), 0 6px 20px 0 rgb(212, 134, 69);
+  box-shadow: 0 4px 8px 0 rgb(248, 178, 233), 0 6px 20px 0 rgb(248, 134, 210);
 }
 
 .image { 
