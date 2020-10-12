@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./memory-board.page.scss'],
 })
 export class MemoryBoardPage implements OnInit {
-  timeLeft: number = 40;
+  timeLeft = 40;
   currentIndex: any;
   temporaryValue: any;
   // arr:any=[1,1,2,2,3,3,4,4,5,5,6,6]
@@ -27,18 +27,20 @@ export class MemoryBoardPage implements OnInit {
   val: number;
   valueAss2: string;
   pairsum: number;
-  pair1: number = 0;
-  pair2: number = 14;
+  pair1 = 0;
+  pair2 = 0;
   flipping = false;
   isflipped = false;
   i = 0;
   state = 'normal';
   names: any;
+  flip1: number;
   loggedUser: string;
   roomToken: number;
   memberChance: any;
   flippingState: boolean;
   images: any;
+  flip2: any;
 
   // first argument is for back-image and second argument is for front-image
   cards: memoryCards[] = [
@@ -103,6 +105,7 @@ export class MemoryBoardPage implements OnInit {
     new memoryCards('https://tse3.mm.bing.net/th?id=OIP.fPwNkLmKV_nFUe13_oz1iQHaE8&pid=Api&P=0&w=234&h=157',
                     'https://tse1.mm.bing.net/th?id=OIP.nzqcNBda6adpBXavP_8rawHaHa&pid=Api&P=0&w=300&h=300'),
   ];
+  display: string;
   constructor(public loadingController: LoadingController,
               public db: AngularFireDatabase,
               private zone: NgZone,
@@ -117,8 +120,6 @@ export class MemoryBoardPage implements OnInit {
   ngOnInit(){
       this.startTimer(); 
   }
-
-
 
   // Create a reference to the file we want to download
   getImages(){
@@ -158,27 +159,35 @@ export class MemoryBoardPage implements OnInit {
 
 
 
-flip(i){
-  let flipped = false;
-  const obj = this.cards[i];
-  obj.flipped = !obj.flipped;
-  flipped = obj.flipped;
-  console.log(flipped);
-}
+  fliping1(h: any){
+    let flipped = false;
+    const obj = this.cards[h];
+    obj.flipped = !obj.flipped;
+    flipped = obj.flipped;
+    console.log(flipped);
+  }
+
+  fliping2(i: any){
+    let flipped = false;
+    const obj = this.cards[i];
+    obj.flipped = !obj.flipped;
+    flipped = obj.flipped;
+    console.log(flipped);
+  }
 
 
 
   // click 1 of the member
-  click_1(val: number, value1: string){
+  click_1(val1: number, value1: string){
 
-    console.log('Click chance 1 card clicked ' + val + ' . Its value is ' + value1);
+    console.log('Click chance 1 card clicked ' + val1 + ' . Its value is ' + value1);
     // this.http.post<any>('', {memberchn: this.memberChance, divid: val, imgid: value1, flipSt: true}).subscribe(res => {
     //   console.log(res);
-    // });
-
+    // });,
     this.click = 2;
     this.valueAss1 = value1;
-    this.flip(val);
+    this.flip1 = val1;
+    this.fliping1(this.flip1);
 
     // const ref = this.db.database.ref('rooms/room_' + this.roomToken);
     // ref.once('value', snapshot => {
@@ -192,8 +201,8 @@ flip(i){
   }
 
   // click 2 of the member
-  click_2(val: number, value2: string){
-    console.log( 'Click chance 2 card clicked ' + val + ' . Its value is ' + value2);
+  click_2(val2: number, value2: string){
+    console.log( 'Click chance 2 card clicked ' + val2 + ' . Its value is ' + value2);
     this.click = 1;
     // this.http.post<any>('', {memberchn: this.memberChance, divid: val, imgid: value2, flipSt: true}).subscribe(res => {
     //   console.log(res);
@@ -203,10 +212,10 @@ flip(i){
     // } else {
     //   this.memberChance++;
     // }
-
+    this.flip2 = val2;
+    this.fliping2(this.flip2);
     this.valueAss2 = value2;
     this.match();
-    this.flip(val);
   }
 
 
@@ -216,11 +225,15 @@ flip(i){
         console.log('Cards are same');
         this.pair1 = this.pair1 + 1;
         console.log('Pairs ' + this.pair1);
+        this.fliping1(this.flip1);
+        setTimeout(() => { this.fliping2(this.flip2) }, 400);
         this.winner();
       }
       else{
         console.log('Cards are  different');
         console.log('Pairs ' + this.pair1);
+        this.fliping1(this.flip1);
+        setTimeout(() => { this.fliping2(this.flip2) }, 400);
       }
   }
   winner(){
