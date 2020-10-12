@@ -57,18 +57,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
 
-
-
- 
-
-
-
 ];
-
-
- 
-
-
 
 
 
