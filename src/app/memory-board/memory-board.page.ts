@@ -110,13 +110,10 @@ export class MemoryBoardPage implements OnInit {
               private auth: AuthserviceService,
               private http: HttpClient,
               private storage: AngularFireStorage){}
-  ngOnInit(): void {
-    this.startTimer();
-    throw new Error('Method not implemented.');
+
+  ngOnInit(){
+    
   }
-
-
-
   // Create a reference to the file we want to download
   getImages(){
     for (let i = 1; i <= 15; i++){
@@ -177,7 +174,7 @@ flip(i){
     this.valueAss1 = value1;
     this.flip(val);
 
-    // const ref = this.db.database.ref('rooms/room_' + this.roomToken);
+    // const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken);
     // ref.once('value', snapshot => {
     //   this.flippingState = snapshot.child('flipState').val();
 
