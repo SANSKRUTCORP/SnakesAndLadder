@@ -12,6 +12,7 @@ import { AuthserviceService } from 'src/app/services/authservices.service';
   styleUrls: ['./join-room.component.scss'],
 })
 export class JoinRoomComponent implements OnInit {
+
   roomNo: any;
   uid: any;
   constructor(private modalController: ModalController,

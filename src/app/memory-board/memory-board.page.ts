@@ -1,12 +1,14 @@
 
 import { Component, OnInit, NgZone  } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import {memoryCards} from './memory-board.model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { AuthserviceService } from '../services/authservices.service';
 import { HttpClient } from '@angular/common/http';
+import { JoinRoomComponent } from '../rooms/join-room/join-room.component';
+import { MemoryWinComponent } from './memory-win/memory-win.component';
 
 @Component({
   selector: 'app-memory-board',
@@ -41,6 +43,7 @@ export class MemoryBoardPage implements OnInit {
   flippingState: boolean;
   images: any;
   flip2: any;
+  display: string;
 
   // first argument is for back-image and second argument is for front-image
   cards: memoryCards[] = [
@@ -105,22 +108,37 @@ export class MemoryBoardPage implements OnInit {
     new memoryCards('',
                     ''),
   ];
-  display: string;
   constructor(public loadingController: LoadingController,
+               private modalController: ModalController,
               public db: AngularFireDatabase,
               private zone: NgZone,
               private route: ActivatedRoute,
               private auth: AuthserviceService,
               private http: HttpClient,
               private storage: AngularFireStorage){}
+
+              popup() {
+                const modal = this.modalController
+                  .create({
+                    component: MemoryWinComponent,
+                    cssClass: 'my-custom-modal-css',
+                    showBackdrop: true,
+                    backdropDismiss: false,
+                    swipeToClose: true
+                  })
+                  .then(popElement => {
+                    popElement.present(),
+                      popElement.onDidDismiss().then(resp => {
+                      });
+                  });
+              }
   // ngOnInit(): void {
   //   this.startTimer();
   //   throw new Error('Method not implemented.');
   // }
   ngOnInit(){
       this.startTimer();
-      this.getImages();
-      
+      this.getImages(); 
   }
 
   // Create a reference to the file we want to download
@@ -160,10 +178,25 @@ export class MemoryBoardPage implements OnInit {
 
   }
 
+  disable1(i){
+    let disable = false;
+    const obj = this.cards[i];
+    obj.disable = !obj.disable;
+    disable = obj.disable;
+    console.log(disable);
+  }
+  disable2(i){
+    let disable = false;
+    const obj = this.cards[i];
+    obj.disable = !obj.disable;
+    disable = obj.disable;
+    console.log(disable);
+  }
 
-  fliping1(h: any){
+
+  fliping1(i: any){
     let flipped = false;
-    const obj = this.cards[h];
+    const obj = this.cards[i];
     obj.flipped = !obj.flipped;
     flipped = obj.flipped;
     console.log(flipped);
@@ -191,7 +224,7 @@ export class MemoryBoardPage implements OnInit {
     this.flip1 = val1;
     this.fliping1(this.flip1);
 
-    // const ref = this.db.database.ref('rooms/room_' + this.roomToken);
+    // const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken);
     // ref.once('value', snapshot => {
     //   this.flippingState = snapshot.child('flipState').val();
 
@@ -227,8 +260,8 @@ export class MemoryBoardPage implements OnInit {
         console.log('Cards are same');
         this.pair1 = this.pair1 + 1;
         console.log('Pairs ' + this.pair1);
-        this.fliping1(this.flip1);
-        setTimeout(() => { this.fliping2(this.flip2) }, 400);
+        this.disable1(this.flip1);
+        setTimeout(() => { this.disable2(this.flip2); }, 400);
         this.winner();
         this.matchAudio();
       }
@@ -236,7 +269,7 @@ export class MemoryBoardPage implements OnInit {
         console.log('Cards are  different');
         console.log('Pairs ' + this.pair1);
         this.fliping1(this.flip1);
-        setTimeout(() => { this.fliping2(this.flip2) }, 400);
+        setTimeout(() => { this.fliping2(this.flip2); }, 400);
       }
   }
   winner(){

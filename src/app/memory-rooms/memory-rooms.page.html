@@ -1,37 +1,60 @@
 
-<ion-content>
+
   <ion-grid class="background-img">
       <div class="background-box">
         <ion-row class="ion-text-center" >
             <ion-col size-lg="12">
                   <div>
                       <span class="fontStyles">
-                          Hello 
-                          <!-- {{this.rmService.userName}}! -->
+                          Hello {{rmService.userName}}!
                       </span>
                   </div>
                   
                   <div>
                       <span class="fontStyles1">
-                          Total Gameplays : 
-                          <!-- {{this.rmService.gplay}} -->
+                          Total Gameplays : {{rmService.gplay}}
                       </span>
                   </div>
                  
                   <div>
                       <span class="fontStyles1">
-                          Total Wins : 
-                          <!-- {{this.rmService.wins}} -->
+                          Total Wins : {{rmService.wins}}
                       </span>
                   </div>
+
+                  <ion-row class="ion-justify-content-center">
+                    <ion-col>
+                        <ion-button class="grad" routerLink="/memory-createroom" (click)="this.onClick()" expand="block" shape="round" fill="clear">
+                            <span>Create Room</span>
+                            <ion-icon name="add-outline"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+  
+                 <ion-row class="ion-justify-content-center">
+                    <ion-col>
+                        <ion-button (click)="popup()" class="grad" expand="block" shape="round" fill="clear">
+                            <span>Join Room</span>
+                            <ion-icon name="enter-outline"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row> 
+                    
+                <ion-row class="ion-justify-content-center">
+                    <ion-col>
+                        <ion-button (click)="this.rmService.signOut()" routerLink="/home" class="grad" expand="block" shape="round" fill="clear">
+                            <span>Sign Out<ion-icon name="refresh-outline"></ion-icon></span>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
                         
             </ion-col>
-         </ion-row>
 
+         </ion-row>
 
               <ion-row class="ion-justify-content-center">
                   <ion-col size="6.7">
-                      <ion-button class="grad" routerLink="/memory-createroom" (click)="this.onClick()" expand="block" shape="round" fill="clear">
+                      <ion-button class="grad" (click)="this.onClick()" expand="block" shape="round" fill="clear">
                           <span>Create Room</span>
                           <ion-icon name="add-outline"></ion-icon>
                       </ion-button>
@@ -58,4 +81,3 @@
       
     
   </ion-grid>
-</ion-content>

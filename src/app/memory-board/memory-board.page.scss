@@ -58,8 +58,16 @@
     transition: transform .2s;
   }
   .flipped  {
-		transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    
   }
+  .disable  {
+    opacity: 0.3 ;
+    pointer-events: none;
+    
+  }
+
+  
  
   
   .front-face,
