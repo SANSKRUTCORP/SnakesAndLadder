@@ -9,12 +9,14 @@
           <div  class="memory-class" 
                (click)="flipAudio()"
                *ngFor="let card of cards;index as i" 
-               [ngClass]="{'flipped': card.flipped }"
+               [ngClass]="{'flipped': card.flipped ,'disable': card.disable }"
+             
+
           >
         
-          <div *ngIf="this.click==1"(click)="click_1(i,card.frontImage)" >
-            <div >
-              <img class="back-face" src="../../assets/arrow.png" alt=""> 
+          <div *ngIf="this.click==1" (click)="click_1(i,card.frontImage)"  >
+            <div>
+              <img class="back-face" src="../../assets/arrow.png" alt="" > 
             </div>
             <div class="front-face" 
               >
