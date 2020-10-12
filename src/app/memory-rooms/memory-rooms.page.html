@@ -1,9 +1,9 @@
 
 
   <ion-grid class="background-img">
-      
-       <ion-row class="ion-text-center ">
-            <ion-col class="background-box">
+      <div class="background-box">
+        <ion-row class="ion-text-center" >
+            <ion-col size-lg="12">
                   <div>
                       <span class="fontStyles">
                           Hello {{rmService.userName}}!
@@ -61,6 +61,23 @@
                   </ion-col>
               </ion-row>
 
-            
-           
+               <ion-row class="ion-justify-content-center">
+                  <ion-col size="6.7">
+                      <ion-button (click)="popup()" class="grad" expand="block" shape="round" fill="clear">
+                          <span>Join Room</span>
+                          <ion-icon name="enter-outline"></ion-icon>
+                      </ion-button>
+                  </ion-col>
+              </ion-row> 
+                  
+              <ion-row class="ion-justify-content-center">
+                  <ion-col size="6.7">
+                      <ion-button (click)="this.rmService.signOut()" routerLink="/home" class="grad" expand="block" shape="round" fill="clear">
+                          <span>Sign Out<ion-icon name="refresh-outline"></ion-icon></span>
+                      </ion-button>
+                  </ion-col>
+              </ion-row>
+      </div>
+      
+    
   </ion-grid>

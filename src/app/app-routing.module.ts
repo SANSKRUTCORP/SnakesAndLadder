@@ -30,11 +30,6 @@ const routes: Routes = [
   // {
   //   path: 'memory-board',
   //   loadChildren: () => import('./memory-board/memory-board.module').then( m => m.MemoryBoardPageModule),
-
-  // },
-  // {
-  //   path: 'memory-card',
-  //   loadChildren: () => import('./memory-card/memory-card.module').then( m => m.MemoryCardPageModule)
   // },
   {
     path: 'memory-board',
