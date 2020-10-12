@@ -1,0 +1,63 @@
+
+<ion-content>
+
+  <ion-grid class="background-img"> 
+
+    <ion-row class="space ion-text-center">
+      <ion-col>
+
+        <ion-row class="ion-text-center">
+          <ion-col>
+           <span class="font">Room Creator :
+              <!-- <img class="sizing" src="../../assets/tok1.png">
+             {{this.crService.leader}} -->
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <span class="font">
+              Room number : 
+            </span>
+            <!-- <input class="boxStyle" type="text" readonly [(ngModel)]="roomT">
+              <ion-button class="butStyle" cdkCopyToClipboard="{{roomT}}" matTooltip="Copy to clipboard">
+                <ion-icon name="copy-outline"></ion-icon> -->
+              <!-- </ion-button> -->
+        </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <span class="font"><u>Joined player</u></span>
+          </ion-col>
+        </ion-row>
+
+          <ion-row class="ion-text-center" >
+                      <!-- *ngFor="let name of this.crService.names; index as i" -->
+                      
+            <ion-col>
+            <span class="font">
+              <!-- <img *ngIf="name!=null" class="sizing" src="../../assets/tok{{i+2}}.png"> 
+              {{name}} -->
+            </span>
+          </ion-col>
+          </ion-row> 
+
+       </ion-col> 
+       
+   </ion-row>
+        
+    
+    <ion-row> 
+     <ion-col class="ion-padding-top  padding"  >
+      <!-- *ngIf="this.crService.truth" -->
+       <ion-button class="grad" fill="clear" routerLink="/memory-board">
+       <!-- (click)="this.crService.onClick()" [disabled]="crService.names[0]==null"  -->
+        <span >Start</span> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+       </ion-button>
+     </ion-col>
+   </ion-row>
+
+  </ion-grid>   
+</ion-content>    

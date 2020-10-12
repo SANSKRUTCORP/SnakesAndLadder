@@ -1,0 +1,59 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+
+.bg{
+    background-image: url('/assets/memory-join.jpg');
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 10px solid #08043f;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+}
+.grad{
+    font-family: 'Poppins', sans-serif;
+    border: 3px solid #071938;
+    border-radius: 10%;
+    color: #180e02;
+    background-color: #bacbd8
+    ;
+}
+
+.font{
+    font-family: 'Indie Flower', cursive;
+    color: #eaf2f3;
+  }
+  .input{
+      background-color:#bacbd8;
+      color: #041336;
+      border: 2px solid #071938;
+  }
+@media only screen and (min-width:250px) and (max-width:576px){
+    .image{
+        width: 50%;
+        // padding-top: 6%;
+    }
+}
+
+@media only screen and (min-width:576px) and (max-width:900px) {
+    .image{
+        max-width: 63%;
+    }
+}
+
+@media only screen and (min-width:900px) and (max-width:1200px) {
+    .image{
+        max-width: 60%;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .image{
+        max-width: 58%;
+    }
+}
+
