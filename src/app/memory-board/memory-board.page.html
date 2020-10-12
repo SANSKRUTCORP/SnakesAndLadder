@@ -6,11 +6,11 @@
           <span class="timer"><b>{{timeLeft}} second left </b></span>
       </ion-row>
       <ion-row class="memory-game" class="ion-justify-content-center" style="height: 80%;">
-          <!-- <div class="memory-class"  
+          <div class="memory-class"  
                (click)="flipAudio()" 
                *ngFor="let card of cards;index as i" 
                [@divState]="state"
-               (click)="flip(i)"
+               (click)="click_1(i,card.frontImage)"
                [class.flipped]="flipped"
           >
             <div >
@@ -47,20 +47,17 @@
             <ion-col class="ion-align-self-center" size="6">
               <span style="color: white;font-size: 200%;">:bnjhjhjhj</span>
             </ion-col>    
-          </ion-row>  -->
-
-         <div class="memory-class"  (click)="flipAudio()" *ngFor="let card of cards;index as i">
-             <!-- <button  #btn1  id="btn1"  (click)="click_1(this.cards[i])" [disabled]="false" style="height: 100px;width:100px" (click)="toggle(btn1)" > -->
+          </ion-row> 
+      </ion-col>
+         <!-- <div class="memory-class"  (click)="flipAudio()" *ngFor="let card of cards;index as i">
               <div *ngIf="this.click==1" >
-                <img class="back-face" [src]="card.back-Image" alt=""  >     
+                <img class="back-face" [src]="card.backImage" alt=""  >     
                 <img class="front-face" [src]="card.frontImage" alt="" (click)="click_1(i,card.frontImage)"> 
               </div>    
               <div *ngIf="this.click==2" >
-                <img class="back-face" [src]="card.back-Image" alt=""  >     
+                <img class="back-face" [src]="card.backImage" alt=""  >     
                 <img class="front-face" [src]="card.frontImage" alt="" (click)="click_2(i,card.frontImage)"> 
-              </div>
-              <!-- <img *ngIf="imageUrl" [src]="imageUrl"> -->
-                
+              </div>                
                
         </div> 
       </ion-row>
@@ -69,6 +66,6 @@
     
     <ion-col size-lg="3"  size-md="3" size-sm="12" size-xs="12">
       player 2 
-    </ion-col>
+    </ion-col> -->
   </ion-row>
 </ion-grid>
