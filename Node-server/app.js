@@ -339,7 +339,7 @@ app.get('/apis/mmry/createroom', (req, res) => {
                 var userID = userRecord.uid;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, memberChance: 1})
+                    .set({ roomid: roomToken, memberChance: 1, flipState: false})
                     .then(() => {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
@@ -478,6 +478,7 @@ app.post('/apis/mmry/setvalues/:id', (req, res) => {
     var playerNo = req.body.memberChance;
     var roomToken = req.params.id;
     var divid = req.body.divID;
+    var flip = req.body.flipSt;
     var imgid = req.body.imgID;
     var clickNo = req.body.clickNum;
 
@@ -507,6 +508,9 @@ app.post('/apis/mmry/setvalues/:id', (req, res) => {
             })
 
     })
+
+    ref = firedb_m.ref('/rooms/room_' + roomToken);
+    ref.child('flipState').update({flipState: flip});
 
 
 });
