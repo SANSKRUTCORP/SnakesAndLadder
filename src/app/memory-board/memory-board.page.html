@@ -1,0 +1,77 @@
+<ion-grid  class="grid">
+  <ion-row  class="main-row">
+    
+    <ion-col size-lg="6" size-md="3" size-sm="12" size-xs="12" class="card-col">
+      <ion-row style="padding: 5%;" class="ion-justify-content-center" >
+          <span class="timer"><b>{{timeLeft}} second left </b></span>
+      </ion-row>
+      <ion-row class="memory-game" class="ion-justify-content-center" style="height: 80%;">
+          <div  class="memory-class" 
+               (click)="flipAudio()"
+               *ngFor="let card of cards;index as i" 
+               [ngClass]="{'flipped': card.flipped }"
+                    
+          >
+          <div  (click)="flip(i)" >
+            <div >
+              <img class="back-face" src="../../assets/arrow.png" alt=""> 
+            </div>
+            <div class="front-face" 
+              >
+            </div> 
+          </div>
+                             
+        </div>  
+      </ion-row>
+       
+    </ion-col>
+    <ion-col size-lg="3" size-md="3" size-sm="12" size-xs="12"  class="ion-align-self-center ">
+      <ion-row class="ion-justify-content-center player" >
+          <h1 style="font-size: 200%;">Player-1 </h1> 
+      </ion-row>
+      <ion-row >
+        <ion-col class="ion-align-self-center " size="4">
+          <img src="../../assets/cards.png" alt="">
+        </ion-col>
+        <ion-col class="ion-align-self-center" size="6">
+          <span style="font-size: 200%;">bnjhjhjhj</span>
+        </ion-col>    
+      </ion-row>  
+    </ion-col>
+    <ion-col size-lg="3"  size-md="3" size-sm="12" size-xs="12"  class="ion-align-self-center " >
+          <ion-row class="ion-justify-content-center playerTwo">
+              <h1 style="font-size: 200%;">Player-2 </h1> 
+          </ion-row>
+          <ion-row >
+            <ion-col  size="4">
+              <img src="../../assets/cards.png" alt="">
+            </ion-col>
+            <ion-col class="ion-align-self-center" size="6" >
+              <span style="color: white;font-size: 200%;">bnjhjhjhj</span>
+            </ion-col>    
+          </ion-row> 
+      </ion-col>
+         <!-- <div class="memory-class"  (click)="flipAudio()" *ngFor="let card of cards;index as i">
+              <div *ngIf="this.click==1" >
+                <img class="back-face" [src]="card.backImage" alt=""  >     
+                <img class="front-face" [src]="card.frontImage" alt="" (click)="click_1(i,card.frontImage)"> 
+              </div>    
+              <div *ngIf="this.click==2" >
+                <img class="back-face" [src]="card.backImage" alt=""  >     
+                <img class="front-face" [src]="card.frontImage" alt="" (click)="click_2(i,card.frontImage)"> 
+          </div> -->
+           
+                
+<!--                
+              </div>                
+               
+        </div> 
+      </ion-row>
+       
+    </ion-col>
+    
+    <ion-col size-lg="3"  size-md="3" size-sm="12" size-xs="12">
+      player 2 
+    </ion-col> -->
+  </ion-row>
+</ion-grid>
