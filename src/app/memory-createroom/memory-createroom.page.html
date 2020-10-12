@@ -32,9 +32,9 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-text-center" *ngFor="let name of crService.names; index as i">
+        <ion-row class="ion-text-center">
           <ion-col>
-            <span class="font">{{name}}</span>
+            <span class="font">{{crService.player2}}</span>
           </ion-col>
         </ion-row> 
 
@@ -47,7 +47,7 @@
      <ion-col class="ion-padding-top  padding" *ngIf="crService.truth">
        <ion-button  class="grad" fill="clear"
                     (click)="crService.onClick()" 
-                    [disabled]="crService.names[0]==null" > 
+                    [disabled]="crService.player2==null" > 
         <span >Start</span> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
        </ion-button>
      </ion-col>
