@@ -401,7 +401,7 @@ app.post('/apis/mmry/joinroom', (req, res) => {
                         console.log(err);
                     });
                 
-                var roomRef1 = firedb.ref('memoryrooms/room_'+roomToken+'/players/player_2');
+                var roomRef1 = firedb.ref('memory/rooms/room_'+roomToken+'/players/player_2');
                 roomRef1.child('click1').set({div_id: 0, image_id: 0})
                         .then(() => {
                             return res.send(true);
@@ -438,7 +438,7 @@ app.post('/apis/mmry/setGameStats', (req, res) => {
     let winSnap;
     let gplaySnap;
     let playersid;
-    const ref = firedb.ref('memoryrooms/room_'+roomID+'/players');
+    const ref = firedb.ref('memory/rooms/room_'+roomID+'/players');
     
     ref.once('value', snapshot => {
         if(snapshot!=null || snapshot!=undefined){
