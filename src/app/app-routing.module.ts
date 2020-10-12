@@ -30,7 +30,6 @@ const routes: Routes = [
   // {
   //   path: 'memory-board',
   //   loadChildren: () => import('./memory-board/memory-board.module').then( m => m.MemoryBoardPageModule),
-    
   // },
   {
     path: 'memory-card',
@@ -52,11 +51,6 @@ const routes: Routes = [
     path: 'memory-createroom',
     loadChildren: () => import('./memory-createroom/memory-createroom.module').then( m => m.MemoryCreateroomPageModule)
   },
-
-
-
- 
-
 
 
 ];

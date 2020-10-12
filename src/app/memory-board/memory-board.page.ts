@@ -110,9 +110,12 @@ export class MemoryBoardPage implements OnInit {
               private auth: AuthserviceService,
               private http: HttpClient,
               private storage: AngularFireStorage){}
-  ngOnInit(): void {
-    this.startTimer();
-    throw new Error('Method not implemented.');
+  // ngOnInit(): void {
+  //   this.startTimer();
+  //   throw new Error('Method not implemented.');
+  // }
+  ngOnInit(){
+      this.startTimer(); 
   }
 
 
