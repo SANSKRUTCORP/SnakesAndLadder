@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import {memoryCards} from './memory-board.model';
@@ -6,16 +6,9 @@ import {memoryCards} from './memory-board.model';
   selector: 'app-memory-board',
   templateUrl: './memory-board.page.html',
   styleUrls: ['./memory-board.page.scss'],
-  animations: [
-    trigger('divState', [
-      state('normal', style({})),
-      state('flip', style({})),
-      // transition('normal=>filp', animate(300)),
-    ])
-  ]
 })
 export class MemoryBoardPage implements OnInit {
-  timeLeft: number = 60;
+  timeLeft: number = 40;
   currentIndex: any;
   temporaryValue: any;
   // arr:any=[1,1,2,2,3,3,4,4,5,5,6,6]
@@ -31,7 +24,7 @@ export class MemoryBoardPage implements OnInit {
   pair1: number = 0;
   pair2: number = 14;
   flipping = false;
-  flipped = false;
+  isflipped = false;
   i = 0;
   state = 'normal';
 
@@ -171,9 +164,13 @@ onFlip(){
   this.state === ' normal' ? this.state = 'highlighted' : this.state = 'normal';
   console.log('flip me!');
 }
-flip(card){
-  this.flipped = !this.flipped;
-  console.log(card);
+
+flip(i){
+  let flipped = false;
+  const obj = this.cards[i];
+  obj.flipped = !obj.flipped;
+  flipped = obj.flipped;
+  console.log(flipped);
 }
 
 
@@ -206,7 +203,7 @@ startTimer() {
     audio.play();
   }
   flipAudio(){
-    const audio = new Audio('../assets/flip.mpeg'); // audio play on flip of card
+    const audio = new Audio('../assets/flipper.mpeg'); // audio play on flip of card
     audio.play();
   }
   // tslint:disable-next-line: adjacent-overload-signatures
@@ -215,5 +212,4 @@ startTimer() {
     this.startTimer();
     // this.shuffle(this.cards);
     }
-
 }
