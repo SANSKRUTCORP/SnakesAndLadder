@@ -1,5 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Concert+One&family=Sansita+Swashed:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 
 .background-img {
   background: url("/assets/memory-bg.png");
@@ -11,21 +13,19 @@
   width: 100%;
 }
 
+.background-box{
+ background-color: #81b0f0;
+ border: 5px solid #0a0a5f;
+}
+
 .font{
-  font-family: "Indie Flower", cursive;
+  font-family: 'Chewy', cursive;
   color: #090c51;
   font-weight: 600;
   font-size: 40px;
   text-align: center;
 }
 
-// .textStyle{
-//   font-family: "Indie Flower", cursive;
-//   color: rgb(255, 212, 183);
-//   font-weight: 600;
-//   font-size: 40px;
-//   text-align: center;
-// }
 
 .boxStyle{
   background-color: transparent;
@@ -33,7 +33,7 @@
   width: 140px;
   margin-left: 15px;
   font-size: 40px;
-  font-family: "Indie Flower", cursive;
+  font-family: 'Chewy', cursive;
   color: rgb(255, 212, 183);
   font-weight: 600;
 }
@@ -76,7 +76,7 @@
   background-color:#710ee8;
   color: black;
   border-radius: 40px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Patrick Hand SC', cursive;
   border: 2px solid rgb(14, 13, 13);
 }
 

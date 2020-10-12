@@ -21,12 +21,13 @@ import { TokenInterceptor } from './services/auth.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { MemoryJoinRoomComponent } from './memory-rooms/memory-join-room/memory-join-room.component';
+import { MemoryWinComponent } from './memory-board/memory-win/memory-win.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
 @NgModule({
-  declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent, MemoryJoinRoomComponent ],
+  declarations: [AppComponent, JoinRoomComponent, WinComponent, AllComponent, MemoryJoinRoomComponent, MemoryWinComponent ],
   entryComponents: [],
   imports: [
     // BrowserAnimationsModule,

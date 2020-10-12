@@ -30,41 +30,34 @@ const routes: Routes = [
   // {
   //   path: 'memory-board',
   //   loadChildren: () => import('./memory-board/memory-board.module').then( m => m.MemoryBoardPageModule),
-    
+
   // },
-  {
-    path: 'memory-card',
-    loadChildren: () => import('./memory-card/memory-card.module').then( m => m.MemoryCardPageModule)
-  },
+  // {
+  //   path: 'memory-card',
+  //   loadChildren: () => import('./memory-card/memory-card.module').then( m => m.MemoryCardPageModule)
+  // },
   {
     path: 'memory-board',
     loadChildren: () => import('./memory-board/memory-board.module').then( m => m.MemoryBoardPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'game-option',
-    loadChildren: () => import('./game-option/game-option.module').then( m => m.GameOptionPageModule)
+    loadChildren: () => import('./game-option/game-option.module').then( m => m.GameOptionPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'memory-rooms',
-    loadChildren: () => import('./memory-rooms/memory-rooms.module').then( m => m.MemoryRoomsPageModule)
+    loadChildren: () => import('./memory-rooms/memory-rooms.module').then( m => m.MemoryRoomsPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'memory-createroom',
-    loadChildren: () => import('./memory-createroom/memory-createroom.module').then( m => m.MemoryCreateroomPageModule)
+    loadChildren: () => import('./memory-createroom/memory-createroom.module').then( m => m.MemoryCreateroomPageModule),
+    canActivate: [AuthGuardService]
   },
 
-
-
- 
-
-
-
 ];
-
-
- 
-
-
 
 
 

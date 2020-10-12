@@ -16,7 +16,6 @@ import { RoomsService } from './rooms.service';
     CommonModule,
     FormsModule,
     IonicModule,
-    // HttpClient,
     HttpClientModule,
     RoomsPageRoutingModule
   ],

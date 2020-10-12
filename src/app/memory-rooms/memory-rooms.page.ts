@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { MemoryJoinRoomComponent } from './memory-join-room/memory-join-room.component';
+import { MemoryRoomsService } from './memory-rooms.service';
 
 @Component({
   selector: 'app-memory-rooms',
@@ -8,8 +10,28 @@ import { MemoryJoinRoomComponent } from './memory-join-room/memory-join-room.com
   styleUrls: ['./memory-rooms.page.scss'],
 })
 export class MemoryRoomsPage implements OnInit {
+  roomID: any;
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, public rmService: MemoryRoomsService, private router: Router) {}
+
+  ngOnInit() {
+    // this.rmService.auth.getToken();
+    // debugger;
+    this.rmService.displayName();
+    this.rmService.getStats();
+  }
+
+
+  onClick(){
+    this.rmService.getRoomToken().subscribe(res => {
+      this.roomID = res.room_token;
+      this.router.navigate(['/memory-createroom'], {
+        queryParams: {room : this.roomID}
+      });
+
+    });
+  }
+
 
   popup() {
     const modal = this.modalController
@@ -25,9 +47,6 @@ export class MemoryRoomsPage implements OnInit {
           popElement.onDidDismiss().then(resp => {
           });
       });
-  }
-
-  ngOnInit() {
   }
 
 }

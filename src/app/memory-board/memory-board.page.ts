@@ -1,12 +1,14 @@
 
 import { Component, OnInit, NgZone  } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import {memoryCards} from './memory-board.model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
 import { AuthserviceService } from '../services/authservices.service';
 import { HttpClient } from '@angular/common/http';
+import { JoinRoomComponent } from '../rooms/join-room/join-room.component';
+import { MemoryWinComponent } from './memory-win/memory-win.component';
 
 @Component({
   selector: 'app-memory-board',
@@ -107,16 +109,34 @@ export class MemoryBoardPage implements OnInit {
                     'https://tse1.mm.bing.net/th?id=OIP.nzqcNBda6adpBXavP_8rawHaHa&pid=Api&P=0&w=300&h=300'),
   ];
   constructor(public loadingController: LoadingController,
+               private modalController: ModalController,
               public db: AngularFireDatabase,
               private zone: NgZone,
               private route: ActivatedRoute,
               private auth: AuthserviceService,
               private http: HttpClient,
               private storage: AngularFireStorage){}
+
+              popup() {
+                const modal = this.modalController
+                  .create({
+                    component: MemoryWinComponent,
+                    cssClass: 'my-custom-modal-css',
+                    showBackdrop: true,
+                    backdropDismiss: false,
+                    swipeToClose: true
+                  })
+                  .then(popElement => {
+                    popElement.present(),
+                      popElement.onDidDismiss().then(resp => {
+                      });
+                  });
+              }
   // ngOnInit(): void {
   //   this.startTimer();
   //   throw new Error('Method not implemented.');
   // }
+
   ngOnInit(): void{
     this.startTimer();
   }
@@ -205,7 +225,7 @@ export class MemoryBoardPage implements OnInit {
     this.flip1 = val1;
     this.fliping1(this.flip1);
 
-    // const ref = this.db.database.ref('rooms/room_' + this.roomToken);
+    // const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken);
     // ref.once('value', snapshot => {
     //   this.flippingState = snapshot.child('flipState').val();
 
