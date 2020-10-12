@@ -109,7 +109,7 @@ export class MemoryBoardPage implements OnInit {
                     'https://tse1.mm.bing.net/th?id=OIP.nzqcNBda6adpBXavP_8rawHaHa&pid=Api&P=0&w=300&h=300'),
   ];
   constructor(public loadingController: LoadingController,
-               private modalController: ModalController,
+              private modalController: ModalController,
               public db: AngularFireDatabase,
               private zone: NgZone,
               private route: ActivatedRoute,
@@ -177,14 +177,7 @@ export class MemoryBoardPage implements OnInit {
 
   }
 
-  disable1(i){
-    let disable = false;
-    const obj = this.cards[i];
-    obj.disable = !obj.disable;
-    disable = obj.disable;
-    console.log(disable);
-  }
-  disable2(i){
+  disable(i){
     let disable = false;
     const obj = this.cards[i];
     obj.disable = !obj.disable;
@@ -192,26 +185,13 @@ export class MemoryBoardPage implements OnInit {
     console.log(disable);
   }
 
-
-
-
-  fliping1(i){
+  fliping(i){
     let flipped = false;
     const obj = this.cards[i];
     obj.flipped = !obj.flipped;
     flipped = obj.flipped;
     console.log(flipped);
   }
-
-  fliping2(i: any){
-    let flipped = false;
-    const obj = this.cards[i];
-    obj.flipped = !obj.flipped;
-    flipped = obj.flipped;
-    console.log(flipped);
-  }
-
-
 
   // click 1 of the member
   click_1(val1: number, value1: string){
@@ -223,7 +203,7 @@ export class MemoryBoardPage implements OnInit {
     this.click = 2;
     this.valueAss1 = value1;
     this.flip1 = val1;
-    this.fliping1(this.flip1);
+    this.fliping(this.flip1);
 
     // const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken);
     // ref.once('value', snapshot => {
@@ -249,7 +229,7 @@ export class MemoryBoardPage implements OnInit {
     //   this.memberChance++;
     // }
     this.flip2 = val2;
-    this.fliping2(this.flip2);
+    this.fliping(this.flip2);
     this.valueAss2 = value2;
     this.match();
   }
@@ -261,15 +241,15 @@ export class MemoryBoardPage implements OnInit {
         console.log('Cards are same');
         this.pair1 = this.pair1 + 1;
         console.log('Pairs ' + this.pair1);
-        this.disable1(this.flip1);
-        setTimeout(() => { this.disable2(this.flip2); }, 400);
+        this.disable(this.flip1);
+        setTimeout(() => { this.disable(this.flip2); }, 400);
         this.winner();
       }
       else{
         console.log('Cards are  different');
         console.log('Pairs ' + this.pair1);
-        this.fliping1(this.flip1);
-        setTimeout(() => { this.fliping2(this.flip2); }, 400);
+        this.fliping(this.flip1);
+        setTimeout(() => { this.fliping(this.flip2); }, 400);
       }
   }
   winner(){
