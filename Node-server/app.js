@@ -7,8 +7,7 @@ const middlew = require("express-firebase-middleware");
 const models = require("./models");
 
 //Initializing Firebase-admin SDK
-var serviceAccount = require('./sanskrut-interns-firebase-adminsdk-jm6gx-b7e8956006.json');
-
+var serviceAccount = require('./sanskrut-interns-firebase-adminsdk.json');
 var firebaseAdmin = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://sanskrut-interns.firebaseio.com"
@@ -519,7 +518,7 @@ app.post('/apis/mmry/setvalues/:id', (req, res) => {
 app.post('/apis/mmry/setState', (req, res) => {
     const roomID = req.body.roomid;
     console.log(roomID);
-    firedb.ref('rooms/room_'+roomID).update({tempState: true}, (error)=>{
+    firedb.ref('memory/rooms/room_'+roomID).update({tempState: true}, (error)=>{
         if(error){
             res.send(error);
         } else {
@@ -534,7 +533,7 @@ app.post('/apis/mmry/setUser', (req, res) => {
     const username = req.body.name;
     const emailid = req.body.email;
     // console.log(uid, username);
-    let ref = firedb.ref('Users');
+    let ref = firedb.ref('memory/Users');
     ref.once('value', snapshot => {
         // console.log(snapshot.val())
         let data = snapshot.val();
