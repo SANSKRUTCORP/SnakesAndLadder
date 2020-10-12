@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Concert+One&family=Sansita+Swashed:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
+// h1{
+//   font-family: 'Indie Flower', cursive;
+//   color: rgb(250, 249, 249);
+// }
+
+.bg{
+  background-color: #1a1673;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.grad{
+  color: #162e89;
+  font-family: 'Patrick Hand SC', cursive;
+  background-color: #5daed1;
+  border-radius: 20px;
+}
+
+.font{
+  font-family: 'Chewy', cursive;
+  font-size: 44px;
+  color: #54d6dc;
+}
+
+@media only screen and (min-width:576px) and (max-width:700px) {
+  .image{
+      max-width: 80%;
+  }
+}
+
+@media only screen and (min-width:700px) and (max-width:900px) {
+  .image{
+      max-width: 64%;
+  }
+}
+
+@media only screen and (min-width:900px) and (max-width:1200px) {
+  .image{
+      max-width: 60%;
+  }
+}
+
+@media only screen and (min-width:1200px)  {
+  .image{
+      max-width: 50%;
+  }
+}
+

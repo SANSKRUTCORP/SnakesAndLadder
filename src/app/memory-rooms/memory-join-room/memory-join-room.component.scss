@@ -1,7 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Concert+One&family=Sansita+Swashed:wght@300&display=swap');
 
 .bg{
     background-image: url('/assets/memory-join.jpg');
@@ -15,7 +15,7 @@
     display: grid;
 }
 .grad{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Patrick Hand SC', cursive;
     border: 3px solid #071938;
     border-radius: 10%;
     color: #180e02;
@@ -24,7 +24,7 @@
 }
 
 .font{
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Chewy', cursive;
     color: #eaf2f3;
   }
   .input{
