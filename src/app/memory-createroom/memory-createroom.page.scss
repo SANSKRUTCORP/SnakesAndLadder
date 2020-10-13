@@ -26,15 +26,25 @@
   text-align: center;
 }
 
+ @media only screen and (max-width: 500px){
+   .font{
+     font-size: 20px;
+   }
 
-.boxStyle{
+   .boxStyle{
+     font: 20px;
+   }
+ }
+
+
+.input-style{
   background-color: transparent;
   border: 0px;
   width: 140px;
   margin-left: 15px;
   font-size: 40px;
   font-family: 'Chewy', cursive;
-  color: rgb(255, 212, 183);
+  color: #363bc0 ;
   font-weight: 600;
 }
 
@@ -73,7 +83,7 @@
 }
 
 .grad {
-  background-color:#710ee8;
+  background-color:#0eb3df;
   color: black;
   border-radius: 40px;
   font-family: 'Patrick Hand SC', cursive;

@@ -31,7 +31,11 @@ export class MemoryRoomsPage implements OnInit {
 
     });
   }
-
+ 
+  Audio(){
+    const audio = new Audio('../assets/button-click.mpeg'); // audio play on flip of card
+    audio.play();
+  }
 
   popup() {
     const modal = this.modalController

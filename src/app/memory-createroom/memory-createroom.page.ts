@@ -12,6 +12,11 @@ export class MemoryCreateroomPage implements OnInit {
 
   constructor(public crService: MemoryCreateroomService, private route: ActivatedRoute) {}
   
+  Audio(){
+    const audio = new Audio('../assets/button-click.mpeg'); // audio play on flip of card
+    audio.play();
+  }
+
   ngOnInit() {
     this.roomT = this.route.snapshot.queryParamMap.get('room');
     this.crService.listenPlayers(this.roomT);

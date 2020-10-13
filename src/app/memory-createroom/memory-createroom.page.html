@@ -4,50 +4,65 @@
   <ion-grid class="background-img"> 
 
     <ion-row class="space ion-text-center">
-      <ion-col class="background-box">
-
-        <ion-row class="ion-text-center">
-          <ion-col>
-           <span class="font">Room Creator :
-             {{crService.leader}}
-            </span>
-          </ion-col>
-        </ion-row>
+      <ion-col class="ion-align-items-center">
 
         <ion-row>
           <ion-col>
             <span class="font">
-              Room number : 
+              Room Code : 
             </span>
-            <input class="boxStyle" type="text" readonly [(ngModel)]="roomT">
-              <ion-button class="butStyle" cdkCopyToClipboard="{{roomT}}">
+            <input class="input-style" type="text" readonly [(ngModel)]="roomT">
+              <ion-button cdkCopyToClipboard="{{roomT}}" fill="clear"> 
                 <ion-icon name="copy-outline"></ion-icon>
-              </ion-button>
+            </ion-button>          
         </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col>
-            <span class="font"><u>Joined player</u></span>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="ion-text-center">
+        <!-- <ion-row class="ion-text-center">
           <ion-col>
             <span class="font">{{crService.player2}}</span>
           </ion-col>
-        </ion-row> 
+        </ion-row>  -->
 
        </ion-col> 
        
    </ion-row>
+
+   <ion-row class="ion-text-center">
+
+             <ion-col class="ion-align-items-center">
+                
+                   <!-- <ion-row> -->
+                         <span class="font">
+                            Player A
+                         </span>
+                   <!-- </ion-row> -->
+             </ion-col>
+
+            <ion-col>
+               <span class="font">
+                  V/S
+               </span>
+            </ion-col>
+
+           <ion-col>
+              
+              <!-- <ion-row> -->
+                  <span class="font">
+                     Player B
+                  </span>
+              <!-- </ion-row> -->
+           </ion-col>
+   </ion-row>
         
     
-    <ion-row> 
-     <ion-col class="ion-padding-top  padding" *ngIf="crService.truth">
-       <ion-button  class="grad" fill="clear"
-                    (click)="crService.onClick()" 
-                    [disabled]="crService.player2==null" > 
+    <ion-row class="ion-text-center"> 
+     <ion-col class="ion-padding-top" >  
+      <!-- *ngIf="crService.truth" -->
+
+       <ion-button (click)="Audio()" class="grad" fill="clear" routerLink="/memory-board">
+                    <!-- (click)="crService.onClick()" 
+                    [disabled]="crService.player2==null"  -->
         <span >Start</span> <ion-icon name="arrow-forward-circle-outline"></ion-icon>
        </ion-button>
      </ion-col>

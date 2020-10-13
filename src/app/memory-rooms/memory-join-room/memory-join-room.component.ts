@@ -60,4 +60,10 @@ export class MemoryJoinRoomComponent implements OnInit {
     this.modalController.dismiss();
 
   }
+
+  Audio(){
+    const audio = new Audio('../assets/button-click.mpeg'); // audio play on flip of card
+    audio.play();
+  }
+  
 }
