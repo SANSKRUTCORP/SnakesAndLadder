@@ -338,7 +338,7 @@ app.get('/apis/mmry/createroom', (req, res) => {
                 var userID = userRecord.uid;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, memberChance: 1, flipState: false, tempState: false})
+                    .set({ roomid: roomToken, memberChance: 1, clickValue: 1, tempState: false})
                     .then(() => {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
@@ -349,7 +349,7 @@ app.get('/apis/mmry/createroom', (req, res) => {
                     });
 
                 var roomRef1 = firedb.ref('memory/rooms/room_' + roomToken + '/players');
-                roomRef1.child('player_1').set({ name: currentUser, playerUID: userID})
+                roomRef1.child('player_1').set({ name: currentUser, playerUID: userID, counter: 0})
                 
                 roomRef1 = firedb.ref('memory/rooms/room_' + roomToken + '/players/player_1');
                 roomRef1.child('click1').set({div_id: 0, image_id: 0});
@@ -393,7 +393,7 @@ app.post('/apis/mmry/joinroom', (req, res) => {
                     return res.send(true)
                 }
 
-                roomRef.child('player_2').set({ name: username, playerUID: userID})
+                roomRef.child('player_2').set({ name: username, playerUID: userID, counter: 0})
                     .then(() => {
                             return res.send(true);
                     })
@@ -476,9 +476,9 @@ app.post('/apis/mmry/setGameStats', (req, res) => {
 app.post('/apis/mmry/setvalues/:id', (req, res) => {
     var playerNo = req.body.memberChance;
     var roomToken = req.params.id;
-    var divid = req.body.divID;
-    var flip = req.body.flipSt;
-    var imgid = req.body.imgID;
+    var divid = req.body.divid;
+    // var flip = req.body.flipSt;
+    var imgid = req.body.imgid;
     var clickNo = req.body.clickNum;
 
     var ref = firedb.ref('memory/rooms/room_' + roomToken + '/players/player_'+playerNo);
@@ -489,27 +489,24 @@ app.post('/apis/mmry/setvalues/:id', (req, res) => {
             console.log(err);
         })
     
-    ref = firedb.ref('memory/rooms/room_' + roomToken + '/players');
-    ref.once('value', data => {
+    // ref = firedb.ref('memory/rooms/room_' + roomToken + '/players');
+    // ref.once('value', data => {
 
-        var lenref = Object.keys(data.val()).length;
-        ref = firedb.ref('memory/rooms/room_' + roomToken);
-        if (playerNo < lenref){
-            playerNo++;
-        } else {
-            playerNo = 1;
-        }
-        ref.update({memberChance: playerNo})
-            .then(_ =>{
-                res.send(true);
-            }).catch((err) => {
-                console.log(err);
-            })
+    //     var lenref = Object.keys(data.val()).length;
+    //     ref = firedb.ref('memory/rooms/room_' + roomToken);
+    //     if (playerNo < lenref){
+    //         playerNo++;
+    //     } else {
+    //         playerNo = 1;
+    //     }
+    //     ref.update({memberChance: playerNo})
+    //         .then(_ =>{
+    //             res.send(true);
+    //         }).catch((err) => {
+    //             console.log(err);
+    //         })
 
-    })
-
-    ref = firedb.ref('memory/rooms/room_' + roomToken);
-    ref.child('flipState').update({flipState: flip});
+    // })
 
 
 });
@@ -551,6 +548,57 @@ app.post('/apis/mmry/setUser', (req, res) => {
     })
 })
 
+app.post('/apis/mmry/updateMem/:id', (req, res) => {
+    var chance = req.body.memberChance;
+    var room = req.params.id;
+
+    firedb.ref('memory/rooms/room_'+room).update({memberChance: chance}).then(_ =>{
+        res.send(true);
+    }).catch(err => {
+        console.log(err);
+    });
+
+})
+
+app.post('/apis/mmry/updateVals/:id', (req, res) => {
+    var count = req.body.count;
+    var room = req.params.id;
+    var mem = req.body.memberChance;
+
+    firedb.ref('memory/rooms/room_'+room+'/players/player_'+mem).update({counter: count})
+                                                                .then(_ => res.send(true))
+                                                                .catch(err => console.log(err));
+    // firedb.ref('memory/rooms/room_'+room+'/players/player_'+mem+'/click1').update({flipState: false});
+    // firedb.ref('memory/rooms/room_'+room+'/players/player_'+mem+'/click2').update({flipState: false})
+    //                                                                       .then(_ => res.send(true))
+    //                                                                       .catch(err => console.log(err));
+      
+
+})
+
+
+app.post('/apis/cleartemp', (req, res) => {
+    firedb.ref('memory/rooms/room_4999559').update({memberChance: 1, clickValue: 1});
+    for(var i=1; i<=2;i++){
+        firedb.ref('memory/rooms/room_4999559/players/player_'+i).update({counter: 0});
+        for(var j=1; j<=2; j++){
+            firedb.ref('memory/rooms/room_4999559/players/player_'+i).child('click'+j).update({div_id:0, image_id: "", flipState: false});
+        }
+    }
+    res.send(true);
+})
+
+
+app.post('/apis/mmry/updateClick/:id', (req, res) =>{
+    var click = req.body.clickValue;
+    var room = req.params.id;
+
+    firedb.ref('memory/rooms/room_'+room).update({clickValue: click}).then(_ =>{
+        res.send(true);
+    }).catch(err => {
+        console.log(err);
+    });
+})
 
 
 
