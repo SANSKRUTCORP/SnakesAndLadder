@@ -29,85 +29,89 @@ export class MemoryBoardPage implements OnInit {
   val: number;
   valueAss2: string;
   pairsum: number;
-  pair1 = 0;
-  pair2 = 0;
+  counter1: number;
+  counter2: number;
   flipping = false;
   isflipped = false;
   i = 0;
   state = 'normal';
-  names: any;
+  names = [];
   flip1: number;
   loggedUser: string;
-  roomToken: number;
+  roomToken: any;
   memberChance: any;
   flippingState: boolean;
-  images: any;
   flip2: any;
   display: string;
-
-  // first argument is for back-image and second argument is for front-image
+  divId1: any;
+  divId2: any;
+  counter: any;
+  countSum: number;
+  liveDivId: any;
+  // images = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'];
   cards: memoryCards[] = [
-    new memoryCards('this.images[0]',
+    new memoryCards('../../assets/memes/1.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/1.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/2.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/2.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/3.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/3.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/4.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/4.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/5.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/5.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/6.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/6.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/7.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/7.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/8.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/8.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/9.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/9.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/10.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/10.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/11.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/11.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/12.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/12.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/13.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/13.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/14.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/14.png',
                     ''),
-    new memoryCards('',
+    new memoryCards('../../assets/memes/15.png',
                     ''),
-    new memoryCards('',
-                    ''),
+    new memoryCards('../../assets/memes/15.png',
+    ''),
   ];
+
   constructor(public loadingController: LoadingController,
               private modalController: ModalController,
               public db: AngularFireDatabase,
@@ -115,48 +119,116 @@ export class MemoryBoardPage implements OnInit {
               private route: ActivatedRoute,
               private auth: AuthserviceService,
               private http: HttpClient,
-              private storage: AngularFireStorage){}
-
-              popup() {
-                const modal = this.modalController
-                  .create({
-                    component: MemoryWinComponent,
-                    cssClass: 'my-custom-modal-css',
-                    showBackdrop: true,
-                    backdropDismiss: false,
-                    swipeToClose: true
-                  })
-                  .then(popElement => {
-                    popElement.present(),
-                      popElement.onDidDismiss().then(resp => {
-                      });
-                  });
+              private storage: AngularFireStorage){
+                this.roomToken = this.route.snapshot.queryParamMap.get('room');
+                if(this.roomToken==null){
+                  this.roomToken = 4999559;
+                }
               }
+
+  popup() {
+    const modal = this.modalController
+      .create({
+        component: MemoryWinComponent,
+        cssClass: 'my-custom-modal-css',
+        showBackdrop: true,
+        backdropDismiss: false,
+        swipeToClose: true
+      })
+      .then(popElement => {
+        popElement.present(),
+          popElement.onDidDismiss().then(resp => {
+          });
+      });
+  }
   // ngOnInit(): void {
   //   this.startTimer();
   //   throw new Error('Method not implemented.');
   // }
   ngOnInit(){
-      this.startTimer();
-      this.getImages(); 
+    // this.getImages();
+    this.memChance();
+    // this.loggedinUser();
+    this.readPlayers(this.roomToken);
+    this.http.post<any>('/apis/cleartemp', {}).subscribe(resp => console.log(resp));
+    this.startTimer();
+      // this.setCardImages();
+    // this.liveFlipping();
+  }
+
+
+  setWinner(member, room){
+    this.http.post<any>('/apis/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  memChance(){
+    this.db.database.ref('memory/rooms/room_' + this.roomToken).on('value', chance => {
+      this.zone.run(() => {
+        this.memberChance = chance.child('memberChance').val();
+        this.click = chance.child('clickValue').val();
+        console.log(this.memberChance);
+        console.log(this.click);
+      });
+    });
+  }
+
+  updateMember(whichPlayer){
+    this.http.post<any>(`/apis/mmry/updateMem/${this.roomToken}`,
+      {memberChance : whichPlayer}).subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  clickUpdate(click){
+    this.http.post<any>(`/apis/mmry/updateClick/${this.roomToken}`,
+      {clickValue: click}).subscribe(resp => {
+      console.log(resp);
+    });
   }
 
   // Create a reference to the file we want to download
-  getImages(){
-    for (let i = 1; i <= 15; i++){
+  // getImages(){
+  //   this.cards = [];
+  //   const base = 'https://i.pinimg.com/originals/62/ea/00/62ea0046d9b332d23393a714b160fa58.jpg';
+  //   if(this.cards.length===0){
+  //     for (let i = 1; i <= 15; i++){
+  
+  //       const starsRef = this.storage.ref(`/memes/${i}.png`);
+  
+  //       // Get the download URL
+  //       starsRef.getDownloadURL().subscribe(url => {
+  //         console.log(url);
+  //         // Insert url into an <img> tag to "download"
+  //         // images[i - 1] = url;
+  //         this.cards.push(new memoryCards(url, base));
+  //         this.cards.push(new memoryCards(url, base));
+  //       });
+  //     }
+  //   }
+  // }
 
-      const starsRef = this.storage.ref(`/memes/${i}.png`);
-
-      // Get the download URL
-      starsRef.getDownloadURL().subscribe(url => {
-        // Insert url into an <img> tag to "download"
-        this.images[i - 1] = url;
-        console.log(this.images[i - 1]);
+  readPlayers(roomTok){
+    this.zone = new NgZone({});
+    this.roomToken = roomTok;
+    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
+    ref.once('value', snapshot => {
+      this.zone.run(() => {
+        // this.lengthNames = Object.keys(snapshot.val()).length;
+        for (let i = 1; i <= 2; i++){
+          this.names.push(snapshot.child('player_' + i + '/name').val());
+        }
       });
-    }
+    });
   }
 
-
+  loggedinUser(){
+    this.auth.getUser().then(user => {
+      this.loggedUser = user.displayName;
+      console.log(user);
+    });
+  }
 
   shuffle(array: any) {
     // tslint:disable-next-line: no-unused-expression
@@ -188,86 +260,135 @@ export class MemoryBoardPage implements OnInit {
 
   fliping(i){
     let flipped = false;
+    // debugger;
     const obj = this.cards[i];
     obj.flipped = !obj.flipped;
+    // debugger;
     flipped = obj.flipped;
     console.log(flipped);
   }
 
-  // click 1 of the member
-  click_1(val1: number, value1: string){
 
-    console.log('Click chance 1 card clicked ' + val1 + ' . Its value is ' + value1);
-    // this.http.post<any>('', {memberchn: this.memberChance, divid: val, imgid: value1, flipSt: true}).subscribe(res => {
-    //   console.log(res);
-    // });,
+  liveFlipping(){
+    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
+    ref.on('value', snapshot => {
+      this.liveDivId = snapshot.child(`player_${this.memberChance}/click${this.click}/div_id`).val();
+      if(this.liveDivId){
+        this.fliping(this.liveDivId);
+        console.log('live div...', this.liveDivId);
+      } else {
+        console.log('nothing...');
+      }
+    });
+  }
+
+
+
+  onClick1(divId, backImage){
+    this.valueAss1 = backImage;
+    this.divId1 = divId;
+    this.http.post<any>(`/apis/mmry/setvalues/${this.roomToken}`, { memberChance: this.memberChance,
+                                                                    divid: divId,
+                                                                    imgid: backImage,
+                                                                    clickNum: this.click}).subscribe(res => {
+                                                                      console.log(res);
+                                                                    });
+    
+    this.fliping(divId);
+    
     this.click = 2;
-    this.valueAss1 = value1;
-    this.flip1 = val1;
-    this.fliping(this.flip1);
-
-    // const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken);
-    // ref.once('value', snapshot => {
-    //   this.flippingState = snapshot.child('flipState').val();
-
-    //   // if(this.flippingState){
-
-    //   // }
-    // });
-
+    this.clickUpdate(this.click);
   }
 
-  // click 2 of the member
-  click_2(val2: number, value2: string){
-    console.log( 'Click chance 2 card clicked ' + val2 + ' . Its value is ' + value2);
-    this.click = 1;
-    // this.http.post<any>('', {memberchn: this.memberChance, divid: val, imgid: value2, flipSt: true}).subscribe(res => {
-    //   console.log(res);
-    // });
-    // if (this.memberChance === 2){
-    //   this.memberChance = 1;
-    // } else {
-    //   this.memberChance++;
-    // }
-    this.flip2 = val2;
-    this.fliping(this.flip2);
-    this.valueAss2 = value2;
-    this.match();
-  }
+  onClick2(divId, backImage){
+    this.valueAss2 = backImage;
+    this.divId2 = divId;
+    this.http.post<any>(`/apis/mmry/setvalues/${this.roomToken}`, { memberChance: this.memberChance,
+                                                                    divid: divId,
+                                                                    imgid: backImage,
+                                                                    clickNum: this.click}).subscribe(res => {
+                                                                    console.log(res);
+                                                                  });
+    
+    this.fliping(divId);
+
+    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
+
+    ref.once('value', snapshot => {
 
 
-  // matching of cards
-  match(){
-      if (this.valueAss1 === this.valueAss2){
-        console.log('Cards are same');
-        this.pair1 = this.pair1 + 1;
-        console.log('Pairs ' + this.pair1);
-        this.disable(this.flip1);
-        setTimeout(() => { this.disable(this.flip2); }, 400);
-        this.winner();
-        this.matchAudio();
-      }
-      else{
-        console.log('Cards are  different');
-        console.log('Pairs ' + this.pair1);
-        this.fliping(this.flip1);
-        setTimeout(() => { this.fliping(this.flip2); }, 400);
-      }
-  }
-  winner(){
-    this.pairsum = this.pair1 + this.pair2;
-    if ( this.pairsum === 15 || this.timeLeft === 0){
-      if ( this.pair1 > this.pair2 ){
-        console.log('Player 1 win the game');
-      }
-      if ( this.pair1 === this.pair2 ){
-        console.log('Draw');
-      }
-      else{
-        console.log('Player 2 win the game');
-      }
+      this.counter = snapshot.child(`player_${this.memberChance}/counter`).val();
+      this.matchCards();
+    });
+
+    if (this.memberChance === 2){
+      this.memberChance = 1;
+      this.updateMember(this.memberChance);
+    } else {
+      this.memberChance++;
+      this.updateMember(this.memberChance);
     }
+
+    this.click = 1;
+    this.clickUpdate(this.click);
+
   }
+
+  matchCards(){
+    if (this.valueAss1 === this.valueAss2){
+      console.log('Cards are same');
+      this.counter = this.counter + 1;
+      console.log('Pairs formed: ' + this.counter);
+      this.disable(this.divId1);
+      // this.disable(this.divId2);
+      setTimeout(() => { this.disable(this.divId2); }, 400);
+      this.checkWin();
+      // this.matchAudio();
+    }
+    else{
+      console.log('Cards are  different');
+      console.log('1:', this.valueAss1);
+      console.log('2:', this.valueAss2);
+      console.log('Pairs formed: ' + this.counter);
+      this.fliping(this.divId1);
+      // this.disable(this.divId2);
+      setTimeout(() => { this.fliping(this.divId2); }, 400);
+    }
+    this.http.post<any>(`/apis/mmry/updateVals/${this.roomToken}`, {count: this.counter,
+                                                                    memberChance: this.memberChance}).subscribe(resp => {
+                                                                      console.log(resp);
+                                                                    });
+  }
+
+  checkWin(){
+    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
+    ref.once('value', data =>{
+      this.counter1 = data.child(`player_1/counter`).val();
+      this.counter2 = data.child(`player_2/counter`).val();
+
+      this.countSum = this.counter1 + this.counter2;
+
+      if ( this.countSum === 15 || this.timeLeft === 0){
+        if ( this.counter1 > this.counter2 ){
+          console.log('Player 1 win the game');
+        }
+        if ( this.counter1 === this.counter2 ){
+          console.log('Draw');
+        }
+        else{
+          console.log('Player 2 win the game');
+        }
+      }
+    });
+  }
+
+
+
+  
+
+
+
+
   flipAudio(){
     const audio = new Audio('../assets/flipper.mpeg'); // audio play on flip of card
     audio.play();

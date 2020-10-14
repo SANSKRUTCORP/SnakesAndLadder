@@ -7,22 +7,23 @@
       </ion-row>
       <ion-row class="memory-game" class="ion-justify-content-center" style="height: 80%;">
           <div  class="memory-class" 
-               (click)="flipAudio()"
-               *ngFor="let card of cards;index as i" 
-               [ngClass]="{'flipped': card.flipped , 'disable': card.disable }"    
+                [attr.disabled]="names[memberChance-1] != loggedUser"
+                (click)="flipAudio()"
+                *ngFor="let card of cards;index as i" 
+                [ngClass]="{'flipped': card.flipped , 'disable': card.disable }"    
           >
           
-          <div *ngIf="this.click==1" (click)="click_1(i,card.frontImage)"  >
+          <div *ngIf="this.click==1" (click)="onClick1(i,card.backImage)"  >
             <div  >
-              <img class="back-face" src="{{cards.backImage}}" alt="" > 
+              <img class="back-face" src="{{card.backImage}}" alt="" > 
             </div>
             <div class="front-face"   
               >
             </div> 
          </div>
-          <div *ngIf="this.click==2" (click)="click_2(i,card.frontImage)">
+          <div *ngIf="this.click==2" (click)="onClick2(i,card.backImage)">
             <div >
-              <img class="back-face" src="{{cards.backImage}}" alt=""> 
+              <img class="back-face" src="{{card.backImage}}" alt=""> 
             </div>
             <div class="front-face" 
               >
@@ -41,7 +42,7 @@
           <img src="../../assets/cards.png" alt="">
         </ion-col>
         <ion-col class="ion-align-self-center" size="6">
-          <span style="font-size: 200%;">bnjhjhjhj</span>
+          <span style="font-size: 200%;">{{names[0]}}</span>
         </ion-col>    
       </ion-row>  
     </ion-col>
@@ -54,7 +55,7 @@
               <img src="../../assets/cards.png" alt="">
             </ion-col>
             <ion-col class="ion-align-self-center" size="6" >
-              <span style="color: white;font-size: 200%;">bnjhjhjhj</span>
+              <span style="color: white;font-size: 200%;">{{names[1]}}</span>
             </ion-col>    
           </ion-row> 
       </ion-col>
