@@ -564,6 +564,7 @@ app.post('/apis/mmry/updateVals/:id', (req, res) => {
     var count = req.body.count;
     var room = req.params.id;
     var mem = req.body.memberChance;
+    count++;
 
     firedb.ref('memory/rooms/room_'+room+'/players/player_'+mem).update({counter: count})
                                                                 .then(_ => res.send(true))
