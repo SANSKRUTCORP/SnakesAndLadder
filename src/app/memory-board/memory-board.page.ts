@@ -48,6 +48,7 @@ export class MemoryBoardPage implements OnInit {
   counter: any;
   countSum: number;
   liveDivId: any;
+  liveCount = [];
   // images = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'];
   cards: memoryCards[] = [
     new memoryCards('../../assets/memes/1.png',
@@ -111,6 +112,10 @@ export class MemoryBoardPage implements OnInit {
     new memoryCards('../../assets/memes/15.png',
     ''),
   ];
+  click_two: any;
+  click_one: any;
+  img_two: any;
+  img_one: any;
 
   constructor(public loadingController: LoadingController,
               private modalController: ModalController,
@@ -141,10 +146,7 @@ export class MemoryBoardPage implements OnInit {
           });
       });
   }
-  // ngOnInit(): void {
-  //   this.startTimer();
-  //   throw new Error('Method not implemented.');
-  // }
+
   ngOnInit(){
     // this.getImages();
     this.memChance();
@@ -153,7 +155,8 @@ export class MemoryBoardPage implements OnInit {
     this.http.post<any>('/apis/cleartemp', {}).subscribe(resp => console.log(resp));
     this.startTimer();
       // this.setCardImages();
-    // this.liveFlipping();
+    this.liveFlipping();
+    this.liveMatch();
   }
 
 
@@ -223,6 +226,7 @@ export class MemoryBoardPage implements OnInit {
     });
   }
 
+
   loggedinUser(){
     this.auth.getUser().then(user => {
       this.loggedUser = user.displayName;
@@ -273,6 +277,8 @@ export class MemoryBoardPage implements OnInit {
     const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
     ref.on('value', snapshot => {
       this.liveDivId = snapshot.child(`player_${this.memberChance}/click${this.click}/div_id`).val();
+      this.liveCount[0] = snapshot.child(`player_1/counter`).val();
+      this.liveCount[1] = snapshot.child(`player_2/counter`).val();
       if(this.liveDivId){
         this.fliping(this.liveDivId);
         console.log('live div...', this.liveDivId);
@@ -280,6 +286,44 @@ export class MemoryBoardPage implements OnInit {
         console.log('nothing...');
       }
     });
+  }
+  
+
+  liveMatch(){
+    let clickCheck: number;
+    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
+    this.db.database.ref(`memory/rooms/room_${this.roomToken}`).on('value', data => {
+      
+      clickCheck = data.child('clickValue').val();
+
+      if (clickCheck === 2){
+        ref.once('value', snapshot => {
+      
+          this.click_one = snapshot.child(`player_${this.memberChance}/click1/div_id`).val();
+          this.click_two = snapshot.child(`player_${this.memberChance}/click2/div_id`).val();
+          this.img_one = snapshot.child(`player_${this.memberChance}/click1/image_id`).val();
+          this.img_two = snapshot.child(`player_${this.memberChance}/click2/image_id`).val();
+    
+          // debugger;
+          if (this.img_one === this.img_two){
+            console.log('my clicks.....', this.valueAss1, this.valueAss2);
+            // this.counter ++;
+            this.http.post<any>(`/apis/mmry/updateVals/${this.roomToken}`, {count: this.counter,
+                                                                            memberChance: this.memberChance}).subscribe(resp => {
+                                                                              console.log(resp);
+                                                                            });
+            this.disable(this.click_one);
+            this.disable(this.click_two);
+          } else {
+            console.log('my clicks.....', this.click_one, this.click_two);
+            this.fliping(this.click_one);
+            this.fliping(this.click_two);
+          }
+        });
+      } else{
+        console.log("this is click 1");
+      }
+    })
   }
 
 
@@ -289,15 +333,14 @@ export class MemoryBoardPage implements OnInit {
     this.divId1 = divId;
     this.http.post<any>(`/apis/mmry/setvalues/${this.roomToken}`, { memberChance: this.memberChance,
                                                                     divid: divId,
-                                                                    imgid: backImage,
-                                                                    clickNum: this.click}).subscribe(res => {
+                                                                    imgid: backImage}).subscribe(res => {
                                                                       console.log(res);
                                                                     });
     
-    this.fliping(divId);
+    // this.fliping(divId);
     
     this.click = 2;
-    this.clickUpdate(this.click);
+    // this.clickUpdate(this.click);
   }
 
   onClick2(divId, backImage){
@@ -307,18 +350,15 @@ export class MemoryBoardPage implements OnInit {
                                                                     divid: divId,
                                                                     imgid: backImage,
                                                                     clickNum: this.click}).subscribe(res => {
-                                                                    console.log(res);
                                                                   });
     
-    this.fliping(divId);
+    // this.fliping(divId);
 
     const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
 
     ref.once('value', snapshot => {
-
-
       this.counter = snapshot.child(`player_${this.memberChance}/counter`).val();
-      this.matchCards();
+      // this.matchCards();
     });
 
     if (this.memberChance === 2){
@@ -354,10 +394,10 @@ export class MemoryBoardPage implements OnInit {
       // this.disable(this.divId2);
       setTimeout(() => { this.fliping(this.divId2); }, 400);
     }
-    this.http.post<any>(`/apis/mmry/updateVals/${this.roomToken}`, {count: this.counter,
-                                                                    memberChance: this.memberChance}).subscribe(resp => {
-                                                                      console.log(resp);
-                                                                    });
+    // this.http.post<any>(`/apis/mmry/updateVals/${this.roomToken}`, {count: this.counter,
+    //                                                                 memberChance: this.memberChance}).subscribe(resp => {
+    //                                                                   console.log(resp);
+    //                                                                 });
   }
 
   checkWin(){
