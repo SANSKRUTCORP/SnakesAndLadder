@@ -41,7 +41,7 @@
     color: #054558;
     text-align: center;
     text-shadow: 2px 2px 10px #353bc7;
-    font-size: 50px;
+    font-size: 45px;
   }
 
   .fontStyles1{
@@ -75,6 +75,11 @@
     }
    }
 
+   @media only screen and (min-width:370px) and (max-width:445px){
+    .grad{
+      font-size:10px ;
+    }
+   }
 
   
 

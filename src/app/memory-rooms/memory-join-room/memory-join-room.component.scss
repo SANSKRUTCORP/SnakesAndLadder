@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Concert+One&family=Sansita+Swashed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
 .bg{
     background-color: #1e3e78;
@@ -19,41 +19,76 @@
     border: 3px solid #071938;
     border-radius: 10%;
     color: #180e02;
-    background-color: #bacbd8
-    ;
+    background-color: #bacbd8;
+    font-size: 20px;
 }
 
 .font{
-    font-family: 'Chewy', cursive;
+    font-family: 'Caveat', cursive;
     color: #eaf2f3;
+    // font-size: 40px;
   }
   .input{
       background-color:#bacbd8;
       color: #041336;
       border: 2px solid #071938;
+    //   font-size: 23px;
   }
-@media only screen and (min-width:250px) and (max-width:576px){
+@media only screen and (min-width:320px) and (max-width:576px){
     .image{
-        width: 50%;
-        // padding-top: 6%;
+        width: 40%;
     }
+
+    .font{
+        font-size: 33px;
+    }
+
+    .input{
+        font-size: 17px;
+    }
+    .grad{
+        font-size: 16px;
+    }
+   
 }
 
 @media only screen and (min-width:576px) and (max-width:900px) {
     .image{
-        max-width: 63%;
+        max-width: 58%;
+    }
+
+    .font{
+        font-size: 34px;
+    }
+
+    .input{
+        font-size: 16px;
     }
 }
 
 @media only screen and (min-width:900px) and (max-width:1200px) {
     .image{
-        max-width: 60%;
+        max-width: 50%;
+    }
+    .font{
+        font-size: 45px;
+    }
+
+    .input{
+        font-size: 20px;
     }
 }
 
 @media only screen and (min-width:1200px) {
     .image{
         max-width: 58%;
+    }
+    .font{
+        font-size: 45px;
+    }
+
+    .input{
+        font-size: 20px;
     }
 }
 

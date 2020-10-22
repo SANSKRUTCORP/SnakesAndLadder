@@ -9,34 +9,31 @@
   background-size: cover;
   height: 100%;
   width: 100%;
-  justify-content: center;
   align-items: center;
   display: grid;
+  justify-items: center;
 }
 
 .background-box{
   background-color: #ffc27b;
-  border: 5px solid #b25e08;
-  justify-content: center;
-  align-items: center;
-  display: grid;
+  border: 7px solid #ad4907;
+  width: 40%;
 }
 
-// .alignment{
-//   justify-content: center;
-//   align-items: center;
-//   display: grid;
-// }
 
-// .background{
-//   background-color: coral;
-//   margin-left: 20%;
-//   margin-top: 10%;
-//   margin-right: 20%;
-//   height: 50%;
-//   width: 50%;
-  
-// }
+@media only screen and (min-width:700px) and(max-width: 1000px){
+  .background-box{
+    width: 60%;
+  }
+}
+
+@media only screen and(max-width: 700px){
+  .background-box{
+    width: 90%;
+  }
+}
+
+
 
   .fontStyles{
     font-family: 'Indie Flower', cursive;
@@ -44,29 +41,28 @@
     text-align: center;
     text-shadow: 2px 2px 3px rgb(219, 132, 73);
     font-size: 50px;
-    // padding-left: 54px;
-    // padding-right: 54px;
   }
 
   .fontStyles1{
     font-family: 'Indie Flower', cursive;
     color: #9e673a;
     text-align: center;
-    text-shadow: 2px 2px 3px rgb(219, 132, 73);
-    font-size: 20px;
+    text-shadow: 2px 2px 5px #e58341;
+    font-size: 30px;
   }
 
   .grad{
-    background-image: linear-gradient(to right, rgb(252, 186, 103), #e8954e);
-    color: darken($color: #0c0c0b, $amount: 0);
+    background-color: #9e5312;
+    color: #f5cdab;
     font-family: 'Poppins', sans-serif;
     border-radius: 40px; 
     border: 2px solid black; 
+    font-size: 20px;
   }
 
   @media only screen and (min-width:300px) and (max-width:370px){
     .grad{
-      font-size:10px ;
+      font-size:12px ;
     }
     .fontStyles{
       font-size: 37px;
@@ -74,17 +70,14 @@
     .fontStyles1{
       font-size: 23px;
     }
+    .background-box{
+      width: 95%;
+    }
    }
 
-   @media only screen and (min-width:250px) and (max-width:300px){
+   @media only screen and (min-width:370px) and (max-width:445px){
     .grad{
-      font-size: 8px;
-    }
-    .fontStyles{
-      font-size: 34px;
-    }
-    .fontStyles1{
-      font-size: 20px;
+      font-size:10px ;
     }
    }
 
