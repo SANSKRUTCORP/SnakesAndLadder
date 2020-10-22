@@ -9,7 +9,7 @@ import { AuthserviceService } from '../services/authservices.service';
 import { HttpClient } from '@angular/common/http';
 import { JoinRoomComponent } from '../rooms/join-room/join-room.component';
 import { MemoryWinComponent } from './memory-win/memory-win.component';
-
+​
 @Component({
   selector: 'app-memory-board',
   templateUrl: './memory-board.page.html',
@@ -116,7 +116,8 @@ export class MemoryBoardPage implements OnInit {
   click_one: any;
   img_two: any;
   img_one: any;
-
+  clickState: boolean;
+​
   constructor(public loadingController: LoadingController,
               private modalController: ModalController,
               public db: AngularFireDatabase,
@@ -130,7 +131,7 @@ export class MemoryBoardPage implements OnInit {
                   this.roomToken = 4999559;
                 }
               }
-
+​
   popup() {
     const modal = this.modalController
       .create({
@@ -146,7 +147,7 @@ export class MemoryBoardPage implements OnInit {
           });
       });
   }
-
+​
   ngOnInit(){
     // this.getImages();
     this.memChance();
@@ -158,48 +159,48 @@ export class MemoryBoardPage implements OnInit {
     this.liveFlipping();
     this.liveMatch();
   }
-
-
+​
+​
   setWinner(member, room){
     this.http.post<any>('/apis/setGameStats', {playerNo: member, roomid: room}).subscribe(resp => {
       console.log(resp);
     });
   }
-
+​
   memChance(){
-    this.db.database.ref('memory/rooms/room_' + this.roomToken).on('value', chance => {
+    this.db.database.ref('memory/rooms/room_' + this.roomToken).on('value', snapshot => {
       this.zone.run(() => {
-        this.memberChance = chance.child('memberChance').val();
-        this.click = chance.child('clickValue').val();
-        console.log(this.memberChance);
+        this.liveCount[0] = snapshot.child(`players/player_1/counter`).val();
+        this.liveCount[1] = snapshot.child(`players/player_2/counter`).val();
+        this.memberChance = snapshot.child('memberChance').val();
+        this.click = snapshot.child('clickValue').val();
+        console.log(this.memberChance+'hello to all');
         console.log(this.click);
       });
     });
   }
-
+​
   updateMember(whichPlayer){
     this.http.post<any>(`/apis/mmry/updateMem/${this.roomToken}`,
       {memberChance : whichPlayer}).subscribe(resp => {
       console.log(resp);
     });
   }
-
+​
   clickUpdate(click){
     this.http.post<any>(`/apis/mmry/updateClick/${this.roomToken}`,
       {clickValue: click}).subscribe(resp => {
       console.log(resp);
     });
   }
-
+​
   // Create a reference to the file we want to download
   // getImages(){
   //   this.cards = [];
   //   const base = 'https://i.pinimg.com/originals/62/ea/00/62ea0046d9b332d23393a714b160fa58.jpg';
   //   if(this.cards.length===0){
   //     for (let i = 1; i <= 15; i++){
-  
   //       const starsRef = this.storage.ref(`/memes/${i}.png`);
-  
   //       // Get the download URL
   //       starsRef.getDownloadURL().subscribe(url => {
   //         console.log(url);
@@ -211,7 +212,7 @@ export class MemoryBoardPage implements OnInit {
   //     }
   //   }
   // }
-
+​
   readPlayers(roomTok){
     this.zone = new NgZone({});
     this.roomToken = roomTok;
@@ -225,25 +226,25 @@ export class MemoryBoardPage implements OnInit {
       });
     });
   }
-
-
+​
+​
   loggedinUser(){
     this.auth.getUser().then(user => {
       this.loggedUser = user.displayName;
       console.log(user);
     });
   }
-
+​
   shuffle(array: any) {
     // tslint:disable-next-line: no-unused-expression
     this.currentIndex = array.length, this.temporaryValue , this.randomIndex;
     // While there remain elements to shuffle...
     while (0 !== this.currentIndex) {
-
+​
       // Pick a remaining element...
       this.randomIndex = Math.floor(Math.random() * this.currentIndex);
       this.currentIndex -= 1;
-
+​
       // And swap it with the current element.
       this.temporaryValue = array[this.currentIndex];
       array[this.currentIndex] = array[this.randomIndex];
@@ -251,9 +252,9 @@ export class MemoryBoardPage implements OnInit {
     }
     this.name = array;
     console.log(this.name);
-
+​
   }
-
+​
   disable(i){
     let disable = false;
     const obj = this.cards[i];
@@ -261,25 +262,22 @@ export class MemoryBoardPage implements OnInit {
     disable = obj.disable;
     console.log(disable);
   }
-
+​
   fliping(i){
     let flipped = false;
-    // debugger;
     const obj = this.cards[i];
     obj.flipped = !obj.flipped;
-    // debugger;
     flipped = obj.flipped;
     console.log(flipped);
   }
-
-
+​
+​
   liveFlipping(){
+    if(this.clickState === true) {
     const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
     ref.on('value', snapshot => {
       this.liveDivId = snapshot.child(`player_${this.memberChance}/click${this.click}/div_id`).val();
-      this.liveCount[0] = snapshot.child(`player_1/counter`).val();
-      this.liveCount[1] = snapshot.child(`player_2/counter`).val();
-      if(this.liveDivId){
+      if (this.liveDivId){
         this.fliping(this.liveDivId);
         console.log('live div...', this.liveDivId);
       } else {
@@ -287,26 +285,63 @@ export class MemoryBoardPage implements OnInit {
       }
     });
   }
-  
+  }
 
+  onClick(divId, backImage){
+    this.valueAss1 = backImage;
+    this.divId1 = divId;
+    this.clickState = true;
+    this.http.post<any>(`/apis/mmry/setvalues/${this.roomToken}`, { memberChance: this.memberChance,
+                                                                    divid: divId,
+                                                                    imgid: backImage}).subscribe(res => {
+                                                                      console.log(res);
+                                                                    });
+
+                                                                    ​
+    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
+
+    ref.once('value', snapshot => {
+      this.counter = snapshot.child(`player_${this.memberChance}/counter`).val();
+      // this.matchCards();
+    });
+
+    if (this.click === 2){
+      this.click = 1;
+      console.log('Click', this.click);
+      this.clickUpdate(this.click);
+
+      if (this.memberChance === 2){
+        this.memberChance = 1;
+        this.updateMember(this.memberChance);
+      } else {
+        this.memberChance++;
+        this.updateMember(this.memberChance);
+      }
+    ​
+    } else {
+      this.click = 2;
+      console.log('Click', this.click);
+      this.clickUpdate(this.click);
+    }
+
+
+  }
+​
+​
   liveMatch(){
-    let clickCheck: number;
+    let check:number;
     const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
     this.db.database.ref(`memory/rooms/room_${this.roomToken}`).on('value', data => {
-      
-      clickCheck = data.child('clickValue').val();
-
-      if (clickCheck === 2){
+​    
+      if (this.click === 2){
         ref.once('value', snapshot => {
-      
           this.click_one = snapshot.child(`player_${this.memberChance}/click1/div_id`).val();
           this.click_two = snapshot.child(`player_${this.memberChance}/click2/div_id`).val();
           this.img_one = snapshot.child(`player_${this.memberChance}/click1/image_id`).val();
           this.img_two = snapshot.child(`player_${this.memberChance}/click2/image_id`).val();
-    
           // debugger;
           if (this.img_one === this.img_two){
-            console.log('my clicks.....', this.valueAss1, this.valueAss2);
+            console.log('Cards same', this.img_one, this.img_two);
             // this.counter ++;
             this.http.post<any>(`/apis/mmry/updateVals/${this.roomToken}`, {count: this.counter,
                                                                             memberChance: this.memberChance}).subscribe(resp => {
@@ -315,99 +350,30 @@ export class MemoryBoardPage implements OnInit {
             this.disable(this.click_one);
             this.disable(this.click_two);
           } else {
-            console.log('my clicks.....', this.click_one, this.click_two);
+            console.log('Cards different', this.img_one, this.img_two);
             this.fliping(this.click_one);
             this.fliping(this.click_two);
           }
         });
       } else{
-        console.log("this is click 1");
+        console.log('this is click 1');
       }
-    })
-  }
-
-
-
-  onClick1(divId, backImage){
-    this.valueAss1 = backImage;
-    this.divId1 = divId;
-    this.http.post<any>(`/apis/mmry/setvalues/${this.roomToken}`, { memberChance: this.memberChance,
-                                                                    divid: divId,
-                                                                    imgid: backImage}).subscribe(res => {
-                                                                      console.log(res);
-                                                                    });
-    
-    // this.fliping(divId);
-    
-    this.click = 2;
-    // this.clickUpdate(this.click);
-  }
-
-  onClick2(divId, backImage){
-    this.valueAss2 = backImage;
-    this.divId2 = divId;
-    this.http.post<any>(`/apis/mmry/setvalues/${this.roomToken}`, { memberChance: this.memberChance,
-                                                                    divid: divId,
-                                                                    imgid: backImage,
-                                                                    clickNum: this.click}).subscribe(res => {
-                                                                  });
-    
-    // this.fliping(divId);
-
-    const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
-
-    ref.once('value', snapshot => {
-      this.counter = snapshot.child(`player_${this.memberChance}/counter`).val();
-      // this.matchCards();
     });
 
-    if (this.memberChance === 2){
-      this.memberChance = 1;
-      this.updateMember(this.memberChance);
-    } else {
-      this.memberChance++;
-      this.updateMember(this.memberChance);
-    }
-
-    this.click = 1;
-    this.clickUpdate(this.click);
-
   }
+​
+​
+​
 
-  matchCards(){
-    if (this.valueAss1 === this.valueAss2){
-      console.log('Cards are same');
-      this.counter = this.counter + 1;
-      console.log('Pairs formed: ' + this.counter);
-      this.disable(this.divId1);
-      // this.disable(this.divId2);
-      setTimeout(() => { this.disable(this.divId2); }, 400);
-      this.checkWin();
-      // this.matchAudio();
-    }
-    else{
-      console.log('Cards are  different');
-      console.log('1:', this.valueAss1);
-      console.log('2:', this.valueAss2);
-      console.log('Pairs formed: ' + this.counter);
-      this.fliping(this.divId1);
-      // this.disable(this.divId2);
-      setTimeout(() => { this.fliping(this.divId2); }, 400);
-    }
-    // this.http.post<any>(`/apis/mmry/updateVals/${this.roomToken}`, {count: this.counter,
-    //                                                                 memberChance: this.memberChance}).subscribe(resp => {
-    //                                                                   console.log(resp);
-    //                                                                 });
-  }
-
+​
   checkWin(){
     const ref = this.db.database.ref('memory/rooms/room_' + this.roomToken + '/players');
     ref.once('value', data =>{
       this.counter1 = data.child(`player_1/counter`).val();
       this.counter2 = data.child(`player_2/counter`).val();
-
+​
       this.countSum = this.counter1 + this.counter2;
-
+​
       if ( this.countSum === 15 || this.timeLeft === 0){
         if ( this.counter1 > this.counter2 ){
           console.log('Player 1 win the game');
@@ -421,14 +387,14 @@ export class MemoryBoardPage implements OnInit {
       }
     });
   }
-
-
-
+​
+​
+​
   
-
-
-
-
+​
+​
+​
+​
   flipAudio(){
     const audio = new Audio('../assets/flipper.mpeg'); // audio play on flip of card
     audio.play();
@@ -450,7 +416,7 @@ export class MemoryBoardPage implements OnInit {
   pauseTimer() {
     clearInterval(this.interval);
   }
-
+​
   async startLoading() {
       this.starterAudio();
       const loading = await this.loadingController.create({

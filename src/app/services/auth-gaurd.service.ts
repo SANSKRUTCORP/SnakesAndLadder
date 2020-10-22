@@ -7,7 +7,11 @@ export class AuthGuardService implements CanActivate {
   canActivate(): boolean {
     // let authUser = Object.keys(window.sessionStorage).filter(item => item.startsWith('firebase:authUser'))[0];
     // authUser = authUser.substr(18, authUser.length);
+<<<<<<< HEAD
     // const authUser = localStorage.getItem('tempid');
+=======
+    const authUser = localStorage.getItem('tempid');
+>>>>>>> 84126d69664131040a72ef314921bbadc0153886
     // if (!authUser) {
     //   this.router.navigate(['home']);
     //   return false;
