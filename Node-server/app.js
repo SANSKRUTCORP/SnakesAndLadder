@@ -42,10 +42,11 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-// app.use(express.static('../www'));
+// app.use(express.static(path.join(__dirname+'/www')));
 
-// app.get('/', (req, res) => {
-//     res.sendFile('../www/index.html');
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname+'/www/index.html'));
+
 // })
 
 
@@ -336,20 +337,21 @@ app.get('/apis/mmry/createroom', (req, res) => {
                 // models.newRoomCreate(userRecord, roomRef, firedb_m, roomToken);
                 var currentUser = userRecord.displayName;
                 var userID = userRecord.uid;
+                var photo = userRecord.photoURL;
                 //Creating a branch in firebase for new rooms
                 roomRef.child('room_' + roomToken)
-                    .set({ roomid: roomToken, memberChance: 1, clickValue: 1, tempState: false})
+                    .set({ roomid: roomToken, memberChance: 1, clickValue: 1, tempState: false, clickState: false})
                     .then(() => {
                         console.log("roomToken add to db");
                         res.send({ room_token: roomToken });
+                        // res.send({data: "hello!"});
                     })
                     .catch((err) =>  {
                         console.log(err);
-                        res.send(false);
                     });
 
                 var roomRef1 = firedb.ref('memory/rooms/room_' + roomToken + '/players');
-                roomRef1.child('player_1').set({ name: currentUser, playerUID: userID, counter: 0})
+                roomRef1.child('player_1').set({ name: currentUser, playerUID: userID, counter: 0, picurl: photo})
                 
                 roomRef1 = firedb.ref('memory/rooms/room_' + roomToken + '/players/player_1');
                 roomRef1.child('click1').set({div_id: 0, image_id: 0});
@@ -374,6 +376,7 @@ app.post('/apis/mmry/joinroom', (req, res) => {
     var roomToken = req.body.enterid;
     var username = req.body.entername;
     let userID = req.body.uid;
+    var photo = req.body.photourl;
     var flag=0;
 
     var roomRef = firedb.ref('memory/rooms/room_'+roomToken+'/players');
@@ -393,7 +396,7 @@ app.post('/apis/mmry/joinroom', (req, res) => {
                     return res.send(true)
                 }
 
-                roomRef.child('player_2').set({ name: username, playerUID: userID, counter: 0})
+                roomRef.child('player_2').set({ name: username, playerUID: userID, counter: 0, picurl: photo})
                     .then(() => {
                             return res.send(true);
                     })
@@ -562,6 +565,7 @@ app.post('/apis/mmry/updateMem/:id', (req, res) => {
 
 app.post('/apis/mmry/updateVals/:id', (req, res) => {
     var count = req.body.count;
+    count++;
     var room = req.params.id;
     var mem = req.body.memberChance;
 
@@ -582,7 +586,7 @@ app.post('/apis/cleartemp', (req, res) => {
     for(var i=1; i<=2;i++){
         firedb.ref('memory/rooms/room_4999559/players/player_'+i).update({counter: 0});
         for(var j=1; j<=2; j++){
-            firedb.ref('memory/rooms/room_4999559/players/player_'+i).child('click'+j).update({div_id:0, image_id: "", flipState: false});
+            firedb.ref('memory/rooms/room_4999559/players/player_'+i).child('click'+j).update({div_id:-1, image_id: "", flipState: false});
         }
     }
     res.send(true);
