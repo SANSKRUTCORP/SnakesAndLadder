@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-memory-win',
@@ -6,16 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./memory-win.component.scss'],
 })
 export class MemoryWinComponent implements OnInit {
-  modalController: any;
+ 
 
-  constructor() { }
+  constructor(private modalController:ModalController) { }
 
+
+  ngOnInit() {}
+
+  
   CloseModal()
   {
     this.modalController.dismiss();
 
   }
-
-  ngOnInit() {}
 
 }
