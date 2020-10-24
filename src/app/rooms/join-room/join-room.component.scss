@@ -14,24 +14,27 @@
     font-family: 'Poppins', sans-serif;
     border: 3px solid #4b2205;
     border-radius: 10%;
-    color: #180e02;
-    background-color: #e48738
-    ;
+    color: #f6c890;
+    background-color: #904d0e;
+    font-size: 15px;
 }
 
 .font{
     font-family: 'Indie Flower', cursive;
     color: #50340c;
   }
+  
   .input{
       background-color: #e48738;
-      color: white;
+      color: #613507;
       border: 2px solid #281002;
   }
 @media only screen and (min-width:250px) and (max-width:576px){
     .image{
-        width: 50%;
-        // padding-top: 6%;
+        width: 45%;
+    }
+    .font{
+        font-size: 22px;
     }
 }
 
@@ -39,17 +42,26 @@
     .image{
         max-width: 63%;
     }
+    .font{
+        font-size: 22px;
+    }
 }
 
 @media only screen and (min-width:900px) and (max-width:1200px) {
     .image{
         max-width: 60%;
     }
+    .font{
+        font-size: 23px;
+    }
 }
 
 @media only screen and (min-width:1200px) {
     .image{
         max-width: 58%;
+    }
+    .font{
+        font-size: 25px;
     }
 }
 

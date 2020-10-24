@@ -8,9 +8,6 @@
    margin: auto;
  }
 
-//  ion-content{
-//     align-content: center;
-//  }
  .names{
    font-family: 'Indie Flower', cursive;
    color: white;
@@ -24,7 +21,6 @@
  .padding{
    margin: auto;
    position: relative;
-
  }
 
  .players-size{
@@ -161,7 +157,6 @@
        }
        .names{
          font-size: 33px;
-         // padding-left: 15px;
       }
       .grad{
          font-size: 20px;
@@ -194,7 +189,6 @@
        }
        .names{
          font-size: 30px;
-         // padding-left: 15px;
       }
       .grad{
          font-size: 18px;
@@ -227,7 +221,6 @@
        }
        .names{
          font-size: 26px;
-         // padding-left: 5px;
       }
 
 }
@@ -260,7 +253,6 @@
        }
        .names{
          font-size: 25px;
-         // padding-left: 3px;
       }
   
 }
@@ -274,19 +266,12 @@
       width: 33px;
       height: 33px;
    }
-  .padding{
-   // position: absolute;
-   // top: 50%;
-   // left: 50%;
-   // transform: translate(-50%, -50%);
-  }
+
    .dice{
       height: 38px;
       width: 38px;
    }
-   .padding-top{
-      padding-top: 1%;
-   }
+  
    .img-size{
       height: 13px; 
       width: 13px;
@@ -302,12 +287,12 @@
     }
     .names{
       font-size: 13px;
-      // padding-left: 3px;
+      
    }
      
 }
 
-@media only screen and  (min-width:250px) and (max-width:400px) {
+@media only screen and (max-width:400px) {
    .board-image{
       width: 230px;
       height: 230px;
@@ -331,7 +316,6 @@
    }
    .names{
       font-size: 20px;
-      // padding-left: 2px;
    }
      
 }

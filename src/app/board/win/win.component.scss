@@ -13,38 +13,47 @@
   display: grid;
   justify-content: center;
   align-items: center;
+  border: 5px solid rgb(138, 80, 5);
 }
 
 .grad{
-  color: black;
-  font-family: 'Poppins', sans-serif;
+    color: #fcc389;
+    font-family: 'Poppins', sans-serif;
+    background-color: #86490e;
+    border-radius: 20px;
+    border: 2px solid black;
 }
 
 .font{
   font-family: 'Indie Flower', cursive;
+  font-size: 30px;
 }
 
 @media only screen and (min-width:576px) and (max-width:700px) {
   .image{
-      max-width: 48%;
+      max-width: 88%;
   }
 }
 
 @media only screen and (min-width:700px) and (max-width:900px) {
   .image{
-      max-width: 38%;
+      max-width: 66%;
   }
 }
 
 @media only screen and (min-width:900px) and (max-width:1200px) {
   .image{
-      max-width: 37%;
+      max-width: 61%;
   }
 }
 
 @media only screen and (min-width:1200px)  {
   .image{
-      max-width: 50%;
+      max-width: 65%;
+  }
+
+  .font{
+    font-size: 35px;
   }
 }
 

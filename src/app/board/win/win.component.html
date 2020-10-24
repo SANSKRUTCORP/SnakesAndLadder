@@ -4,18 +4,9 @@
     <ion-row class="ion-text-center">
       <ion-col>
         <span class="font">Game Summary</span>
-      </ion-col>
-      <!-- <ion-col>
-        <ion-button (click)="CloseModal()" fill="clear" > 
-           <span class="grad"> x </span>
-        </ion-button>
-      </ion-col> -->
-    
+      </ion-col>   
     </ion-row>
  
-    <!-- <ion-row class="ion-text-center">
-     
-    </ion-row>  -->
 
     <ion-row class="ion-text-center">
       <ion-col>
@@ -27,18 +18,13 @@
         <span class="font">{{this.bService.winner}} Win!!</span>
       </ion-col>
     </ion-row> 
-
-      <!-- <ion-row class="ion-text-center">
-        <ion-col>
-         
-        </ion-col>
-        
-      </ion-row> -->
       
-      <ion-row>
-        <ion-button routerLink="/rooms" (click)="CloseModal()" class="grad" fill="clear">
-          Redirect to home page
-        </ion-button>
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <ion-button routerLink="/rooms" (click)="CloseModal()" class="grad" fill="clear">
+            Redirect to games <ion-icon name="refresh-outline"></ion-icon>
+          </ion-button>
+        </ion-col>  
       </ion-row>
     
   </ion-grid>

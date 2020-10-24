@@ -8,7 +8,7 @@
       
       <ion-col>
         <ion-row class="ion-text-center">
-          <ion-col>
+          <ion-col class="ion-align-items-center">
             <span class="font"><b>ENTER ROOM CODE</b></span>
             <form>
               <input class="input" #roomid type="number">
@@ -17,7 +17,7 @@
         </ion-row>
         
         <ion-row class="ion-text-center">
-          <ion-col>
+          <ion-col>            
             <ion-button (click)="onClick(roomid)" class="grad" fill="clear" shape="round" (click)="CloseModal()">
               OK
             </ion-button>

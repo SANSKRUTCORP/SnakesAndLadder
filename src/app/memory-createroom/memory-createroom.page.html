@@ -3,23 +3,22 @@
 
   <ion-grid class="background-img"> 
 
-    <ion-row class="space ion-text-center">
+    <ion-row class="ion-text-center">
       <ion-col class="ion-align-items-center">
 
         <ion-row>
           <ion-col>
             <span class="font">
               Room Code : 
-            </span>
-            <input class="input-style" type="text" readonly [(ngModel)]="roomT">
-              <ion-button cdkCopyToClipboard="{{roomT}}" fill="clear"> 
+              <input class="input-style" type="text" readonly [(ngModel)]="roomT">
+              <ion-button cdkCopyToClipboard="{{roomT}}" fill="clear" class="icon-style"> 
                 <ion-icon name="copy-outline"></ion-icon>
-            </ion-button>          
-        </ion-col>
-        </ion-row>
-
-
-       </ion-col> 
+            </ion-button> 
+            </span>
+                    
+          </ion-col>
+         </ion-row>
+      </ion-col> 
        
    </ion-row>
 
@@ -47,11 +46,11 @@
               <img src="../assets/red.png" class="user-image">
             
            
-              <!-- <ion-row> -->
+          
                   <span class="font ion-align-self-center">
                     {{crService.player2}}
                   </span>
-              <!-- </ion-row> -->
+             
            </ion-col>
    </ion-row>
         

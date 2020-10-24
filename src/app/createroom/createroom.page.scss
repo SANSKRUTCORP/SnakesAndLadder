@@ -9,6 +9,8 @@
   background-position: center;
   height: 100%;
   width: 100%;
+  align-items: center;
+  display: grid;
 }
 
 .font{
@@ -16,7 +18,7 @@
   color: rgb(255, 212, 183);
   font-weight: 600;
   font-size: 40px;
-  text-align: center;
+  // text-align: center;
 }
 
 .textStyle{
@@ -24,47 +26,26 @@
   color: rgb(255, 212, 183);
   font-weight: 600;
   font-size: 40px;
-  text-align: center;
+  // text-align: center;
 }
 
-.boxStyle{
+.input {
   background-color: transparent;
   border: 0px;
-  width: 140px;
-  margin-left: 15px;
-  font-size: 40px;
+  font-size: 20px;
   font-family: "Indie Flower", cursive;
   color: rgb(255, 212, 183);
   font-weight: 600;
 }
 
 .butStyle{
-  --background: transparent !important;
-  --box-shadow: 0;
-  font-size: 30px;
+  font-size: 20px;
   color: rgb(255, 212, 183);
 }
 
-.sizing{
+.img-size{
   height: 30px;
   padding-top: 5px;
-}
-
-.padding {
-  padding-left: 47%;
-}
-
-.space {
-  padding-top: 10%;
-}
-
-.styling {
-  background-color: rgba(196, 255, 249, 0.67);
-  color: rgb(2, 2, 2);
-  text-align: center;
-  padding-top: 20px;
-  border-radius: 30px;
-  border: 5px solid black;
 }
 
 .Names {
@@ -73,39 +54,32 @@
 }
 
 .grad {
-  background-color: #5ad60d;;
-  // background-color: rgb(255, 212, 183);
-  color: black;
+  background-color: #3c7f12;
+  color: #dbed77;
   border-radius: 40px;
   font-family: "Poppins", sans-serif;
   border: 2px solid rgb(14, 13, 13);
-  // box-shadow: 0 8px 16px 0 rgba(144, 221, 154, 0.836),
-  //   0 6px 50px 0 rgb(5, 54, 8);
+  font-size: 15px;
+}
+@media only screen and (max-width:576px){
+  .font{
+    font-size: 25px;
+  }
+
+  .textStyle{
+    font-size: 16px;
+  }
+
+  .butStyle{
+    font-size: 15px;
+  }
+  .grad{
+    font-size: 11px;
+  }
+
+  .input{
+    font-size: 11px;
+  }
 }
 
-// .setbutton {
-//   margin-bottom: 15px;
-// }
-//   .space1
-//   {
-//     position: relative;
-//     color: #fff;
-//     font-size: 5em;
-//     text-shadow: 0 0 50px #0f0,
-//                 0 0 100px #0f0,
-//                 0 0 150px #0f0,
-//                 0 0 200px #0f0,
-//                 0 0 250px #0f0;
-//   animation: animate 5s linear infinite;
-//   }
-//   @keyframes animate
-// {
-//   0%
-//   {
-//     filter: hue-rotate(0deg);
-//   }
-//   100%
-//   {
-//     filter: hue-rotate(360deg);
-//   }
-// }
+

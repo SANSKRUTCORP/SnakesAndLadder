@@ -2,7 +2,7 @@
   <!-- <div class="board" id="blur"> 
     <ion-row class="space">
       <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="3" offset-xs="3" offset-sm="4" offset-md="4.5" offset-lg="4.5">
-          <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear" (click)="Calltoggle()">
+          <ion-button (click)="popup()"  expand="block" shape="round"  fill="clear">
               Winner<ion-icon name="enter-outline"></ion-icon>
           </ion-button>
       </ion-col>
@@ -47,13 +47,8 @@
     </ion-col>
 
 
-    <!-- animations -->
-    <!-- <div [@myvisibility]="visiblestate" style="height: 10%; width: 10%;">
-    </div> -->
-
-
-    <ion-col class="padding-top"> 
-      <ion-row class="justify-content-center align-items-center">
+    <ion-col class="ion-align-items-center"> 
+      <ion-row class="justify-content-center">
         <ion-col>
           <div *ngIf="bService.diceNumber!=undefined">
             <img src="../../assets/{{bService.liveDice}}.png" class="dice">
@@ -64,8 +59,8 @@
           </div>
         </ion-col>
 
-      <ion-col>
-        <div class="padding-top">
+      <ion-col class="ion-align-items-center">
+        
           <ion-button fill="clear"
                       [disabled]="bService.names[bService.memberChance-1] != bService.loggedUser"
                       (click)="bService.rollDiceChance()" 
@@ -73,7 +68,7 @@
                       *ngIf="bService.play==true && bService.names.length - (bService.memberChance-1) != 0">
             {{bService.names[bService.memberChance-1]}}'s Roll!
           </ion-button>
-        </div>
+        
       </ion-col> 
     </ion-row>
 
