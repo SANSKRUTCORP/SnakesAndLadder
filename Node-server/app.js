@@ -169,7 +169,7 @@ app.post('/apis/joinroom', function(req, res){
                     
                 }
 
-                roomRef.child('player_'+countVal).set({name : username, position: 0, playerUID: userID})
+                roomRef.child('player_'+countVal).set({name : username, position: 0, playerUID: userID, order : countVal})
                     .then(function(){
                             countVal = countVal+1;
                             ref.update({tempCounter : countVal});
